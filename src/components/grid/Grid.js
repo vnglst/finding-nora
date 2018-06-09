@@ -1,5 +1,4 @@
 // tslint:disable:no-console
-// import * as _ from 'lodash'
 import * as React from 'react'
 import Item from './Item'
 import generateGridWithPuzzle from './gridUtils'
@@ -8,7 +7,6 @@ import Overlay from '../Overlay'
 class Grid extends React.Component {
   constructor (props) {
     super(props)
-    // this.restartGame()
     this.handlePress = this.handlePress.bind(this)
     this.getAnswerStatus = this.getAnswerStatus.bind(this)
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this)
@@ -114,7 +112,7 @@ class Grid extends React.Component {
 
   render () {
     if (!this.state) {
-      return null
+      return null // state no loaded yet
     }
     const { grid } = this.state
     const youWon = this.didWin()

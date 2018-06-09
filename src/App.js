@@ -1,15 +1,17 @@
-// import * as _ from 'lodash'
 import * as React from 'react'
+import 'wired-elements'
 import './App.css'
 import Grid from './components/grid/'
+import ScrollLock from 'react-scrolllock'
 
 const SOLUTION = 'NORA'.split('')
-const NOISE = 'NORABCDEFGHIJKL'.split('')
+const NOISE = 'BCDEFGHIJKLM'.split('')
 
 class App extends React.Component {
-  public render() {
+  render () {
     return (
-      <div className="App">
+      <div className='app'>
+        <ScrollLock />
         <Grid size={4} solution={SOLUTION} noise={NOISE} />
       </div>
     )

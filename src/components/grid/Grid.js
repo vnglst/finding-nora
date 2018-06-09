@@ -3,51 +3,86 @@
 import * as React from 'react'
 import Item from './Item'
 import generateGridWithPuzzle from './gridUtils'
+import Overlay from '../Overlay'
 
 class Grid extends React.Component {
   constructor (props) {
     super(props)
-    const { size, solution, noise } = props
-    const grid = generateGridWithPuzzle({ size, solution, noise })
-    this.state = {
-      answers: [],
-      gameOver: false,
-      grid
-    }
+    // this.restartGame()
     this.handlePress = this.handlePress.bind(this)
     this.getAnswerStatus = this.getAnswerStatus.bind(this)
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this)
-    this.isNeighbourOfPrevAnswer = this.isNeighbourOfPrevAnswer.bind(
-      this,
-    )
+    this.getLastAnswer = this.getLastAnswer.bind(this)
+    this.allAnswersAreCorrect = this.allAnswersAreCorrect.bind(this)
+    this.didWin = this.didWin.bind(this)
+    this.restartGame = this.restartGame.bind(this)
   }
 
-  isNeighbourOfPrevAnswer ({ column, row }) {
+  componentDidMount () {
+    this.restartGame()
+  }
+
+  restartGame () {
+    console.log('restarting game')
+    const { size, solution, noise } = this.props
+    const grid = generateGridWithPuzzle({ size, solution, noise })
+    this.setState({
+      answers: [],
+      grid
+    })
+  }
+
+  getLastAnswer () {
     const { answers } = this.state
-    if (answers.length === 0) { // first answer is always a neighbour
+    if (answers.length === 0) {
+      return undefined // no answers yet
+    }
+    return answers[answers.length - 1]
+  }
+
+  isNeighbourOfLastAnswer ({ column, row }) {
+    const lastAnswer = this.getLastAnswer()
+    if (!lastAnswer) {
+      // first answer, no need to check neighbours
       return true
     }
-    const prevAnswer = answers[0]
-    return (prevAnswer.column === column && Math.abs(prevAnswer.row - row) <= 1) ||
-      (prevAnswer.row === row && Math.abs(prevAnswer.column - column) <= 1)
+    return (
+      (lastAnswer.column === column && Math.abs(lastAnswer.row - row) <= 1) ||
+      (lastAnswer.row === row && Math.abs(lastAnswer.column - column) <= 1)
+    )
   }
 
   isCorrectAnswer ({ letter, column, row }) {
     const { solution } = this.props
     const { answers } = this.state
-    const nextLetter = solution[answers.length]
-    const letterIsCorrect = letter === nextLetter
-    const isNeighbour = this.isNeighbourOfPrevAnswer({ column, row })
+    const numberOfAnswers = Math.max(answers.length, 0)
+    const currentLetter = solution[numberOfAnswers]
+    const letterIsCorrect = letter === currentLetter
+    const isNeighbour = this.isNeighbourOfLastAnswer({ column, row })
     return letterIsCorrect && isNeighbour
   }
 
+  isSameAnswer ({ letter, column, row }) {
+    const lastAnswer = this.getLastAnswer()
+    if (!lastAnswer) {
+      return false // first answer, so not the same
+    }
+    return (
+      lastAnswer.letter === letter &&
+      lastAnswer.column === column &&
+      lastAnswer.row === row
+    )
+  }
+
   handlePress ({ letter, column, row }) {
+    if (this.isSameAnswer({ letter, column, row })) {
+      return // ignore if the same answer is given twice
+    }
     const { answers } = this.state
     const isCorrectAnswer = this.isCorrectAnswer({ letter, column, row })
     const status = isCorrectAnswer ? 'correct' : 'incorrect'
     this.setState({
-      answers: [{ column, row, letter, status }, ...answers],
-      gameOver: !isCorrectAnswer
+      answers: [...answers, { column, row, letter, status }]
     })
   }
 
@@ -59,10 +94,31 @@ class Grid extends React.Component {
     return foundAnswer ? foundAnswer.status : undefined
   }
 
-  render () {
-    const { grid, gameOver, answers } = this.state
+  allAnswersAreCorrect () {
+    const { answers } = this.state
+    const wrongAnswers = answers.filter(answer => answer.status !== 'correct')
+    return wrongAnswers.length === 0
+  }
+
+  didWin () {
+    const { answers } = this.state
     const { solution } = this.props
-    const youWon = solution.length === answers.length
+    const allCorrect = this.allAnswersAreCorrect()
+    return solution.length === answers.length && allCorrect
+  }
+
+  didLoose () {
+    const allCorrect = this.allAnswersAreCorrect()
+    return !allCorrect
+  }
+
+  render () {
+    if (!this.state) {
+      return null
+    }
+    const { grid } = this.state
+    const youWon = this.didWin()
+    const youLost = this.didLoose()
 
     return (
       <div className='grid'>
@@ -82,15 +138,27 @@ class Grid extends React.Component {
             />
           )),
         )}
-        {gameOver && (
-          <div>
-            <p>Game over</p>
-          </div>
+        {youLost && (
+          <Overlay>
+            <p>You lost.</p>
+            <wired-button
+              onMouseDown={this.restartGame}
+              onTouchStart={this.restartGame}
+            >
+              Play again?
+            </wired-button>
+          </Overlay>
         )}
         {youWon && (
-        <div>
-          <p>You won!!</p>
-        </div>
+          <Overlay>
+            <p>You won!</p>
+            <wired-button
+              onMouseDown={this.restartGame}
+              onTouchStart={this.restartGame}
+            >
+              Play again?
+            </wired-button>
+          </Overlay>
         )}
       </div>
     )

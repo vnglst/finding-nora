@@ -1,29 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
-  grid-auto-rows: 80px;
+  grid-template-columns: repeat(4, 60px);
+  grid-auto-rows: 60px;
   grid-gap: 10px;
-}
-
-.item {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background-color: black;
-}
-
-.item p {
-  margin: 0 0 5px 0;
-  color: var(--white);
-}
-
-.correct, .correct p {
-  background-color: var(--green);
-  color: var(--black);
-}
-
-.wrong, .wrong p{
-  background-color: var(--brown);
-  color: var(--black);
 }

@@ -49,12 +49,10 @@ const addPuzzle = ({ grid, row, column, solution }) => {
     return clonedGrid
   }
   if (legalMoves.length === 0) {
-    // console.log('failed attempt')
     return undefined
   }
   const nextLetter = solution[0]
   const nextMove = _.sample(legalMoves)
-  // console.log('next letter', nextLetter, nextMove)
   clonedGrid[nextMove.row][nextMove.column] = {
     letter: nextLetter
   }

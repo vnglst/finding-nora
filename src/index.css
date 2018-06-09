@@ -1,22 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 
-:root {
-  --lightpink: #ffc7db;
-  --pink: #ffa7c1;
-  --green: #059200;
-  --darkbrown: #67402b;
-  --brown: #835f3a;
-  --black: #272727;
-  --white: #fbf1f4;
-}
-
 html {
   box-sizing: border-box;
   font-family: 'Lato', verdana, sans-serif;
   font-weight: 900;
   font-size: 24px;
-  color: var(--black);
-  background-color: var(--lightpink);
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
 }
 

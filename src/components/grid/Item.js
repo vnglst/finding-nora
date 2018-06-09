@@ -1,34 +1,44 @@
 // tslint:disable:no-console
 import * as React from 'react'
 
+const correctStyle = {
+  background: 'green',
+  color: 'black'
+}
+
+const wrongStyle = {
+  background: 'red',
+  color: 'black'
+}
+
 class Item extends React.Component {
   constructor (props) {
     super(props)
     this.handleMouseDown = this.handleMouseDown.bind(this)
   }
 
-  handleMouseDown (e) {
+  handleMouseDown () {
     const { letter, row, column } = this.props
-    // console.log('mouseDown', this.props.letter)
     this.props.onPress({ letter, row, column })
   }
 
   render () {
     const { answer, letter } = this.props
-    let classNames = 'item'
+    let buttonStyle
     if (answer === 'correct') {
-      classNames += ' correct'
+      buttonStyle = correctStyle
     }
     if (answer === 'incorrect') {
-      classNames += ' wrong'
+      buttonStyle = wrongStyle
     }
     return (
-      <div
-        className={classNames}
+      <wired-button
+        style={buttonStyle}
         onMouseDown={this.handleMouseDown}
+        onTouchStart={this.handleMouseDown}
       >
-        <p>{letter}</p>
-      </div>
+        {letter}
+      </wired-button>
     )
   }
 }

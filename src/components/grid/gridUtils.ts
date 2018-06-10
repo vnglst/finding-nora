@@ -1,22 +1,34 @@
 // tslint:disable:no-console
 import * as _ from 'lodash'
 
-const generateGrid = ({ size, noise }) => {
+interface InterfaceItem {
+  letter: string
+}
+
+const generateGrid = ({
+  size,
+  noise,
+}: {
+  size: number
+  noise: string[]
+}): InterfaceItem[][] => {
   const grid = []
   for (let row = 0; row < size; row++) {
     const columns = []
     for (let column = 0; column < size; column++) {
       const randomLetter = _.sample(noise)
-      columns.push({
-        letter: randomLetter
-      })
+      if (randomLetter) {
+        columns.push({
+          letter: randomLetter,
+        })
+      }
     }
     grid.push(columns)
   }
   return grid
 }
 
-const getAllMoves = ({ grid }) => {
+const getAllMoves = ({ grid }: { grid: InterfaceItem[][] }) => {
   const legalMoves = []
   const size = grid.length
   for (let row = 0; row < size; row++) {
@@ -27,7 +39,15 @@ const getAllMoves = ({ grid }) => {
   return legalMoves
 }
 
-const getLegalNextMoves = ({ grid, row, column }) => {
+const getLegalNextMoves = ({
+  grid,
+  row,
+  column,
+}: {
+  grid: InterfaceItem[][]
+  row?: number
+  column?: number
+}) => {
   if (row === undefined || column === undefined) {
     return getAllMoves({ grid })
   }
@@ -42,27 +62,39 @@ const getLegalNextMoves = ({ grid, row, column }) => {
   return legalMoves
 }
 
-const addPuzzle = ({ grid, row, column, solution }) => {
+interface InterfaceAddPuzzle {
+  grid: InterfaceItem[][]
+  row?: number
+  column?: number
+  solution: string[]
+}
+
+const addPuzzle = ({ grid, row, column, solution }: InterfaceAddPuzzle): InterfaceItem[][] | null => {
+  // all solutions added to grid, stopping
+  if (solution.length < 1) {
+    return grid
+  }
+
   const clonedGrid = _.cloneDeep(grid)
   const legalMoves = getLegalNextMoves({ grid: clonedGrid, row, column })
-  if (solution.length === 0) {
-    return clonedGrid
-  }
-  if (legalMoves.length === 0) {
-    return undefined
-  }
-  const nextLetter = solution[0]
   const nextMove = _.sample(legalMoves)
-  clonedGrid[nextMove.row][nextMove.column] = {
-    letter: nextLetter
+  if (!nextMove) {
+    // no possible next move found, could not completely add puzzle
+    return null
   }
+
+  const nextLetter = solution[0]
+  clonedGrid[nextMove.row][nextMove.column] = {
+    letter: nextLetter,
+  }
+
   const remainingSolution = solution.slice(1)
 
   const gridWithPuzzle = addPuzzle({
     column: nextMove.column,
     grid: clonedGrid,
     row: nextMove.row,
-    solution: remainingSolution
+    solution: remainingSolution,
   })
 
   // could not add complete puzzle, go back up in recursion tree and start over
@@ -70,13 +102,23 @@ const addPuzzle = ({ grid, row, column, solution }) => {
     if (column === undefined) {
       return addPuzzle({ grid, solution })
     }
-    return undefined
+    return null
   }
 
   return gridWithPuzzle
 }
 
-const generateGridWithPuzzle = ({ size, solution, noise }) => {
+interface InterfaceGenerateGridWithPuzzle {
+  size: number
+  solution: string[]
+  noise: string[]
+}
+
+const generateGridWithPuzzle = ({
+  size,
+  solution,
+  noise,
+}: InterfaceGenerateGridWithPuzzle) => {
   const grid = generateGrid({ size, noise })
   const gridWithPuzzle = addPuzzle({ grid, solution })
   return gridWithPuzzle

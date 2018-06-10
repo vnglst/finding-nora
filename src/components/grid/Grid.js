@@ -112,7 +112,7 @@ class Grid extends React.Component {
 
   render () {
     if (!this.state) {
-      return null // state no loaded yet
+      return null // state not loaded yet
     }
     const { grid } = this.state
     const youWon = this.didWin()

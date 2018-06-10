@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Name Search",
+  "name": "Find your name is a field of letters",
   "icons": [
     {
       "src": "favicon.ico",

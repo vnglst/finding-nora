@@ -21,7 +21,6 @@ class Grid extends React.Component {
   }
 
   restartGame () {
-    console.log('restarting game')
     const { size, solution, noise } = this.props
     const grid = generateGridWithPuzzle({ size, solution, noise })
     this.setState({
@@ -138,24 +137,14 @@ class Grid extends React.Component {
         )}
         {youLost && (
           <Overlay>
-            <p>You lost.</p>
-            <wired-button
-              onMouseDown={this.restartGame}
-              onTouchStart={this.restartGame}
-            >
-              Play again?
-            </wired-button>
+            <p>😿</p>
+            <button onMouseDown={this.restartGame}>Play again?</button>
           </Overlay>
         )}
         {youWon && (
           <Overlay>
-            <p>You won!</p>
-            <wired-button
-              onMouseDown={this.restartGame}
-              onTouchStart={this.restartGame}
-            >
-              Play again?
-            </wired-button>
+            <p>😼</p>
+            <button onMouseDown={this.restartGame}>Play again?</button>
           </Overlay>
         )}
       </div>

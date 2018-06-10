@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 import * as _ from 'lodash'
 
-interface InterfaceItem {
+export interface InterfaceGridItem {
   letter: string
 }
 
@@ -11,7 +11,7 @@ const generateGrid = ({
 }: {
   size: number
   noise: string[]
-}): InterfaceItem[][] => {
+}): InterfaceGridItem[][] => {
   const grid = []
   for (let row = 0; row < size; row++) {
     const columns = []
@@ -28,7 +28,7 @@ const generateGrid = ({
   return grid
 }
 
-const getAllMoves = ({ grid }: { grid: InterfaceItem[][] }) => {
+const getAllMoves = ({ grid }: { grid: InterfaceGridItem[][] }) => {
   const legalMoves = []
   const size = grid.length
   for (let row = 0; row < size; row++) {
@@ -39,15 +39,17 @@ const getAllMoves = ({ grid }: { grid: InterfaceItem[][] }) => {
   return legalMoves
 }
 
+interface InterfaceGetLegalNextMoves {
+  grid: InterfaceGridItem[][]
+  row?: number
+  column?: number
+}
+
 const getLegalNextMoves = ({
   grid,
   row,
   column,
-}: {
-  grid: InterfaceItem[][]
-  row?: number
-  column?: number
-}) => {
+}: InterfaceGetLegalNextMoves) => {
   if (row === undefined || column === undefined) {
     return getAllMoves({ grid })
   }
@@ -63,13 +65,18 @@ const getLegalNextMoves = ({
 }
 
 interface InterfaceAddPuzzle {
-  grid: InterfaceItem[][]
+  grid: InterfaceGridItem[][]
   row?: number
   column?: number
   solution: string[]
 }
 
-const addPuzzle = ({ grid, row, column, solution }: InterfaceAddPuzzle): InterfaceItem[][] | null => {
+const addPuzzle = ({
+  grid,
+  row,
+  column,
+  solution,
+}: InterfaceAddPuzzle): InterfaceGridItem[][] | null => {
   // all solutions added to grid, stopping
   if (solution.length < 1) {
     return grid
@@ -89,7 +96,6 @@ const addPuzzle = ({ grid, row, column, solution }: InterfaceAddPuzzle): Interfa
   }
 
   const remainingSolution = solution.slice(1)
-
   const gridWithPuzzle = addPuzzle({
     column: nextMove.column,
     grid: clonedGrid,
@@ -108,17 +114,15 @@ const addPuzzle = ({ grid, row, column, solution }: InterfaceAddPuzzle): Interfa
   return gridWithPuzzle
 }
 
-interface InterfaceGenerateGridWithPuzzle {
-  size: number
-  solution: string[]
-  noise: string[]
-}
-
 const generateGridWithPuzzle = ({
   size,
   solution,
   noise,
-}: InterfaceGenerateGridWithPuzzle) => {
+}: {
+  size: number
+  solution: string[]
+  noise: string[]
+}) => {
   const grid = generateGrid({ size, noise })
   const gridWithPuzzle = addPuzzle({ grid, solution })
   return gridWithPuzzle

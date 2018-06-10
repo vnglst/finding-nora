@@ -10,6 +10,7 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
+        <p>NORA</p>
         <Grid size={4} solution={SOLUTION} noise={NOISE} />
       </div>
     )

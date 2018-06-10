@@ -1,14 +1,14 @@
 .app {
   color: #F7FFF7;
   text-align: center;
-  font-size: 28;
+  font-size: 28px;
   letter-spacing: 2px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 60px);
-  grid-auto-rows: 60px;
+  grid-template-columns: repeat(5, 50px);
+  grid-auto-rows: 50px;
   grid-gap: 10px;
 }
 

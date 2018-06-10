@@ -1,5 +1,4 @@
 import * as React from 'react'
-import 'wired-elements'
 import './App.css'
 import Grid from './components/grid/'
 
@@ -10,8 +9,8 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <p>NORA</p>
-        <Grid size={4} solution={SOLUTION} noise={NOISE} />
+        <p>{SOLUTION.join('')}</p>
+        <Grid size={5} solution={SOLUTION} noise={NOISE} />
       </div>
     )
   }

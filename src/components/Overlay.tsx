@@ -1,8 +1,12 @@
 import * as React from 'react'
 import './Overlay.css'
 
-class Overlay extends React.Component {
-  render () {
+interface IOverlayProps {
+  children: React.ReactNode
+}
+
+class Overlay extends React.Component<IOverlayProps, object> {
+  public render () {
     return (
       <div
         className='overlay'>

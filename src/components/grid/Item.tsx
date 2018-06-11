@@ -8,7 +8,7 @@ const wrongStyle = {
   background: '#FF6B6B',
 }
 
-export interface InterfaceItemProps {
+export interface IItemProps {
   letter: string
   row: number
   column: number
@@ -18,8 +18,8 @@ export interface InterfaceItemProps {
   ) => void
 }
 
-class Item extends React.Component<InterfaceItemProps, object> {
-  constructor(props: InterfaceItemProps) {
+class Item extends React.Component<IItemProps, object> {
+  constructor(props: IItemProps) {
     super(props)
     this.handleMouseDown = this.handleMouseDown.bind(this)
   }

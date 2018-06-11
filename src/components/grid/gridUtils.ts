@@ -1,7 +1,6 @@
-// tslint:disable:no-console
 import * as _ from 'lodash'
 
-export interface InterfaceGridItem {
+export interface IGridItem {
   letter: string
 }
 
@@ -11,7 +10,7 @@ const generateGrid = ({
 }: {
   size: number
   noise: string[]
-}): InterfaceGridItem[][] => {
+}): IGridItem[][] => {
   const grid = []
   for (let row = 0; row < size; row++) {
     const columns = []
@@ -28,7 +27,7 @@ const generateGrid = ({
   return grid
 }
 
-const getAllMoves = ({ grid }: { grid: InterfaceGridItem[][] }) => {
+const getAllMoves = ({ grid }: { grid: IGridItem[][] }) => {
   const legalMoves = []
   const size = grid.length
   for (let row = 0; row < size; row++) {
@@ -39,8 +38,8 @@ const getAllMoves = ({ grid }: { grid: InterfaceGridItem[][] }) => {
   return legalMoves
 }
 
-interface InterfaceGetLegalNextMoves {
-  grid: InterfaceGridItem[][]
+interface IGetLegalNextMoves {
+  grid: IGridItem[][]
   row?: number
   column?: number
 }
@@ -49,7 +48,7 @@ const getLegalNextMoves = ({
   grid,
   row,
   column,
-}: InterfaceGetLegalNextMoves) => {
+}: IGetLegalNextMoves) => {
   if (row === undefined || column === undefined) {
     return getAllMoves({ grid })
   }
@@ -64,8 +63,8 @@ const getLegalNextMoves = ({
   return legalMoves
 }
 
-interface InterfaceAddPuzzle {
-  grid: InterfaceGridItem[][]
+interface IAddPuzzle {
+  grid: IGridItem[][]
   row?: number
   column?: number
   solution: string[]
@@ -76,7 +75,7 @@ const addPuzzle = ({
   row,
   column,
   solution,
-}: InterfaceAddPuzzle): InterfaceGridItem[][] | null => {
+}: IAddPuzzle): IGridItem[][] | null => {
   // all solutions added to grid, stopping
   if (solution.length < 1) {
     return grid

@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Item from './Item'
-import generateGridWithPuzzle from './gridUtils'
+import generateGridWithPuzzle from './gameUtils'
+import Grid from '../Grid'
 import Overlay from '../Overlay'
 
-class Grid extends React.Component {
+class Game extends React.Component {
   constructor (props) {
     super(props)
     this.handlePress = this.handlePress.bind(this)
@@ -117,10 +117,10 @@ class Grid extends React.Component {
     const youLost = this.didLoose()
 
     return (
-      <div className='grid'>
+      <Grid>
         {grid.map((row, rowIndex) =>
           row.map((item, columnIndex) => (
-            <Item
+            <Grid.Item
               key={`${rowIndex}-${columnIndex}`}
               onPress={this.handlePress}
               letter={item.letter}
@@ -146,9 +146,9 @@ class Grid extends React.Component {
             <button onMouseDown={this.restartGame}>Play again?</button>
           </Overlay>
         )}
-      </div>
+      </Grid>
     )
   }
 }
 
-export default Grid
+export default Game

@@ -1,16 +1,16 @@
 import * as React from 'react'
 import './App.css'
-import Grid from './components/grid/'
+import Game from './components/Game/'
 
 const SOLUTION = 'NORA'.split('')
-const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVW'.split('')
+const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 class App extends React.Component {
   public render() {
     return (
       <div className="app">
         <p>{SOLUTION.join('')}</p>
-        <Grid size={5} solution={SOLUTION} noise={NOISE} />
+        <Game size={5} solution={SOLUTION} noise={NOISE} />
       </div>
     )
   }

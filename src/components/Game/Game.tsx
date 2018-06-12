@@ -35,7 +35,7 @@ class Game extends React.Component<IGameProps, IGameState> {
     }
     const { grid } = this.state
     const youWon = this.didWin()
-    const youLost = !this.allAnswersAreCorrect()
+    const youLost = false // !this.allAnswersAreCorrect()
 
     return (
       <Grid>

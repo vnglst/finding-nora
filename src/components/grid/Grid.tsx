@@ -1,4 +1,5 @@
 import * as React from 'react'
+import './Grid.css'
 import Item from './Item'
 
 export interface IGridProps {

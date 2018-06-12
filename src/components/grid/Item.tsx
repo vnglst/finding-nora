@@ -1,12 +1,5 @@
 import * as React from 'react'
-
-const correctStyle = {
-  background: '#75b843',
-}
-
-const wrongStyle = {
-  background: '#e30613',
-}
+import './Item.css'
 
 export interface IItemProps {
   children: React.ReactNode
@@ -22,19 +15,15 @@ class Item extends React.Component<IItemProps, object> {
 
   public render() {
     const { children, correct, incorrect } = this.props
-    let style
+    let className = 'letter-button'
     if (correct) {
-      style = correctStyle
+      className += ' correct'
     }
     if (incorrect) {
-      style = wrongStyle
+      className += ' wrong'
     }
     return (
-      <button
-        className="letter-button"
-        style={style}
-        onMouseDown={this.props.onPress}
-      >
+      <button className={className} onMouseDown={this.props.onPress}>
         {children}
       </button>
     )

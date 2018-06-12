@@ -1,8 +1,31 @@
 import * as _ from 'lodash'
 
 export interface IGridItem {
+  column: number
   letter: string
+  row: number
+  status?: string
 }
+
+export default ({
+  size,
+  solution,
+  noise,
+}: {
+  size: number
+  solution: string[]
+  noise: string[]
+}) => {
+  const grid = generateGrid({ size, noise })
+  const gridWithPuzzle = addPuzzle({ grid, solution })
+  return gridWithPuzzle
+}
+
+export const isNeighbour = (answer1: IGridItem, answer2: IGridItem) =>
+  (answer1.column === answer2.column &&
+    Math.abs(answer1.row - answer2.row) <= 1) ||
+  (answer1.row === answer2.row &&
+    Math.abs(answer1.column - answer2.column) <= 1)
 
 const generateGrid = ({
   size,
@@ -18,7 +41,9 @@ const generateGrid = ({
       const randomLetter = _.sample(noise)
       if (randomLetter) {
         columns.push({
+          column,
           letter: randomLetter,
+          row,
         })
       }
     }
@@ -44,11 +69,7 @@ interface IGetLegalNextMoves {
   column?: number
 }
 
-const getLegalNextMoves = ({
-  grid,
-  row,
-  column,
-}: IGetLegalNextMoves) => {
+const getLegalNextMoves = ({ grid, row, column }: IGetLegalNextMoves) => {
   if (row === undefined || column === undefined) {
     return getAllMoves({ grid })
   }
@@ -91,7 +112,9 @@ const addPuzzle = ({
 
   const nextLetter = solution[0]
   clonedGrid[nextMove.row][nextMove.column] = {
+    column: nextMove.column,
     letter: nextLetter,
+    row: nextMove.row,
   }
 
   const remainingSolution = solution.slice(1)
@@ -112,19 +135,3 @@ const addPuzzle = ({
 
   return gridWithPuzzle
 }
-
-const generateGridWithPuzzle = ({
-  size,
-  solution,
-  noise,
-}: {
-  size: number
-  solution: string[]
-  noise: string[]
-}) => {
-  const grid = generateGrid({ size, noise })
-  const gridWithPuzzle = addPuzzle({ grid, solution })
-  return gridWithPuzzle
-}
-
-export default generateGridWithPuzzle

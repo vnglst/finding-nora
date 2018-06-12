@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { IGridItem } from '../Game/gameUtils'
 
 const correctStyle = {
   background: '#4ECDC4',
@@ -9,10 +10,7 @@ const wrongStyle = {
 }
 
 export interface IItemProps {
-  letter: string
-  row: number
-  column: number
-  answer: string
+  item: IGridItem,
   onPress: (
     { letter, row, column }: { letter: string; row: number; column: number },
   ) => void
@@ -25,17 +23,16 @@ class Item extends React.Component<IItemProps, object> {
   }
 
   public handleMouseDown() {
-    const { letter, row, column } = this.props
-    this.props.onPress({ letter, row, column })
+    this.props.onPress(this.props.item)
   }
 
   public render() {
-    const { answer, letter } = this.props
+    const { item } = this.props
     let style
-    if (answer === 'correct') {
+    if (item.status === 'correct') {
       style = correctStyle
     }
-    if (answer === 'incorrect') {
+    if (item.status === 'incorrect') {
       style = wrongStyle
     }
     return (
@@ -44,7 +41,7 @@ class Item extends React.Component<IItemProps, object> {
         style={style}
         onMouseDown={this.handleMouseDown}
       >
-        {letter}
+        {item.letter}
       </button>
     )
   }

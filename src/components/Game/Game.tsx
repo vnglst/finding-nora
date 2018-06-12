@@ -1,8 +1,9 @@
+// tslint:disable:no-console
 import * as React from 'react'
 import Grid from '../Grid'
 import Overlay from '../Overlay'
 import generateGridWithPuzzle from './gameUtils'
-import { IGridItem, isNeighbour } from './gameUtils'
+import { IGridItem, itemsAreNeighbours } from './gameUtils'
 
 interface IGameProps {
   size: number
@@ -13,6 +14,7 @@ interface IGameProps {
 interface IGameState {
   answers: IGridItem[]
   grid: IGridItem[][] | null
+  remaining: string[]
 }
 
 class Game extends React.Component<IGameProps, IGameState> {
@@ -20,7 +22,6 @@ class Game extends React.Component<IGameProps, IGameState> {
     super(props)
     this.handlePress = this.handlePress.bind(this)
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this)
-    this.allAnswersAreCorrect = this.allAnswersAreCorrect.bind(this)
     this.didWin = this.didWin.bind(this)
     this.restartGame = this.restartGame.bind(this)
   }
@@ -35,7 +36,6 @@ class Game extends React.Component<IGameProps, IGameState> {
     }
     const { grid } = this.state
     const youWon = this.didWin()
-    const youLost = false // !this.allAnswersAreCorrect()
 
     return (
       <Grid>
@@ -50,12 +50,6 @@ class Game extends React.Component<IGameProps, IGameState> {
               {item.letter}
             </Grid.Item>
           )),
-        )}
-        {youLost && (
-          <Overlay>
-            <p>GAME OVER</p>
-            <button onMouseDown={this.restartGame}>Play again?</button>
-          </Overlay>
         )}
         {youWon && (
           <Overlay>
@@ -73,44 +67,54 @@ class Game extends React.Component<IGameProps, IGameState> {
     this.setState({
       answers: [],
       grid,
+      remaining: solution,
     })
   }
 
+  private getLastCorrectAnswer(answers: IGridItem[]) {
+    const correctAnswers = answers.filter(a => a.status === 'correct')
+    if (correctAnswers.length < 1) {
+      return undefined
+    }
+    const lastCorrectAnswer = correctAnswers[correctAnswers.length - 1]
+    return lastCorrectAnswer
+  }
+
   private isCorrectAnswer(answer: IGridItem) {
-    const { solution } = this.props
-    const { answers } = this.state
-    const numberOfAnswers = Math.max(answers.length, 0)
-    const currentLetter = solution[numberOfAnswers]
+    const { remaining, answers } = this.state
+    const currentLetter = remaining[0]
     const letterIsCorrect = answer.letter === currentLetter
-    const lastAnswer = answers[answers.length - 1]
-    const isFirstOrNeighbour = !lastAnswer || isNeighbour(lastAnswer, answer)
+    const lastCorrectAnswer = this.getLastCorrectAnswer(answers)
+    const isFirstOrNeighbour =
+      !lastCorrectAnswer || itemsAreNeighbours(lastCorrectAnswer, answer)
     return letterIsCorrect && isFirstOrNeighbour
   }
 
   private handlePress(answer: IGridItem) {
-    const { grid, answers } = this.state
+    const { grid, answers, remaining } = this.state
     if (answer.status || !grid) {
       return // already answered
     }
-    const status = this.isCorrectAnswer(answer) ? 'correct' : 'incorrect'
+    const isCorrect = this.isCorrectAnswer(answer)
+    const status = isCorrect ? 'correct' : 'incorrect'
+    const newRemaining = isCorrect ? remaining.slice(1) : remaining
     answer.status = status
     grid[answer.row][answer.column].status = status
     this.setState({
       answers: [...answers, answer],
+      remaining: newRemaining,
     })
   }
 
-  private allAnswersAreCorrect() {
-    const { answers } = this.state
-    const wrongAnswers = answers.filter(answer => answer.status !== 'correct')
-    return wrongAnswers.length === 0
+  private allCorrect(answers: IGridItem[]) {
+    return answers.findIndex(answer => answer.status !== 'correct') === -1
   }
 
   private didWin() {
     const { answers } = this.state
     const { solution } = this.props
-    const allCorrect = this.allAnswersAreCorrect()
-    return solution.length === answers.length && allCorrect
+    const areAllAnswersCorrect = this.allCorrect(answers)
+    return solution.length === answers.length && areAllAnswersCorrect
   }
 }
 

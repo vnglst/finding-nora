@@ -21,11 +21,9 @@ export default ({
   return gridWithPuzzle
 }
 
-export const isNeighbour = (answer1: IGridItem, answer2: IGridItem) =>
-  (answer1.column === answer2.column &&
-    Math.abs(answer1.row - answer2.row) <= 1) ||
-  (answer1.row === answer2.row &&
-    Math.abs(answer1.column - answer2.column) <= 1)
+export const itemsAreNeighbours = (item1: IGridItem, item2: IGridItem) =>
+  (item1.column === item2.column && Math.abs(item1.row - item2.row) <= 1) ||
+  (item1.row === item2.row && Math.abs(item1.column - item2.column) <= 1)
 
 const generateGrid = ({
   size,

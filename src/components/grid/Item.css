@@ -12,11 +12,23 @@
 }
 
 .letter-button.correct {
-    background-color: #75b843;
+  background-color: #75b843;
 }
 
 .letter-button.wrong {
-    background-color: #e30613;
+  background-color: #e30613;
+  animation: loader 1200ms 1 ease-in forwards;
+}
+
+@keyframes loader {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0px) rotateZ(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0px, 640px, 0) rotate(-170deg);
+  }
 }
 
 @keyframes active {

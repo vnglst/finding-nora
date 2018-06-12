@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { IGridItem } from '../Game/gameUtils'
 
 const correctStyle = {
   background: '#4ECDC4',
@@ -10,38 +9,33 @@ const wrongStyle = {
 }
 
 export interface IItemProps {
-  item: IGridItem,
-  onPress: (
-    { letter, row, column }: { letter: string; row: number; column: number },
-  ) => void
+  children: React.ReactNode
+  correct: boolean
+  incorrect: boolean
+  onPress: () => void
 }
 
 class Item extends React.Component<IItemProps, object> {
   constructor(props: IItemProps) {
     super(props)
-    this.handleMouseDown = this.handleMouseDown.bind(this)
-  }
-
-  public handleMouseDown() {
-    this.props.onPress(this.props.item)
   }
 
   public render() {
-    const { item } = this.props
+    const { children, correct, incorrect } = this.props
     let style
-    if (item.status === 'correct') {
+    if (correct) {
       style = correctStyle
     }
-    if (item.status === 'incorrect') {
+    if (incorrect) {
       style = wrongStyle
     }
     return (
       <button
         className="letter-button"
         style={style}
-        onMouseDown={this.handleMouseDown}
+        onMouseDown={this.props.onPress}
       >
-        {item.letter}
+        {children}
       </button>
     )
   }

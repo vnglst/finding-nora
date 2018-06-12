@@ -43,9 +43,12 @@ class Game extends React.Component<IGameProps, IGameState> {
           row.map((item, columnIndex) => (
             <Grid.Item
               key={`${rowIndex}-${columnIndex}`}
-              onPress={this.handlePress}
-              item={item}
-            />
+              onPress={() => this.handlePress(item)}
+              incorrect={item.status === 'incorrect'}
+              correct={item.status === 'correct'}
+            >
+              {item.letter}
+            </Grid.Item>
           )),
         )}
         {youLost && (

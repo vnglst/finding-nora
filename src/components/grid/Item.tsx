@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 const correctStyle = {
-  background: '#4ECDC4',
+  background: '#75b843',
 }
 
 const wrongStyle = {
-  background: '#FF6B6B',
+  background: '#e30613',
 }
 
 export interface IItemProps {

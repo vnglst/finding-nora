@@ -10,7 +10,7 @@ class Overlay extends React.Component<IOverlayProps, object> {
     return (
       <div
         className='overlay'>
-        <div className='overlay-container'>
+        <div className='overlay-container slide-in-top'>
           <div className='overlay-content'>
             {this.props.children}
           </div>

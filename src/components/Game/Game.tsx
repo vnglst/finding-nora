@@ -53,13 +53,13 @@ class Game extends React.Component<IGameProps, IGameState> {
         )}
         {youLost && (
           <Overlay>
-            <p>😿</p>
+            <p>GAME OVER</p>
             <button onMouseDown={this.restartGame}>Play again?</button>
           </Overlay>
         )}
         {youWon && (
           <Overlay>
-            <p>😼</p>
+            <p>YOU WON</p>
             <button onMouseDown={this.restartGame}>Play again?</button>
           </Overlay>
         )}

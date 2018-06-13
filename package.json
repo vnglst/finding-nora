@@ -1,5 +1,5 @@
 {
-  "name": "name-search",
+  "name": "finding-nora",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +15,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "deploy": "yarn build && rm ./build/static/js/main.*.js.map && now alias $(now ./build --local-config=../now.json --public --static) nora.now.sh"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",

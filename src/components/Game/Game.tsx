@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import RefreshIcon from '@material-ui/icons/Refresh'
 import * as React from 'react'
 import Button from '../Button'
@@ -121,7 +120,7 @@ class Game extends React.Component<IGameProps, IGameState> {
     const { answers } = this.state
     const { solution } = this.props
     const areAllAnswersCorrect = this.allCorrect(answers)
-    return solution.length === answers.length && areAllAnswersCorrect
+    return answers.length >= solution.length && areAllAnswersCorrect
   }
 }
 

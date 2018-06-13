@@ -1,5 +1,7 @@
+// tslint:disable:no-console
 import RefreshIcon from '@material-ui/icons/Refresh'
 import * as React from 'react'
+import Sound from 'react-sound'
 import Button from '../Button'
 import Grid from '../Grid'
 import Overlay from '../Overlay'
@@ -16,6 +18,8 @@ interface IGameState {
   answers: IGridItem[]
   grid: IGridItem[][] | null
   remaining: string[]
+  playNock: boolean
+  playSquakk: boolean
 }
 
 class Game extends React.Component<IGameProps, IGameState> {
@@ -35,7 +39,7 @@ class Game extends React.Component<IGameProps, IGameState> {
     if (!this.state || !this.state.grid) {
       return null // state not loaded yet
     }
-    const { grid } = this.state
+    const { grid, playNock, playSquakk } = this.state
     const youWon = this.didWin()
 
     return (
@@ -63,6 +67,21 @@ class Game extends React.Component<IGameProps, IGameState> {
             <RefreshIcon style={{ fontSize: '48px' }} />
           </button>
         </div>
+        <Sound
+          url="./nock.mp3"
+          autoLoad={true}
+          playStatus={playNock ? Sound.status.PLAYING : Sound.status.STOPPED}
+          onFinishedPlaying={() => {
+            this.setState({ playNock: false })
+          }}
+        />
+        <Sound
+          url="./squakk.mp3"
+          playStatus={playSquakk ? Sound.status.PLAYING : Sound.status.STOPPED}
+          onFinishedPlaying={() => {
+            this.setState({ playSquakk: false })
+          }}
+        />
       </Grid>
     )
   }
@@ -73,6 +92,8 @@ class Game extends React.Component<IGameProps, IGameState> {
     this.setState({
       answers: [],
       grid,
+      playNock: false,
+      playSquakk: false,
       remaining: solution,
     })
   }
@@ -108,6 +129,8 @@ class Game extends React.Component<IGameProps, IGameState> {
     grid[answer.row][answer.column].status = status
     this.setState({
       answers: [...answers, answer],
+      playNock: isCorrect,
+      playSquakk: !isCorrect,
       remaining: newRemaining,
     })
   }

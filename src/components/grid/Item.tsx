@@ -1,11 +1,12 @@
 import * as React from 'react'
+import Button from '../Button'
 import './Item.css'
 
-export interface IItemProps {
+interface IItemProps {
+  onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>
   children: React.ReactNode
-  correct: boolean
-  incorrect: boolean
-  onPress: () => void
+  correct?: boolean
+  incorrect?: boolean
 }
 
 class Item extends React.Component<IItemProps, object> {
@@ -14,18 +15,18 @@ class Item extends React.Component<IItemProps, object> {
   }
 
   public render() {
-    const { children, correct, incorrect } = this.props
-    let className = 'letter-button'
+    const { children, correct, incorrect, ...other } = this.props
+    let classes = 'grid-item'
     if (correct) {
-      className += ' correct'
+      classes += ' correct'
     }
     if (incorrect) {
-      className += ' wrong'
+      classes += ' wrong'
     }
     return (
-      <button className={className} onMouseDown={this.props.onPress}>
+      <Button className={classes} {...other}>
         {children}
-      </button>
+      </Button>
     )
   }
 }

@@ -5,3 +5,53 @@
   font-size: 28px;
   letter-spacing: 2px;
 }
+
+.bottom-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 70px;
+  width: 100%;
+}
+
+.bottom-bar button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.bottom-bar button:hover {
+  animation: zoom 100ms ease-in-out 1 forwards;
+}
+
+.bottom-bar button:active {
+  animation: press 100ms ease-in-out 1 forwards;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes press {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

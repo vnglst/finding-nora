@@ -1,5 +1,7 @@
 // tslint:disable:no-console
+import RefreshIcon from '@material-ui/icons/Refresh'
 import * as React from 'react'
+import Button from '../Button'
 import Grid from '../Grid'
 import Overlay from '../Overlay'
 import generateGridWithPuzzle from './gameUtils'
@@ -43,7 +45,7 @@ class Game extends React.Component<IGameProps, IGameState> {
           row.map((item, columnIndex) => (
             <Grid.Item
               key={`${rowIndex}-${columnIndex}`}
-              onPress={() => this.handlePress(item)}
+              onMouseDown={() => this.handlePress(item)}
               incorrect={item.status === 'incorrect'}
               correct={item.status === 'correct'}
             >
@@ -54,9 +56,14 @@ class Game extends React.Component<IGameProps, IGameState> {
         {youWon && (
           <Overlay>
             <p>YOU WON</p>
-            <button onMouseDown={this.restartGame}>Play again?</button>
+            <Button onMouseDown={this.restartGame}>Play again?</Button>
           </Overlay>
         )}
+        <div className="bottom-bar">
+          <button onMouseDown={this.restartGame}>
+            <RefreshIcon style={{ fontSize: '48px' }} />
+          </button>
+        </div>
       </Grid>
     )
   }

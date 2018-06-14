@@ -33,12 +33,16 @@ class Game extends React.Component<IGameProps, IGameState> {
     this.didWin = this.didWin.bind(this)
     this.restartGame = this.restartGame.bind(this)
 
+    const soundsBaseUrl =
+      'https://raw.githubusercontent.com/vnglst/finding-nora/master/public/sounds/'
+
     const soundUrls = [
-      './sounds/squakk.mp3',
-      './sounds/nock.mp3',
-      './sounds/hooyeah.mp3',
-      './sounds/restart.mp3',
+      soundsBaseUrl + 'squakk.mp3',
+      soundsBaseUrl + 'nock.mp3',
+      soundsBaseUrl + 'hooyeah.mp3',
+      soundsBaseUrl + 'restart.mp3',
     ]
+
     loadSounds(soundUrls, (bufferList: any) => {
       this.squakk = bufferList[0]
       this.nock = bufferList[1]

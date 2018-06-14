@@ -8,38 +8,28 @@ function BufferLoader(context, urlList, callback) {
 }
 
 BufferLoader.prototype.loadBuffer = function(url, index) {
-  // Load buffer
-  var request = new XMLHttpRequest()
-  request.open('GET', url, true)
-  request.responseType = 'arraybuffer'
-
-  var loader = this
-
-  request.onload = function() {
-    // Decode the audio file data in request.response
-    loader.context.decodeAudioData(
-      request.response,
-      function(buffer) {
-        if (!buffer) {
-          alert('error decoding file data: ' + url)
-          return
-        }
-        loader.bufferList[index] = buffer
-        if (++loader.loadCount === loader.urlList.length) {
-          loader.onload(loader.bufferList)
-        }
-      },
-      function(error) {
-        console.error('decodeAudioData error', error)
-      },
-    )
-  }
-
-  request.onerror = function() {
-    alert('BufferLoader: XHR error')
-  }
-
-  request.send()
+  const loader = this
+  fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(buffer => {
+      loader.context.decodeAudioData(
+        buffer,
+        decodedData => {
+          if (!decodedData) {
+            console.error('error decoding file data: ' + url)
+            return
+          }
+          loader.bufferList[index] = decodedData
+          if (++loader.loadCount === loader.urlList.length) {
+            loader.onload(loader.bufferList)
+          }
+        },
+        error => {
+          console.error('decodeAudioData error', error)
+        },
+      )
+    })
+    .catch(error => console.error('BufferLoader: XHR error'))
 }
 
 BufferLoader.prototype.load = function() {

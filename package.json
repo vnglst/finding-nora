@@ -11,8 +11,7 @@
     "qs": "^6.5.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts-ts": "2.16.0",
-    "react-sound": "^1.2.0"
+    "react-scripts-ts": "2.16.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",

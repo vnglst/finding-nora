@@ -8,7 +8,7 @@ function BufferLoader(context, urlList, callback) {
 }
 
 BufferLoader.prototype.loadBuffer = function(url, index) {
-  // Load buffer asynchronously
+  // Load buffer
   var request = new XMLHttpRequest()
   request.open('GET', url, true)
   request.responseType = 'arraybuffer'
@@ -16,7 +16,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
   var loader = this
 
   request.onload = function() {
-    // Asynchronously decode the audio file data in request.response
+    // Decode the audio file data in request.response
     loader.context.decodeAudioData(
       request.response,
       function(buffer) {

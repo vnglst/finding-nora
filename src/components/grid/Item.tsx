@@ -1,10 +1,10 @@
 import * as React from 'react'
-// import * as Sound from 'react-sound'
 import Button from '../Button'
 import './Item.css'
 
 interface IItemProps {
   onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>
+  onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>
   children: React.ReactNode
   correct?: boolean
   incorrect?: boolean

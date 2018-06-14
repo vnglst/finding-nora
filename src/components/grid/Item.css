@@ -27,7 +27,7 @@
   }
   100% {
     opacity: 0;
-    transform: translate3d(0px, 640px, 0) rotate(-170deg);
+    transform: translate3d(0px, 600px, 0) rotate(-170deg);
   }
 }
 

@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 import * as React from 'react'
 import './Button.css'
 
@@ -6,7 +7,7 @@ export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
   className?: string
 }
 
-class Item extends React.Component<IButtonProps, object> {
+class Button extends React.Component<IButtonProps, object> {
   constructor(props: IButtonProps) {
     super(props)
   }
@@ -22,4 +23,4 @@ class Item extends React.Component<IButtonProps, object> {
   }
 }
 
-export default Item
+export default Button

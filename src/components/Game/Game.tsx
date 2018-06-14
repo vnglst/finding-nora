@@ -65,6 +65,7 @@ class Game extends React.Component<IGameProps, IGameState> {
             <Grid.Item
               key={`${rowIndex}-${columnIndex}`}
               onMouseDown={() => this.handlePress(item)}
+              onTouchStart={() => this.handlePress(item)}
               incorrect={item.status === 'incorrect'}
               correct={item.status === 'correct'}
             >

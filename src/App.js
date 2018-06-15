@@ -14,9 +14,12 @@ const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 class App extends React.Component {
   render() {
     return (
-      <div className="app">
-        <p>{SOLUTION}</p>
-        <Game size={5} solution={SOLUTION.split('')} noise={NOISE} />
+      <div>
+        <div className="background-image" />
+        <div className="app">
+          <p>{SOLUTION}</p>
+          <Game size={5} solution={SOLUTION.split('')} noise={NOISE} />
+        </div>
       </div>
     )
   }

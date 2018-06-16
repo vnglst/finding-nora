@@ -1,5 +1,7 @@
 # Finding Nora
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/vnglst/finding-nora.svg)](https://greenkeeper.io/)
+
 Word search Progressive Web App (PWA) build with:
 
 - Service workers 

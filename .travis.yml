@@ -1,13 +1,12 @@
 ---
-dist: trusty
 language: node_js
 node_js:
-  - 8
+  - "lts"
 cache:
   directories:
   - node_modules
-install: true
 scripts:
+  - yarn
   - npm install codecov -g
 after_success:
   - codecov

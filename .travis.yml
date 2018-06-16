@@ -7,6 +7,3 @@ cache:
   - node_modules
 scripts:
   - yarn
-  - npm install codecov -g
-after_success:
-  - codecov

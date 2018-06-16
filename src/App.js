@@ -17,7 +17,7 @@ class App extends React.Component {
       <div>
         <div className="background-image" />
         <div className="app">
-          <p>{SOLUTION}</p>
+          <p className="app-solution blur-out-contract-bck">{SOLUTION}</p>
           <Game size={5} solution={SOLUTION.split('')} noise={NOISE} />
         </div>
       </div>

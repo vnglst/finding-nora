@@ -7,7 +7,9 @@
     "@material-ui/icons": "^1.1.0",
     "@types/lodash": "^4.14.109",
     "@types/qs": "^6.5.1",
+    "codecov": "^3.0.2",
     "lodash": "^4.17.10",
+    "nyc": "^12.0.2",
     "qs": "^6.5.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -18,7 +20,8 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "deploy": "yarn build && rm ./build/static/js/main.*.js.map && now alias $(now ./build --public --static) nora.now.sh"
+    "deploy": "yarn build && rm ./build/static/js/main.*.js.map && now alias $(now ./build --public --static) nora.now.sh",
+    "posttest": "nyc report --reporter=json && codecov -f coverage/*.json"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",

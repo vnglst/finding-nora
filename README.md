@@ -1,6 +1,5 @@
 # Finding Nora
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/vnglst/finding-nora.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/vnglst/finding-nora.svg?branch=master)](https://travis-ci.org/vnglst/finding-nora)
 
 Word search Progressive Web App (PWA) build with:

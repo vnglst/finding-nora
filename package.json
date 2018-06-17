@@ -17,10 +17,13 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "react-scripts-ts test --env=jsdom && yarn start && yarn cypress:run",
+    "test:cypress": "yarn start && cypress:run",
     "eject": "react-scripts-ts eject",
     "deploy": "yarn build && netlify deploy ./build",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "lint": "tslint --project ./"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",

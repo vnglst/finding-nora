@@ -8,3 +8,5 @@ cache:
   - node_modules
 scripts:
   - yarn
+  - yarn lint
+  - yarn test

@@ -7,6 +7,7 @@
     "@material-ui/icons": "^1.1.0",
     "@types/lodash": "^4.14.109",
     "@types/qs": "^6.5.1",
+    "cypress": "^3.0.1",
     "lodash": "^4.17.10",
     "qs": "^6.5.2",
     "react": "^16.4.0",
@@ -18,13 +19,16 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "deploy": "yarn build && netlify deploy ./build"
+    "deploy": "yarn build && netlify deploy ./build",
+    "cypress:open": "cypress open",
+    "lint": "tslint --project ./"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
     "@types/node": "^10.3.1",
     "@types/react": "^16.3.16",
     "@types/react-dom": "^16.0.6",
+    "http-server": "^0.11.1",
     "typescript": "^2.9.1"
   }
 }

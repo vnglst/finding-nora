@@ -1,7 +1,4 @@
 // tslint:disable:no-console
-import InfoIcon from '@material-ui/icons/Info'
-import RefreshIcon from '@material-ui/icons/Refresh'
-import SettinsIcon from '@material-ui/icons/Settings'
 import * as React from 'react'
 import { loadAudioUrls, playAudio } from '../../play-web-audio'
 import Button from '../Button'
@@ -87,38 +84,6 @@ class Game extends React.Component<IGameProps, IGameState> {
             <Button onMouseDown={this.restartGame}>Play again?</Button>
           </Overlay>
         )}
-        <div className="bottom-bar">
-          <button onMouseDown={this.restartGame}>
-            <RefreshIcon
-              style={{
-                fontSize: '28px',
-                margin: 0,
-                padding: 0,
-              }}
-            />
-            <p className="button-label">Home</p>
-          </button>
-          <button onMouseDown={this.restartGame}>
-            <SettinsIcon
-              style={{
-                fontSize: '28px',
-                margin: 0,
-                padding: 0,
-              }}
-            />
-            <p className="button-label">Settings</p>
-          </button>
-          <button onMouseDown={this.restartGame}>
-            <InfoIcon
-              style={{
-                fontSize: '28px',
-                margin: 0,
-                padding: 0,
-              }}
-            />
-            <p className="button-label">About</p>
-          </button>
-        </div>
       </Grid>
     )
   }

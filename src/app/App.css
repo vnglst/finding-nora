@@ -1,0 +1,33 @@
+.background-image {
+  background: url('./festen.jpg');
+  background-size: cover;
+  display: block;
+  filter: blur(2px);
+  height: 100%;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 1;
+  transform: scale(
+    1.1
+  ); /* adds scaling to avoid white border on blurred image */
+}
+
+.app {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 50px 0 0 0;
+  display: grid;
+  grid-template-rows: 80px;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}

@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900');
 
+:root {
+  --blauw: #2188d2;
+  --oranje: #ef7d00;
+  --groen: #75b843;
+  --rood: #e30613;
+  --wit: #ffffff;
+  --geel: #ffd332;
+}
+
 html {
   box-sizing: border-box;
   font-family: 'Lato', verdana, sans-serif;
@@ -16,5 +25,5 @@ html {
 }
 
 body {
-  color: #ffffff;
+  color: var(wit);
 }

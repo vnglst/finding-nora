@@ -2,7 +2,7 @@
   font-weight: 900;
   font-size: 18px;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
-  background: #ffd332;
+  background: var(--geel);
   border-radius: 5px;
   border-color: #011627;
   color: #011627;

@@ -8,7 +8,7 @@ const SOLUTION = (query.name || 'NORA').toUpperCase()
 const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 class App extends React.Component {
-  render() {
+  public render() {
     return (
       <div>
         <div className="background-image" />

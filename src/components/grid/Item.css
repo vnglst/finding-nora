@@ -12,11 +12,11 @@
 }
 
 .grid-item.correct {
-  background-color: #75b843;
+  background-color: var(--groen);
 }
 
 .grid-item.wrong {
-  background-color: #e30613;
+  background-color: var(--rood);
   animation: loader 1200ms 1 ease-in forwards;
 }
 

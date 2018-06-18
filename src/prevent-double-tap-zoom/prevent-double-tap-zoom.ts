@@ -2,24 +2,25 @@ let preLastTouchStartAt = 0
 let lastTouchStartAt = 0
 const delay = 500
 
-const preventDoublTapZoom = () => {
+const preventDoubleTapZoom = () => {
   document.addEventListener('touchstart', () => {
     preLastTouchStartAt = lastTouchStartAt
     lastTouchStartAt = +new Date()
   })
 
-  document.addEventListener('touchend', event => {
+  document.addEventListener('touchend', (event: TouchEvent) => {
     const touchEndAt = +new Date()
+    const target = event.target as HTMLElement
     if (
       touchEndAt - preLastTouchStartAt < delay &&
       event &&
-      event.target &&
-      event.target.click
+      target &&
+      target.click
     ) {
       event.preventDefault()
-      event.target.click()
+      target.click()
     }
   })
 }
 
-export default preventDoublTapZoom
+export default preventDoubleTapZoom

@@ -3,10 +3,6 @@ import * as React from 'react'
 import './App.css'
 import Game from './components/Game/'
 
-import preventDoubleTabZoom from './components/utils/preventDoublTabZoom'
-
-preventDoubleTabZoom()
-
 const query = qs.parse(location.search.substr(1).toLowerCase())
 const SOLUTION = (query.name || 'NORA').toUpperCase()
 const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')

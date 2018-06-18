@@ -6,20 +6,13 @@ export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
   className?: string
 }
 
-class Button extends React.Component<IButtonProps, object> {
-  constructor(props: IButtonProps) {
-    super(props)
-  }
-
-  public render() {
-    const { className, children, ...other } = this.props
-    const classes = 'my-button ' + className
-    return (
-      <button className={classes} {...other}>
-        {children}
-      </button>
-    )
-  }
+const Button = ({ children, className, ...other }: IButtonProps) => {
+  const classes = 'my-button ' + className
+  return (
+    <button className={classes} {...other}>
+      {children}
+    </button>
+  )
 }
 
 export default Button

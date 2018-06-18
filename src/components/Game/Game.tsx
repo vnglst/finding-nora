@@ -7,8 +7,10 @@ import { loadAudioUrls, playAudio } from '../../play-web-audio'
 import Button from '../Button'
 import Grid from '../grid'
 import Overlay from '../Overlay'
-import generateGridWithPuzzle from './gameUtils'
-import { IGridItem, itemsAreNeighbours } from './gameUtils'
+import generateGridWithPuzzle, {
+  IGridItem,
+  itemsAreNeighbours,
+} from './game-model'
 
 interface IGameProps {
   size: number

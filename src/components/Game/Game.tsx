@@ -1,9 +1,9 @@
 // tslint:disable:no-console
 import * as React from 'react'
 import { loadAudioUrls, playAudio } from '../../play-web-audio'
-import Button from '../Button'
 import Grid from '../grid'
-import Overlay from '../Overlay'
+import Button from '../UI/Button'
+import Overlay from '../UI/Overlay'
 import generateGridWithPuzzle, {
   IGridItem,
   itemsAreNeighbours,

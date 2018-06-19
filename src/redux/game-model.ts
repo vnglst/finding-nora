@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 import * as _ from 'lodash'
 
 export interface IGridItem {
@@ -5,9 +6,10 @@ export interface IGridItem {
   letter: string
   row: number
   status?: string
+  updatedAt: Date
 }
 
-export type Grid = IGridItem[][]
+export type GridType = IGridItem[][]
 
 export default ({
   size,
@@ -17,15 +19,43 @@ export default ({
   size: number
   solution: string[]
   noise: string[]
-}): Grid | null => {
+}) => {
   const grid = generateGrid({ size, noise })
   const gridWithPuzzle = addPuzzle({ grid, solution })
-  return gridWithPuzzle
+  return gridWithPuzzle as GridType
 }
 
 export const itemsAreNeighbours = (item1: IGridItem, item2: IGridItem) =>
   (item1.column === item2.column && Math.abs(item1.row - item2.row) <= 1) ||
   (item1.row === item2.row && Math.abs(item1.column - item2.column) <= 1)
+
+export const getAnswers = (grid: GridType) => {
+  const answers: IGridItem[] = []
+  grid.forEach(row =>
+    row.forEach(column => {
+      if (column.status) {
+        answers.push(column)
+      }
+    }),
+  )
+  return sortAnswers(answers)
+}
+
+export const getCorrectAnswers = (grid: GridType) => {
+  const answers = getAnswers(grid)
+  return answers.filter(answer => answer.status === 'correct')
+}
+
+export const getWrongAnswers = (grid: GridType) => {
+  const answers = getAnswers(grid)
+  return answers.filter(answer => answer.status === 'incorrect')
+}
+
+const sortAnswers = (answers: IGridItem[]) =>
+  answers.sort(
+    (answer1, answer2) =>
+      answer1.updatedAt.getTime() - answer2.updatedAt.getTime(),
+  )
 
 const generateGrid = ({
   size,
@@ -33,7 +63,7 @@ const generateGrid = ({
 }: {
   size: number
   noise: string[]
-}): Grid => {
+}): GridType => {
   const grid = []
   for (let row = 0; row < size; row++) {
     const columns = []
@@ -44,6 +74,7 @@ const generateGrid = ({
           column,
           letter: randomLetter,
           row,
+          updatedAt: new Date(),
         })
       }
     }
@@ -52,7 +83,7 @@ const generateGrid = ({
   return grid
 }
 
-const getAllMoves = ({ grid }: { grid: Grid }) => {
+const getAllMoves = ({ grid }: { grid: GridType }) => {
   const legalMoves = []
   const size = grid.length
   for (let row = 0; row < size; row++) {
@@ -64,7 +95,7 @@ const getAllMoves = ({ grid }: { grid: Grid }) => {
 }
 
 interface IGetLegalNextMoves {
-  grid: Grid
+  grid: GridType
   row?: number
   column?: number
 }
@@ -85,7 +116,7 @@ const getLegalNextMoves = ({ grid, row, column }: IGetLegalNextMoves) => {
 }
 
 interface IAddPuzzle {
-  grid: Grid
+  grid: GridType
   row?: number
   column?: number
   solution: string[]
@@ -96,7 +127,7 @@ const addPuzzle = ({
   row,
   column,
   solution,
-}: IAddPuzzle): Grid | null => {
+}: IAddPuzzle): GridType | null => {
   // all solutions added to grid, stopping
   if (solution.length < 1) {
     return grid
@@ -115,6 +146,7 @@ const addPuzzle = ({
     column: nextMove.column,
     letter: nextLetter,
     row: nextMove.row,
+    updatedAt: new Date(),
   }
 
   const remainingSolution = solution.slice(1)

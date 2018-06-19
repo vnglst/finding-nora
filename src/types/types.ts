@@ -1,12 +1,14 @@
-import { Grid, IGridItem } from '../components/Game/game-model'
+import { IAddAnswer } from '../redux/game'
+import { GridType, IGridItem } from '../redux/game-model'
 
-export type Grid = Grid
+export type GridType = GridType
 export type IGridItem = IGridItem
+export type IAddAnswer = IAddAnswer
 
 export interface IGameState {
-  grid: Grid | null
-  noise: string
-  solution: string
+  grid: GridType
+  noise: string[]
+  solution: string[]
   size: number
 }
 

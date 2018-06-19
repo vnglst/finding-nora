@@ -5,7 +5,7 @@ import { createStore } from 'redux'
 import App from './app'
 import './index.css'
 import preventDoubleTapZoom from './prevent-double-tap-zoom'
-import rootReducer from './reducers'
+import rootReducer from './redux/reducers'
 import registerServiceWorker from './registerServiceWorker'
 import { IStoreState } from './types'
 

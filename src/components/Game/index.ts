@@ -1,3 +1,3 @@
-import Game from './Game2'
+import GameContainer from './GameContainer'
 
-export default Game
+export default GameContainer

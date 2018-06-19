@@ -3,27 +3,24 @@ import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
 import BottomBar from '../components/UI/BottomBar'
+import { INavigationState } from '../types'
 
 import * as React from 'react'
-// import Game from '../components/Game/'
+import Game from '../components/Game/'
 import './App.css'
 
 export interface IAppProps {
-  size: number
-  solution: string
-  noise: string
-  currentScreen: string
+  navigation: INavigationState
   onNavigate: (screen: string) => void
 }
 
-function App({ solution, size, noise, currentScreen, onNavigate }: IAppProps) {
-  console.log('game state', solution, size, noise)
+function App({ navigation, onNavigate }: IAppProps) {
   return (
     <div>
       <div className="background-image" />
       <div className="app">
-        {/* {currentScreen === 'home' && <Game />} */}
-        <BottomBar value={currentScreen} onChange={onNavigate}>
+        {navigation.currentScreen === 'home' && <Game />}
+        <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
           <BottomBar.Item label="Home" value="home" icon={<HomeIcon />} />
           <BottomBar.Item
             label="New Game"

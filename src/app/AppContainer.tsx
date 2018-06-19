@@ -1,13 +1,11 @@
 import { connect, Dispatch } from 'react-redux'
-import * as actions from '../actions/'
+import * as actions from '../actions/navigation'
 import { IStoreState } from '../types'
 import App from './App'
 
 export function mapStateToProps({
-  currentScreen,
-  noise,
-  solution,
-  size,
+  navigation: { currentScreen },
+  game: { size, solution, noise },
 }: IStoreState) {
   return {
     currentScreen,

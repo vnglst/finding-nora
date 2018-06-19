@@ -1,10 +1,11 @@
+// tslint:disable:no-console
 import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
 import BottomBar from '../components/UI/BottomBar'
 
 import * as React from 'react'
-import Game from '../components/Game/'
+// import Game from '../components/Game/'
 import './App.css'
 
 export interface IAppProps {
@@ -16,17 +17,12 @@ export interface IAppProps {
 }
 
 function App({ solution, size, noise, currentScreen, onNavigate }: IAppProps) {
+  console.log('game state', solution, size, noise)
   return (
     <div>
       <div className="background-image" />
       <div className="app">
-        {currentScreen === 'home' && (
-          <Game
-            size={size}
-            solution={solution.split('')}
-            noise={noise.split('')}
-          />
-        )}
+        {/* {currentScreen === 'home' && <Game />} */}
         <BottomBar value={currentScreen} onChange={onNavigate}>
           <BottomBar.Item label="Home" value="home" icon={<HomeIcon />} />
           <BottomBar.Item

@@ -7,6 +7,8 @@ export interface IGridItem {
   status?: string
 }
 
+export type Grid = IGridItem[][]
+
 export default ({
   size,
   solution,
@@ -15,7 +17,7 @@ export default ({
   size: number
   solution: string[]
   noise: string[]
-}) => {
+}): Grid | null => {
   const grid = generateGrid({ size, noise })
   const gridWithPuzzle = addPuzzle({ grid, solution })
   return gridWithPuzzle
@@ -31,7 +33,7 @@ const generateGrid = ({
 }: {
   size: number
   noise: string[]
-}): IGridItem[][] => {
+}): Grid => {
   const grid = []
   for (let row = 0; row < size; row++) {
     const columns = []
@@ -50,7 +52,7 @@ const generateGrid = ({
   return grid
 }
 
-const getAllMoves = ({ grid }: { grid: IGridItem[][] }) => {
+const getAllMoves = ({ grid }: { grid: Grid }) => {
   const legalMoves = []
   const size = grid.length
   for (let row = 0; row < size; row++) {
@@ -62,7 +64,7 @@ const getAllMoves = ({ grid }: { grid: IGridItem[][] }) => {
 }
 
 interface IGetLegalNextMoves {
-  grid: IGridItem[][]
+  grid: Grid
   row?: number
   column?: number
 }
@@ -83,7 +85,7 @@ const getLegalNextMoves = ({ grid, row, column }: IGetLegalNextMoves) => {
 }
 
 interface IAddPuzzle {
-  grid: IGridItem[][]
+  grid: Grid
   row?: number
   column?: number
   solution: string[]
@@ -94,7 +96,7 @@ const addPuzzle = ({
   row,
   column,
   solution,
-}: IAddPuzzle): IGridItem[][] | null => {
+}: IAddPuzzle): Grid | null => {
   // all solutions added to grid, stopping
   if (solution.length < 1) {
     return grid

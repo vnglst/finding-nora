@@ -1,9 +1,7 @@
-import { IAddAnswer } from '../redux/game'
 import { GridType, IGridItem } from '../redux/game-model'
 
 export type GridType = GridType
 export type IGridItem = IGridItem
-export type IAddAnswer = IAddAnswer
 
 export interface IGameState {
   grid: GridType

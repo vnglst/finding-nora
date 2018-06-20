@@ -1,8 +1,13 @@
 // tslint:disable:no-console
 import * as React from 'react'
-import { IAddAnswer } from '../../types'
-import { IGameState, IGridItem } from '../../types'
+import { GridType, IGameState, IGridItem } from '../../types'
 import Grid from '../Grid'
+
+export interface IAddAnswer {
+  answer: IGridItem
+  solution: string[]
+  grid: GridType
+}
 
 export interface IGameProps {
   game: IGameState

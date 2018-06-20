@@ -1,4 +1,4 @@
-// tslint:disable:no-console
+// tslint: disable: no - console
 import * as _ from 'lodash'
 
 export interface IGridItem {
@@ -11,7 +11,7 @@ export interface IGridItem {
 
 export type GridType = IGridItem[][]
 
-export default ({
+export const generateGridWithPuzzle = ({
   size,
   solution,
   noise,
@@ -49,6 +49,29 @@ export const getCorrectAnswers = (grid: GridType) => {
 export const getWrongAnswers = (grid: GridType) => {
   const answers = getAnswers(grid)
   return answers.filter(answer => answer.status === 'incorrect')
+}
+
+export interface ICorrectAnswer {
+  answer: IGridItem
+  solution: string[]
+  grid: GridType
+}
+
+export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
+  const remainingSolution = getRemainingSolution(solution, grid)
+  const currentLetter = remainingSolution[0]
+  const letterIsCorrect = answer.letter === currentLetter
+  return letterIsCorrect
+}
+
+const getRemainingSolution = (solution: string[], grid: GridType) => {
+  const correctAnswers = getCorrectAnswers(grid)
+  const remainingSolution = solution.filter(
+    solutionLetter =>
+      correctAnswers.findIndex(answer => answer.letter === solutionLetter) ===
+      -1,
+  )
+  return remainingSolution
 }
 
 const sortAnswers = (answers: IGridItem[]) =>

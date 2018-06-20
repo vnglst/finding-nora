@@ -12,13 +12,15 @@ import './App.css'
 export interface IAppProps {
   navigation: INavigationState
   onNavigate: (screen: string) => void
+  restart: () => void
 }
 
-function App({ navigation, onNavigate }: IAppProps) {
+function App({ navigation, onNavigate, restart }: IAppProps) {
   return (
     <div>
       <div className="background-image" />
       <div className="app">
+        <button onClick={restart}>restart</button>
         {navigation.currentScreen === 'home' && <Game />}
         <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
           <BottomBar.Item label="Home" value="home" icon={<HomeIcon />} />

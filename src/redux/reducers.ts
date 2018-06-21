@@ -1,7 +1,12 @@
 import * as qs from 'qs'
 import { combineReducers } from 'redux'
 import { IGameState, INavigationState } from '../types'
-import { ADD_ANSWER, RESTART, SET_ACTIVE_SCREEN } from './constants'
+import {
+  ADD_CORRECT_ANSWER,
+  ADD_WRONG_ANSWER,
+  RESTART,
+  SET_ACTIVE_SCREEN,
+} from './constants'
 import { GameAction } from './game-actions'
 import { generateGridWithPuzzle } from './game-model'
 import { ISetActiveScreen } from './navigation-actions'
@@ -48,7 +53,8 @@ function game(state = initialGameState, action: GameAction): IGameState {
           solution: state.solution,
         }),
       }
-    case ADD_ANSWER: {
+    case ADD_WRONG_ANSWER:
+    case ADD_CORRECT_ANSWER: {
       const updatedGrid = state.grid.map((row, rowIndex) =>
         row.map((column, columnIndex) => {
           if (

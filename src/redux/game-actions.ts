@@ -3,22 +3,7 @@ import { GridType, IGridItem } from '../types'
 import * as constants from './constants'
 import { isCorrectAnswer } from './game-model'
 
-export type GameAction = IAddAnswerReturn | IRestartReturn
-
-interface IRestartReturn {
-  type: constants.RESTART
-}
-
-export function restart(): IRestartReturn {
-  return {
-    type: constants.RESTART,
-  }
-}
-
-interface IAddAnswerReturn {
-  type: constants.ADD_ANSWER
-  item: IGridItem
-}
+export type GameAction = IAddAsCorrectAnswer | IAddAsWrongAnswer | IRestart
 
 export interface IAddAnswer {
   answer: IGridItem
@@ -26,18 +11,45 @@ export interface IAddAnswer {
   grid: GridType
 }
 
-export function addAnswer({
-  answer,
-  solution,
-  grid,
-}: IAddAnswer): IAddAnswerReturn {
+export function addAnswer({ answer, solution, grid }: IAddAnswer) {
   const isCorrect = isCorrectAnswer({ answer, solution, grid })
+  return isCorrect ? addAsCorrectAnswer(answer) : addAsWrongAnswer(answer)
+}
+
+export function restart(): IRestart {
   return {
-    item: {
-      ...answer,
-      status: isCorrect ? 'correct' : 'incorrect',
-      updatedAt: new Date(),
-    },
-    type: constants.ADD_ANSWER,
+    type: constants.RESTART,
   }
 }
+
+interface IRestart {
+  type: constants.RESTART
+}
+
+interface IAddAsCorrectAnswer {
+  type: constants.ADD_CORRECT_ANSWER
+  item: IGridItem
+}
+
+const addAsCorrectAnswer = (answer: IGridItem): IAddAsCorrectAnswer => ({
+  item: {
+    ...answer,
+    status: 'correct',
+    updatedAt: new Date(),
+  },
+  type: constants.ADD_CORRECT_ANSWER,
+})
+
+interface IAddAsWrongAnswer {
+  type: constants.ADD_WRONG_ANSWER
+  item: IGridItem
+}
+
+const addAsWrongAnswer = (answer: IGridItem): IAddAsWrongAnswer => ({
+  item: {
+    ...answer,
+    status: 'incorrect',
+    updatedAt: new Date(),
+  },
+  type: constants.ADD_WRONG_ANSWER,
+})

@@ -67,6 +67,11 @@ export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
   return letterIsCorrect && isFirstAnswerOrNeighbour
 }
 
+export const didWin = (solution: string[], grid: GridType): boolean => {
+  const correctAnswers = getCorrectAnswers(grid)
+  return correctAnswers.length >= solution.length
+}
+
 const getLastCorrectAnswer = (grid: GridType) => {
   const correctAnswers = getCorrectAnswers(grid)
   if (correctAnswers.length < 1) {

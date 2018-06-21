@@ -2,13 +2,13 @@
 import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
-import BottomBar from '../components/UI/BottomBar'
-import Button from '../components/UI/Button'
-import Overlay from '../components/UI/Overlay'
-import { INavigationState } from '../types'
-
 import * as React from 'react'
-import Game from '../components/Game/'
+import { INavigationState } from '../../types'
+import Game from '../Game/'
+import Settings from '../Settings'
+import BottomBar from '../UI/BottomBar'
+import Button from '../UI/Button'
+import Overlay from '../UI/Overlay'
 import './App.css'
 
 export interface IAppProps {
@@ -67,30 +67,14 @@ function App({
           </Overlay>
         )}
         {navigation.currentScreen === 'settings' && (
-          // TODO move to Settings Screen component with setState
-          <Overlay>
-            <p>Your name</p>
-            <input
-              type="text"
-              name="solution"
-              placeholder={solution.join('')}
-              onBlur={e => {
-                const newSolution = e.target.value.toUpperCase().split('')
-                if (newSolution.length > 2 && newSolution.length < 10) {
-                  updateSolution(newSolution)
-                }
-              }}
-            />
-            <Button
-              onClick={() => {
-                restart()
-                onNavigate('home')
-              }}
-            >
-              Save
-            </Button>
-          </Overlay>
+          <Settings
+            solution={solution}
+            updateSolution={updateSolution}
+            restart={restart}
+            onNavigate={onNavigate}
+          />
         )}
+
         {didWin &&
           navigation.currentScreen === 'home' && (
             <Overlay>

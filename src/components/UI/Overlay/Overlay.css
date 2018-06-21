@@ -23,6 +23,10 @@
   color: white;
 }
 
+.overlay-content button {
+  margin: 20px;
+}
+
 .overlay-content p {
   padding: 80px 0;
 }

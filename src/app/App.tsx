@@ -23,8 +23,7 @@ function App({ didWin, navigation, onNavigate, restart }: IAppProps) {
     <div>
       <div className="background-image" />
       <div className="app">
-        <button onClick={restart}>restart</button>
-        {navigation.currentScreen === 'home' && <Game />}
+        <Game />
         <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
           <BottomBar.Item label="Home" value="home" icon={<HomeIcon />} />
           <BottomBar.Item
@@ -38,6 +37,32 @@ function App({ didWin, navigation, onNavigate, restart }: IAppProps) {
             icon={<SettingsIcon />}
           />
         </BottomBar>
+        {navigation.currentScreen === 'new-game' && (
+          <Overlay>
+            <p>New game</p>
+            <Button
+              onMouseDown={() => {
+                onNavigate('home')
+              }}
+            >
+              Resume game
+            </Button>
+            <Button
+              onMouseDown={() => {
+                restart()
+                onNavigate('home')
+              }}
+            >
+              New game
+            </Button>
+          </Overlay>
+        )}
+        {navigation.currentScreen === 'settings' && (
+          <Overlay>
+            <p>Settings</p>
+            <input />
+          </Overlay>
+        )}
         {didWin && (
           <Overlay>
             <p>YOU WON</p>

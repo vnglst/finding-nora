@@ -14,11 +14,20 @@ import './App.css'
 export interface IAppProps {
   navigation: INavigationState
   didWin: boolean
+  solution: string[]
+  updateSolution: (solution: string[]) => void
   onNavigate: (screen: string) => void
   restart: () => void
 }
 
-function App({ didWin, navigation, onNavigate, restart }: IAppProps) {
+function App({
+  didWin,
+  navigation,
+  updateSolution,
+  onNavigate,
+  restart,
+  solution,
+}: IAppProps) {
   return (
     <div>
       <div className="background-image" />
@@ -55,20 +64,39 @@ function App({ didWin, navigation, onNavigate, restart }: IAppProps) {
             >
               New game
             </Button>
+            <Button disabled={true}>Restart game</Button>
           </Overlay>
         )}
         {navigation.currentScreen === 'settings' && (
           <Overlay>
             <p>Settings</p>
-            <input />
+            <input
+              type="text"
+              name="solution"
+              onBlur={e => {
+                const newSolution = e.target.value.toUpperCase().split('')
+                if (newSolution.length > 2 && newSolution.length < 10) {
+                  updateSolution(newSolution)
+                }
+              }}
+            />
+            <Button
+              onClick={() => {
+                restart()
+                onNavigate('home')
+              }}
+            >
+              Save
+            </Button>
           </Overlay>
         )}
-        {didWin && (
-          <Overlay>
-            <p>YOU WON</p>
-            <Button onMouseDown={restart}>Play again?</Button>
-          </Overlay>
-        )}
+        {didWin &&
+          navigation.currentScreen === 'home' && (
+            <Overlay>
+              <p>YOU WON</p>
+              <Button onMouseDown={restart}>Play again?</Button>
+            </Overlay>
+          )}
       </div>
     </div>
   )

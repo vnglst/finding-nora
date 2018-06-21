@@ -59,7 +59,6 @@ export interface ICorrectAnswer {
 
 export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
   const remainingSolution = getRemainingSolution(solution, grid)
-  console.log('remaining solution', remainingSolution)
   const currentLetter = remainingSolution[0]
   const letterIsCorrect = answer.letter === currentLetter
   const lastCorrectAnswer = getLastCorrectAnswer(grid)

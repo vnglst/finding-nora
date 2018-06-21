@@ -3,7 +3,11 @@ import { GridType, IGridItem } from '../types'
 import * as constants from './constants'
 import { isCorrectAnswer } from './game-model'
 
-export type GameAction = IAddAsCorrectAnswer | IAddAsWrongAnswer | IRestart
+export type GameAction =
+  | IAddAsCorrectAnswer
+  | IAddAsWrongAnswer
+  | IRestart
+  | IUpdateSolution
 
 export interface IAddAnswer {
   answer: IGridItem
@@ -22,8 +26,20 @@ export function restart(): IRestart {
   }
 }
 
+export function updateSolution(solution: string[]): IUpdateSolution {
+  return {
+    solution,
+    type: constants.UPDATE_SOLUTION,
+  }
+}
+
 interface IRestart {
   type: constants.RESTART
+}
+
+interface IUpdateSolution {
+  solution: string[]
+  type: constants.UPDATE_SOLUTION
 }
 
 interface IAddAsCorrectAnswer {

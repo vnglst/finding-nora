@@ -24,16 +24,17 @@
 }
 
 .overlay-content button {
-  margin: 20px;
+  margin: 10px;
 }
 
 .overlay-content input {
   font-size: 28px;
   padding: 10px;
+  margin: 10px;
 }
 
 .overlay-content p {
-  padding: 80px 0;
+  padding: 10px 0;
 }
 .slide-in-top {
   -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

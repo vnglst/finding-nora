@@ -73,6 +73,7 @@ function App({
             <input
               type="text"
               name="solution"
+              placeholder={solution.join('')}
               onBlur={e => {
                 const newSolution = e.target.value.toUpperCase().split('')
                 if (newSolution.length > 2 && newSolution.length < 10) {

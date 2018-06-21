@@ -1,4 +1,4 @@
-// tslint: disable: no - console
+// tslint:disable:no-console
 import * as _ from 'lodash'
 
 export interface IGridItem {
@@ -59,6 +59,7 @@ export interface ICorrectAnswer {
 
 export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
   const remainingSolution = getRemainingSolution(solution, grid)
+  console.log('remaining solution', remainingSolution)
   const currentLetter = remainingSolution[0]
   const letterIsCorrect = answer.letter === currentLetter
   const lastCorrectAnswer = getLastCorrectAnswer(grid)
@@ -83,11 +84,8 @@ const getLastCorrectAnswer = (grid: GridType) => {
 
 const getRemainingSolution = (solution: string[], grid: GridType) => {
   const correctAnswers = getCorrectAnswers(grid)
-  const remainingSolution = solution.filter(
-    solutionLetter =>
-      correctAnswers.findIndex(answer => answer.letter === solutionLetter) ===
-      -1,
-  )
+  const numberOfCorrectAnswers = correctAnswers.length
+  const remainingSolution = solution.slice(numberOfCorrectAnswers)
   return remainingSolution
 }
 

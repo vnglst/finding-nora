@@ -61,7 +61,19 @@ export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
   const remainingSolution = getRemainingSolution(solution, grid)
   const currentLetter = remainingSolution[0]
   const letterIsCorrect = answer.letter === currentLetter
-  return letterIsCorrect
+  const lastCorrectAnswer = getLastCorrectAnswer(grid)
+  const isFirstAnswerOrNeighbour =
+    !lastCorrectAnswer || itemsAreNeighbours(lastCorrectAnswer, answer)
+  return letterIsCorrect && isFirstAnswerOrNeighbour
+}
+
+const getLastCorrectAnswer = (grid: GridType) => {
+  const correctAnswers = getCorrectAnswers(grid)
+  if (correctAnswers.length < 1) {
+    return undefined
+  }
+  const lastCorrectAnswer = correctAnswers[correctAnswers.length - 1]
+  return lastCorrectAnswer
 }
 
 const getRemainingSolution = (solution: string[], grid: GridType) => {

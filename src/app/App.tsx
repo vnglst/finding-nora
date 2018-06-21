@@ -68,6 +68,7 @@ function App({
           </Overlay>
         )}
         {navigation.currentScreen === 'settings' && (
+          // TODO move to Settings Screen component with setState
           <Overlay>
             <p>Settings</p>
             <input

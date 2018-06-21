@@ -32,6 +32,7 @@ function App({
     <div>
       <div className="background-image" />
       <div className="app">
+        <p>{solution}</p>
         <Game />
         <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
           <BottomBar.Item

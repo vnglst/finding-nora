@@ -1,5 +1,9 @@
+.bottom-bar .item {
+  color: #005d72;
+}
+
 .bottom-bar .item-selected {
-  color: var(--rood);
+  color: #022b37;
 }
 
 .bottom-bar p {

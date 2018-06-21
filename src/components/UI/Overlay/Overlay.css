@@ -6,7 +6,12 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: var(--blauw);
+  background: radial-gradient(
+    ellipse at left,
+    #2aa7ba 0%,
+    #12a5bb 44%,
+    #026781 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   z-index: 0;
   display: flex;
   flex-direction: column;
@@ -31,6 +36,8 @@
   font-size: 24px;
   padding: 10px;
   margin: 15px;
+  border-radius: 10px;
+  -webkit-user-select: auto;
 }
 
 .overlay-content p {

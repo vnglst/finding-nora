@@ -11,3 +11,8 @@
   text-decoration: none;
   padding: 15px;
 }
+
+.my-button:disabled {
+  background: grey;
+  color: #002747;
+}

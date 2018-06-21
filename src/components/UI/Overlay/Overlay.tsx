@@ -6,14 +6,11 @@ interface IOverlayProps {
 }
 
 class Overlay extends React.Component<IOverlayProps, object> {
-  public render () {
+  public render() {
     return (
-      <div
-        className='overlay'>
-        <div className='overlay-container slide-in-top'>
-          <div className='overlay-content'>
-            {this.props.children}
-          </div>
+      <div className="overlay">
+        <div className="overlay-content slide-in-top">
+          {this.props.children}
         </div>
       </div>
     )

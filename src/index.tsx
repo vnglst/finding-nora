@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
 import App from './app'
 import './index.css'
 import preventDoubleTapZoom from './prevent-double-tap-zoom'
@@ -18,7 +17,7 @@ const composeEnhancers =
 
 const store = createStore<IStoreState, any, any, any>(
   rootReducer,
-  composeEnhancers(applyMiddleware(audioMiddleware, thunk)),
+  composeEnhancers(applyMiddleware(audioMiddleware)),
 )
 
 ReactDOM.render(

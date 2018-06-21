@@ -3,6 +3,8 @@ import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
 import BottomBar from '../components/UI/BottomBar'
+import Button from '../components/UI/Button'
+import Overlay from '../components/UI/Overlay'
 import { INavigationState } from '../types'
 
 import * as React from 'react'
@@ -11,11 +13,12 @@ import './App.css'
 
 export interface IAppProps {
   navigation: INavigationState
+  didWin: boolean
   onNavigate: (screen: string) => void
   restart: () => void
 }
 
-function App({ navigation, onNavigate, restart }: IAppProps) {
+function App({ didWin, navigation, onNavigate, restart }: IAppProps) {
   return (
     <div>
       <div className="background-image" />
@@ -35,6 +38,12 @@ function App({ navigation, onNavigate, restart }: IAppProps) {
             icon={<SettingsIcon />}
           />
         </BottomBar>
+        {didWin && (
+          <Overlay>
+            <p>YOU WON</p>
+            <Button onMouseDown={restart}>Play again?</Button>
+          </Overlay>
+        )}
       </div>
     </div>
   )

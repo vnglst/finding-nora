@@ -34,28 +34,21 @@ function App({
       <div className="app">
         <Game />
         <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
-          <BottomBar.Item label="Home" value="home" icon={<HomeIcon />} />
           <BottomBar.Item
-            label="New Game"
-            value="new-game"
-            icon={<RefreshIcon />}
+            value="home"
+            icon={<HomeIcon style={{ fontSize: '28px' }} />}
           />
           <BottomBar.Item
-            label="Settings"
+            value="new-game"
+            icon={<RefreshIcon style={{ fontSize: '28px' }} />}
+          />
+          <BottomBar.Item
             value="settings"
-            icon={<SettingsIcon />}
+            icon={<SettingsIcon style={{ fontSize: '28px' }} />}
           />
         </BottomBar>
         {navigation.currentScreen === 'new-game' && (
           <Overlay>
-            <p>New game</p>
-            <Button
-              onMouseDown={() => {
-                onNavigate('home')
-              }}
-            >
-              Resume game
-            </Button>
             <Button
               onMouseDown={() => {
                 restart()
@@ -64,13 +57,19 @@ function App({
             >
               New game
             </Button>
-            <Button disabled={true}>Restart game</Button>
+            <Button
+              onMouseDown={() => {
+                onNavigate('home')
+              }}
+            >
+              Resume game
+            </Button>
           </Overlay>
         )}
         {navigation.currentScreen === 'settings' && (
           // TODO move to Settings Screen component with setState
           <Overlay>
-            <p>Settings</p>
+            <p>Your name</p>
             <input
               type="text"
               name="solution"

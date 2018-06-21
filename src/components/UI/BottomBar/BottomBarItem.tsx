@@ -6,7 +6,7 @@ export interface IBottomBarItemProps {
   onChange?: any
   selected?: boolean
   icon: React.ReactNode
-  label: string
+  label?: string
 }
 
 function BottomBarItem({
@@ -23,7 +23,7 @@ function BottomBarItem({
   return (
     <button className={classes} onMouseDown={() => onChange(value)}>
       {icon}
-      <p>{label}</p>
+      {label && <p>{label}</p>}
     </button>
   )
 }

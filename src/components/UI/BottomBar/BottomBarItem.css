@@ -1,4 +1,25 @@
+.bottom-bar .item-selected {
+  color: var(--rood);
+}
+
+.bottom-bar p {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Droid Sans, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  display: block;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 70px;
+  max-width: 144px;
+}
+
 .bottom-bar button {
+  height: 60px;
   background: none;
   color: rgb(37, 37, 37);
   border: none;
@@ -9,27 +30,6 @@
   outline: inherit;
   flex: 1 1 auto;
   min-width: 60px;
-  max-width: 144px;
-}
-
-.bottom-bar .item-selected {
-  color: var(--rood);
-}
-
-.bottom-bar p {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Droid Sans, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-  line-height: 1;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  display: block;
-  font-size: 12px;
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 70px;
   max-width: 144px;
 }
 

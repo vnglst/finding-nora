@@ -9,7 +9,6 @@
     "@types/qs": "^6.5.1",
     "cypress": "^3.0.1",
     "lodash": "^4.17.10",
-    "qs": "^6.5.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.0",
     "react-scripts-ts": "2.16.0"

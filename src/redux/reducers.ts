@@ -1,4 +1,3 @@
-import * as qs from 'qs'
 import { combineReducers } from 'redux'
 import { IGameState, INavigationState } from '../types'
 import {
@@ -12,8 +11,8 @@ import { GameAction } from './game-actions'
 import { generateGridWithPuzzle } from './game-model'
 import { ISetActiveScreen } from './navigation-actions'
 
-const query = qs.parse(location.search.substr(1).toLowerCase())
-const SOLUTION = (query.name || 'NORA').toUpperCase().split('')
+const name = localStorage.getItem('name')
+const SOLUTION = (name || 'NORA').toUpperCase().split('')
 const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 const initialNavigationState: INavigationState = {

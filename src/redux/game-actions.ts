@@ -27,6 +27,8 @@ export function restart(): IRestart {
 }
 
 export function updateSolution(solution: string[]): IUpdateSolution {
+  // safe name to localstorage
+  localStorage.setItem('name', solution.join(''))
   return {
     solution,
     type: constants.UPDATE_SOLUTION,

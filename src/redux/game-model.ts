@@ -72,6 +72,23 @@ export const didWin = (solution: string[], grid: GridType): boolean => {
   return correctAnswers.length >= solution.length
 }
 
+const getNotAnswered = (grid: GridType) => {
+  const notAnswered: IGridItem[] = []
+  grid.forEach(row =>
+    row.forEach(column => {
+      if (!column.status) {
+        notAnswered.push(column)
+      }
+    }),
+  )
+  return notAnswered
+}
+
+export const didLoose = (solution: string[], grid: GridType): boolean => {
+  const notAnswered = getNotAnswered(grid)
+  return notAnswered.length === 0 && !didWin(solution, grid)
+}
+
 const getLastCorrectAnswer = (grid: GridType) => {
   const correctAnswers = getCorrectAnswers(grid)
   if (correctAnswers.length < 1) {

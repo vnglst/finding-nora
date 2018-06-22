@@ -1,12 +1,13 @@
 import { connect, Dispatch } from 'react-redux'
 import * as gameActions from '../../redux/game-actions'
-import { didWin } from '../../redux/game-model'
+import { didLoose, didWin } from '../../redux/game-model'
 import * as navigationActions from '../../redux/navigation-actions'
 import { IStoreState } from '../../types'
 import App from './App'
 
 const mapStateToProps = ({ game, navigation }: IStoreState) => {
   return {
+    didLoose: didLoose(game.solution, game.grid),
     didWin: didWin(game.solution, game.grid),
     navigation,
     solution: game.solution,

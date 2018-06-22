@@ -1,8 +1,9 @@
 // tslint:disable:no-console
-import { Action, Dispatch, Middleware, MiddlewareAPI } from 'redux'
+import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
 import { loadAudioUrls, playAudio } from '../play-web-audio'
 import { IStoreState } from '../types'
-import { ADD_CORRECT_ANSWER, ADD_WRONG_ANSWER, RESTART } from './constants'
+import { ADD_ANSWER, RESTART } from './constants'
+import { GameActionType } from './game-actions'
 import { didWin } from './game-model'
 
 /**
@@ -10,7 +11,7 @@ import { didWin } from './game-model'
  */
 export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
   next: Dispatch,
-) => (action: Action) => {
+) => (action: GameActionType) => {
   const result = next(action)
 
   const nextState = getState() as IStoreState
@@ -20,13 +21,13 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       playAudio(sounds.restart)
       return result
     }
-    case ADD_WRONG_ANSWER: {
-      playAudio(sounds.squakk)
-      return result
-    }
-    case ADD_CORRECT_ANSWER: {
-      playAudio(sounds.nock)
-
+    case ADD_ANSWER: {
+      if (action.item.status === 'incorrect') {
+        playAudio(sounds.squakk)
+      }
+      if (action.item.status === ' correct') {
+        playAudio(sounds.nock)
+      }
       const hasWon = didWin(nextState.game.solution, nextState.game.grid)
       if (hasWon) {
         playAudio(sounds.hooyeah)

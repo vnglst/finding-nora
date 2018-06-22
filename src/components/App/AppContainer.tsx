@@ -1,11 +1,11 @@
 import { connect, Dispatch } from 'react-redux'
-import { GameAction, restart, updateSolution } from '../../redux/game-actions'
+import * as gameActions from '../../redux/game-actions'
 import { didWin } from '../../redux/game-model'
-import * as actions from '../../redux/navigation-actions'
+import * as navigationActions from '../../redux/navigation-actions'
 import { IStoreState } from '../../types'
 import App from './App'
 
-export function mapStateToProps({ game, navigation }: IStoreState) {
+const mapStateToProps = ({ game, navigation }: IStoreState) => {
   return {
     didWin: didWin(game.solution, game.grid),
     navigation,
@@ -13,13 +13,22 @@ export function mapStateToProps({ game, navigation }: IStoreState) {
   }
 }
 
-export function mapDispatchToProps(
-  dispatch: Dispatch<actions.ISetActiveScreen | GameAction>,
-) {
+const mapDispatchToProps = (
+  dispatch: Dispatch<
+    navigationActions.ISetActiveScreen | gameActions.GameActionType
+  >,
+) => {
+  const updateSolution = (solution: string[]) => {
+    // safe name to localstorage, TODO: use redux-persist for this
+    localStorage.setItem('name', solution.join(''))
+    dispatch(gameActions.updateSolution(solution))
+  }
+
   return {
-    onNavigate: (screen: string) => dispatch(actions.setActiveScreen(screen)),
-    restart: () => dispatch(restart()),
-    updateSolution: (solution: string[]) => dispatch(updateSolution(solution)),
+    onNavigate: (screen: string) =>
+      dispatch(navigationActions.setActiveScreen(screen)),
+    restart: () => dispatch(gameActions.restart()),
+    updateSolution,
   }
 }
 

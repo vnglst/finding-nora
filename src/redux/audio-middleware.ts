@@ -25,7 +25,7 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       if (action.item.status === 'incorrect') {
         playAudio(sounds.squakk)
       }
-      if (action.item.status === ' correct') {
+      if (action.item.status === 'correct') {
         playAudio(sounds.nock)
       }
       const hasWon = didWin(nextState.game.solution, nextState.game.grid)

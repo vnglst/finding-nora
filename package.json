@@ -20,6 +20,7 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "deploy": "yarn build && netlify deploy ./build",
+    "deploy:now": "yarn build && rm ./build/static/js/main.*.js.map && now alias $(now ./build --public --static) nora.now.sh",
     "cypress:open": "cypress open",
     "lint": "tslint --project ./",
     "storybook": "start-storybook -p 6006",

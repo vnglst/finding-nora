@@ -1,19 +1,28 @@
 // tslint:disable:no-console
 import { connect, Dispatch } from 'react-redux'
 import * as actions from '../../redux/game-actions'
+import { isCorrectAnswer } from '../../redux/game-model'
 import { IStoreState } from '../../types'
 import Game from './Game'
 
-export function mapStateToProps({ game }: IStoreState) {
+const mapStateToProps = ({ game }: IStoreState) => {
   return {
     game,
   }
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<actions.GameAction>) {
+const mapDispatchToProps = (dispatch: Dispatch<actions.GameActionType>) => {
+  const addAnswer = ({ answer, solution, grid }: actions.IAddAnswer) => {
+    const isCorrect = isCorrectAnswer({ answer, solution, grid })
+    const answerWithStatus = {
+      ...answer,
+      status: isCorrect ? 'correct' : 'incorrect',
+    }
+    dispatch(actions.addAnswer(answerWithStatus))
+  }
+
   return {
-    addAnswer: ({ answer, solution, grid }: actions.IAddAnswer) =>
-      dispatch(actions.addAnswer({ answer, solution, grid })),
+    addAnswer,
   }
 }
 

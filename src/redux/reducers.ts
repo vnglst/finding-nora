@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
 import { IGameState, INavigationState } from '../types'
 import {
-  ADD_CORRECT_ANSWER,
-  ADD_WRONG_ANSWER,
+  ADD_ANSWER,
   RESTART,
   SET_ACTIVE_SCREEN,
   UPDATE_SOLUTION,
 } from './constants'
-import { GameAction } from './game-actions'
+import { GameActionType } from './game-actions'
 import { generateGridWithPuzzle } from './game-model'
 import { ISetActiveScreen } from './navigation-actions'
 
@@ -42,7 +41,7 @@ const initialGameState: IGameState = {
   solution: SOLUTION,
 }
 
-function game(state = initialGameState, action: GameAction): IGameState {
+function game(state = initialGameState, action: GameActionType): IGameState {
   switch (action.type) {
     case RESTART:
       return {
@@ -59,8 +58,7 @@ function game(state = initialGameState, action: GameAction): IGameState {
         solution: action.solution,
       }
     }
-    case ADD_WRONG_ANSWER:
-    case ADD_CORRECT_ANSWER: {
+    case ADD_ANSWER: {
       const updatedGrid = state.grid.map((row, rowIndex) =>
         row.map((column, columnIndex) => {
           if (

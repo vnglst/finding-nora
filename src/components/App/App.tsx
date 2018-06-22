@@ -14,6 +14,7 @@ import './App.css'
 export interface IAppProps {
   navigation: INavigationState
   didWin: boolean
+  didLoose: boolean
   solution: string[]
   updateSolution: (solution: string[]) => void
   onNavigate: (screen: string) => void
@@ -22,6 +23,7 @@ export interface IAppProps {
 
 function App({
   didWin,
+  didLoose,
   navigation,
   updateSolution,
   onNavigate,
@@ -75,11 +77,18 @@ function App({
             onNavigate={onNavigate}
           />
         )}
-
         {didWin &&
           navigation.currentScreen === 'home' && (
             <Overlay>
               <p>YOU WON</p>
+              <Button onMouseDown={restart}>Play again?</Button>
+            </Overlay>
+          )}
+
+        {didLoose &&
+          navigation.currentScreen === 'home' && (
+            <Overlay>
+              <p>YOU LOST</p>
               <Button onMouseDown={restart}>Play again?</Button>
             </Overlay>
           )}

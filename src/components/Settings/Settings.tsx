@@ -26,7 +26,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
     const { value } = this.state
     return (
       <Overlay>
-        <p>Your name</p>
+        <p>Finding...</p>
         <input
           type="text"
           name="solution"

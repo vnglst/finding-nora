@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
-import { loadAudioUrls, playAudio } from '../play-web-audio'
 import { IStoreState } from '../types'
+import { loadAudioUrls, playAudio } from '../utils/play-web-audio'
 import { ADD_ANSWER, RESTART } from './constants'
 import { GameActionType } from './game-actions'
 import { didWin } from './game-model'

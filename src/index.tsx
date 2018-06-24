@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import App from './components/App'
 import './index.css'
-import preventDoubleTapZoom from './prevent-double-tap-zoom'
 import { audioMiddleware } from './redux/audio-middleware'
 import rootReducer from './redux/reducers'
 import registerServiceWorker from './registerServiceWorker'
 import { IStoreState } from './types'
+import preventDoubleTapZoom from './utils/prevent-double-tap-zoom'
 
 preventDoubleTapZoom()
 

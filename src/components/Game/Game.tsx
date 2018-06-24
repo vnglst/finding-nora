@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import * as React from 'react'
 import { GridType, IGameState, IGridItem } from '../../types'
 import Grid from '../grid'

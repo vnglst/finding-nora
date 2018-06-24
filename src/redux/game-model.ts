@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import * as _ from 'lodash'
 
 export interface IGridItem {

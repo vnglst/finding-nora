@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import { connect, Dispatch } from 'react-redux'
 import * as actions from '../../redux/game-actions'
 import { isCorrectAnswer } from '../../redux/game-model'

@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import { GridType, IGridItem } from '../types'
 import * as constants from './constants'
 

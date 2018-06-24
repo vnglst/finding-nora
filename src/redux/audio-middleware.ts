@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
 import { IStoreState } from '../types'
 import { loadAudioUrls, playAudio } from '../utils/play-web-audio'

@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import * as React from 'react'
 import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'

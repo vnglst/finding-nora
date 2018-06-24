@@ -1,5 +1,3 @@
-// tslint:disable:no-console
-
 class BufferLoader {
   public context: AudioContext
   public urlList: string[]

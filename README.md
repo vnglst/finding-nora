@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vnglst/finding-nora.svg?branch=master)](https://travis-ci.org/vnglst/finding-nora)
 
-Word search Progressive Web App (PWA) build with:
+Word search game made as a Progressive Web App (PWA) with following web technology:
 
 - Service workers
 - Web Audio

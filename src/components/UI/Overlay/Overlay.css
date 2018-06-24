@@ -20,12 +20,10 @@
 }
 
 .overlay-content {
-  font-size: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
 .overlay-content button {
@@ -41,9 +39,22 @@
 }
 
 .overlay-content p {
+  color: white;
+  font-size: 32px;
   margin: 0;
-  padding: 35px 0;
+  padding: 10px 25px;
+  line-height: 38px;
 }
+
+.overlay-content a {
+  color: var(--wit);
+}
+
+.about-icon {
+  margin-top: 20px;
+  color: #005d72;
+}
+
 .slide-in-top {
   -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

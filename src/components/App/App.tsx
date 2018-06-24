@@ -36,18 +36,9 @@ function App({
         <p>{solution}</p>
         <Game />
         <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
-          <BottomBar.Item
-            value="home"
-            icon={<HomeIcon style={{ fontSize: '28px' }} />}
-          />
-          <BottomBar.Item
-            value="new-game"
-            icon={<RefreshIcon style={{ fontSize: '28px' }} />}
-          />
-          <BottomBar.Item
-            value="settings"
-            icon={<SettingsIcon style={{ fontSize: '28px' }} />}
-          />
+          <BottomBar.Item value="home" icon={<HomeIcon />} />
+          <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
+          <BottomBar.Item value="settings" icon={<SettingsIcon />} />
         </BottomBar>
         {navigation.currentScreen === 'new-game' && (
           <Overlay>

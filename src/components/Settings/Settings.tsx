@@ -1,6 +1,8 @@
+import AboutIcon from '@material-ui/icons/Info'
 import * as React from 'react'
 import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'
+import AboutPage from './AboutPage'
 
 export interface ISettingsProps {
   className?: string
@@ -12,17 +14,27 @@ export interface ISettingsProps {
 
 export interface ISettingsState {
   value: string
+  aboutPageVisible: boolean
 }
 
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
   constructor(props: any) {
     super(props)
-    this.state = { value: '' }
+    this.state = { value: '', aboutPageVisible: false }
   }
 
   public render() {
     const { solution, updateSolution, restart, onNavigate } = this.props
     const { value } = this.state
+
+    if (this.state.aboutPageVisible) {
+      return (
+        <AboutPage
+          onClosePage={() => this.setState({ aboutPageVisible: false })}
+        />
+      )
+    }
+
     return (
       <Overlay>
         <p>Finding...</p>
@@ -50,6 +62,12 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         >
           Save
         </Button>
+        <button
+          className="button-icon"
+          onClick={() => this.setState({ aboutPageVisible: true })}
+        >
+          <AboutIcon className="about-icon" />
+        </button>
       </Overlay>
     )
   }

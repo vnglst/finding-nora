@@ -1,0 +1,12 @@
+.button-icon {
+  color: inherit;
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.about-page p {
+  font-size: 24px;
+  color: var(--zwart);
+}

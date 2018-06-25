@@ -1,14 +1,5 @@
 import * as _ from 'lodash'
-
-export interface IGridItem {
-  column: number
-  letter: string
-  row: number
-  status?: string
-  updatedAt: Date
-}
-
-export type GridType = IGridItem[][]
+import { GridType, IGridItem, StatusEnum } from '../types'
 
 export const generateGridWithPuzzle = ({
   size,
@@ -42,15 +33,15 @@ export const getAnswers = (grid: GridType) => {
 
 export const getCorrectAnswers = (grid: GridType) => {
   const answers = getAnswers(grid)
-  return answers.filter(answer => answer.status === 'correct')
+  return answers.filter(answer => answer.status === StatusEnum.Correct)
 }
 
 export const getWrongAnswers = (grid: GridType) => {
   const answers = getAnswers(grid)
-  return answers.filter(answer => answer.status === 'incorrect')
+  return answers.filter(answer => answer.status === StatusEnum.Wrong)
 }
 
-export interface ICorrectAnswer {
+interface ICorrectAnswer {
   answer: IGridItem
   solution: string[]
   grid: GridType
@@ -64,6 +55,11 @@ export const isCorrectAnswer = ({ answer, solution, grid }: ICorrectAnswer) => {
   const isFirstAnswerOrNeighbour =
     !lastCorrectAnswer || itemsAreNeighbours(lastCorrectAnswer, answer)
   return letterIsCorrect && isFirstAnswerOrNeighbour
+}
+
+export const isCorrectLetter = ({ answer, solution, grid }: ICorrectAnswer) => {
+  const remainingSolution = getRemainingSolution(solution, grid)
+  return remainingSolution.findIndex(letter => answer.letter === letter) > -1
 }
 
 export const didWin = (solution: string[], grid: GridType): boolean => {

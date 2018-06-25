@@ -4,7 +4,7 @@ import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'
 import AboutPage from './AboutPage'
 
-export interface ISettingsProps {
+interface ISettingsProps {
   className?: string
   solution: string[]
   updateSolution: (solution: string[]) => void
@@ -12,7 +12,7 @@ export interface ISettingsProps {
   restart: () => void
 }
 
-export interface ISettingsState {
+interface ISettingsState {
   value: string
   aboutPageVisible: boolean
 }

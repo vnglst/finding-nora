@@ -15,6 +15,10 @@
   background-color: var(--groen);
 }
 
+.grid-item.almost-correct {
+  background-color: var(--oranje);
+}
+
 .grid-item.wrong {
   background-color: var(--rood);
   animation: loader 1200ms 1 ease-in forwards;

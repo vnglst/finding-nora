@@ -3,7 +3,7 @@ import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'
 import './AboutPage.css'
 
-export interface IAboutPageProps {
+interface IAboutPageProps {
   onClosePage: () => void
 }
 

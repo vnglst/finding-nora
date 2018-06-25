@@ -1,9 +1,9 @@
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
-import { IStoreState } from '../types'
+import { didWin } from '../model/game-model'
+import { IStoreState, StatusEnum } from '../types'
 import { loadAudioUrls, playAudio } from '../utils/play-web-audio'
 import { ADD_ANSWER, RESTART } from './constants'
 import { GameActionType } from './game-actions'
-import { didWin } from './game-model'
 
 /**
  * Middleware that plays sounds based on Redux actions
@@ -21,10 +21,10 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       return result
     }
     case ADD_ANSWER: {
-      if (action.item.status === 'incorrect') {
+      if (action.item.status === StatusEnum.Wrong) {
         playAudio(sounds.squakk)
       }
-      if (action.item.status === 'correct') {
+      if (action.item.status === StatusEnum.Correct) {
         playAudio(sounds.nock)
       }
       const hasWon = didWin(nextState.game.solution, nextState.game.grid)

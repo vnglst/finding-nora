@@ -10,7 +10,7 @@ import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'
 import './App.css'
 
-export interface IAppProps {
+interface IAppProps {
   navigation: INavigationState
   didWin: boolean
   didLoose: boolean
@@ -20,7 +20,7 @@ export interface IAppProps {
   restart: () => void
 }
 
-function App({
+const App = ({
   didWin,
   didLoose,
   navigation,
@@ -28,63 +28,61 @@ function App({
   onNavigate,
   restart,
   solution,
-}: IAppProps) {
-  return (
-    <div>
-      <div className="background-image" />
-      <div className="app">
-        <p>{solution}</p>
-        <Game />
-        <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
-          <BottomBar.Item value="home" icon={<HomeIcon />} />
-          <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
-          <BottomBar.Item value="settings" icon={<SettingsIcon />} />
-        </BottomBar>
-        {navigation.currentScreen === 'new-game' && (
+}: IAppProps) => (
+  <div>
+    <div className="background-image" />
+    <div className="app">
+      <p>{solution}</p>
+      <Game />
+      <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
+        <BottomBar.Item value="home" icon={<HomeIcon />} />
+        <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
+        <BottomBar.Item value="settings" icon={<SettingsIcon />} />
+      </BottomBar>
+      {navigation.currentScreen === 'new-game' && (
+        <Overlay>
+          <Button
+            onMouseDown={() => {
+              restart()
+              onNavigate('home')
+            }}
+          >
+            New game
+          </Button>
+          <Button
+            onMouseDown={() => {
+              onNavigate('home')
+            }}
+          >
+            Resume game
+          </Button>
+        </Overlay>
+      )}
+      {navigation.currentScreen === 'settings' && (
+        <Settings
+          solution={solution}
+          updateSolution={updateSolution}
+          restart={restart}
+          onNavigate={onNavigate}
+        />
+      )}
+      {didWin &&
+        navigation.currentScreen === 'home' && (
           <Overlay>
-            <Button
-              onMouseDown={() => {
-                restart()
-                onNavigate('home')
-              }}
-            >
-              New game
-            </Button>
-            <Button
-              onMouseDown={() => {
-                onNavigate('home')
-              }}
-            >
-              Resume game
-            </Button>
+            <p>YOU WON</p>
+            <Button onMouseDown={restart}>Play again?</Button>
           </Overlay>
         )}
-        {navigation.currentScreen === 'settings' && (
-          <Settings
-            solution={solution}
-            updateSolution={updateSolution}
-            restart={restart}
-            onNavigate={onNavigate}
-          />
-        )}
-        {didWin &&
-          navigation.currentScreen === 'home' && (
-            <Overlay>
-              <p>YOU WON</p>
-              <Button onMouseDown={restart}>Play again?</Button>
-            </Overlay>
-          )}
 
-        {didLoose &&
-          navigation.currentScreen === 'home' && (
-            <Overlay>
-              <p>YOU LOST</p>
-              <Button onMouseDown={restart}>Play again?</Button>
-            </Overlay>
-          )}
-      </div>
+      {didLoose &&
+        navigation.currentScreen === 'home' && (
+          <Overlay>
+            <p>YOU LOST</p>
+            <Button onMouseDown={restart}>Play again?</Button>
+          </Overlay>
+        )}
     </div>
-  )
-}
+  </div>
+)
 
 export default App

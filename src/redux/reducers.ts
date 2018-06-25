@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { generateGridWithPuzzle } from '../model/game-model'
 import { IGameState, INavigationState } from '../types'
 import {
   ADD_ANSWER,
@@ -7,7 +8,6 @@ import {
   UPDATE_SOLUTION,
 } from './constants'
 import { GameActionType } from './game-actions'
-import { generateGridWithPuzzle } from './game-model'
 import { ISetActiveScreen } from './navigation-actions'
 
 const name = localStorage.getItem('name')

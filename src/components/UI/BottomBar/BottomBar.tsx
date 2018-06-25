@@ -2,7 +2,7 @@ import * as React from 'react'
 import './BottomBar.css'
 import BottomBarItem from './BottomBarItem'
 
-export interface IBottomBarProps {
+interface IBottomBarProps {
   children: React.ReactNode
   value: string
   onChange: any

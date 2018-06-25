@@ -1,4 +1,4 @@
-import { GridType, IGridItem } from '../types'
+import { IGridItem } from '../types'
 import * as constants from './constants'
 
 export type GameActionType =
@@ -26,12 +26,6 @@ export function updateSolution(solution: string[]): IUpdateSolutionAction {
     solution,
     type: constants.UPDATE_SOLUTION,
   }
-}
-
-export interface IAddAnswer {
-  answer: IGridItem
-  solution: string[]
-  grid: GridType
 }
 
 interface IAddAnswerAction {

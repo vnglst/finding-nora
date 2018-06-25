@@ -8,6 +8,7 @@ interface IItemProps {
   children: React.ReactNode
   correct?: boolean
   incorrect?: boolean
+  almostCorrect?: boolean
 }
 
 class Item extends React.Component<IItemProps, object> {
@@ -16,13 +17,16 @@ class Item extends React.Component<IItemProps, object> {
   }
 
   public render() {
-    const { children, correct, incorrect, ...other } = this.props
+    const { children, correct, incorrect, almostCorrect, ...other } = this.props
     let classes = 'grid-item'
     if (correct) {
       classes += ' correct'
     }
     if (incorrect) {
       classes += ' wrong'
+    }
+    if (almostCorrect) {
+      classes += ' almost-correct'
     }
     return (
       <Button className={classes} {...other}>

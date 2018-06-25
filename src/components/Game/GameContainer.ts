@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux'
+import { isCorrectAnswer, isCorrectLetter } from '../../model/game-model'
 import * as actions from '../../redux/game-actions'
-import { isCorrectAnswer } from '../../redux/game-model'
-import { IStoreState } from '../../types'
+import { IStoreState, StatusEnum } from '../../types'
 import Game from './Game'
 
 const mapStateToProps = ({ game }: IStoreState) => {
@@ -13,9 +13,13 @@ const mapStateToProps = ({ game }: IStoreState) => {
 const mapDispatchToProps = (dispatch: Dispatch<actions.GameActionType>) => {
   const addAnswer = ({ answer, solution, grid }: actions.IAddAnswer) => {
     const isCorrect = isCorrectAnswer({ answer, solution, grid })
+    let status = isCorrect ? StatusEnum.Correct : StatusEnum.Wrong
+    if (!isCorrect && isCorrectLetter({ answer, grid, solution })) {
+      status = StatusEnum.AlmostCorrect
+    }
     const answerWithStatus = {
       ...answer,
-      status: isCorrect ? 'correct' : 'incorrect',
+      status,
     }
     dispatch(actions.addAnswer(answerWithStatus))
   }

@@ -1,7 +1,8 @@
-import { GridType, IGridItem } from '../redux/game-model'
-
-export type GridType = GridType
-export type IGridItem = IGridItem
+export enum StatusEnum {
+  Correct = 'Correct',
+  Wrong = 'Wrong',
+  AlmostCorrect = 'AlmostCorrect',
+}
 
 export interface IGameState {
   grid: GridType
@@ -18,3 +19,13 @@ export interface IStoreState {
   game: IGameState
   navigation: INavigationState
 }
+
+export interface IGridItem {
+  column: number
+  letter: string
+  row: number
+  status?: StatusEnum
+  updatedAt: Date
+}
+
+export type GridType = IGridItem[][]

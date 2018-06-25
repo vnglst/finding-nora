@@ -11,14 +11,14 @@ const AboutPage = ({ onClosePage }: IAboutPageProps) => {
   return (
     <Overlay className="about-page">
       <p>
-        This game was made by{' '}
+        Game created by{' '}
         <a target="_blank" href="https://koenvangilst.nl">
           Koen van Gilst
         </a>
       </p>
-      <p>Extensive beta testing by my kids Nora & Tibo.</p>
+      <p>Extensive beta testing by my kids 🐵🐵</p>
       <p>
-        Source code can be found on{' '}
+        Source code on{' '}
         <a target="_blank" href="https://github.com/vnglst/finding-nora">
           Github
         </a>

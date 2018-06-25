@@ -1,4 +1,5 @@
-import * as _ from 'lodash'
+import cloneDeep from 'lodash-es/cloneDeep'
+import sample from 'lodash-es/sample'
 import { GridType, IGridItem, StatusEnum } from '../types'
 
 export const generateGridWithPuzzle = ({
@@ -117,7 +118,7 @@ const generateGrid = ({
   for (let row = 0; row < size; row++) {
     const columns = []
     for (let column = 0; column < size; column++) {
-      const randomLetter = _.sample(noise)
+      const randomLetter = sample(noise)
       if (randomLetter) {
         columns.push({
           column,
@@ -182,9 +183,9 @@ const addPuzzle = ({
     return grid
   }
 
-  const clonedGrid = _.cloneDeep(grid)
+  const clonedGrid = cloneDeep(grid)
   const legalMoves = getLegalNextMoves({ grid: clonedGrid, row, column })
-  const nextMove = _.sample(legalMoves)
+  const nextMove = sample(legalMoves)
   if (!nextMove) {
     // no possible next move found, could not completely add puzzle
     return null

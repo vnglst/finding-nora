@@ -5,15 +5,17 @@
   "dependencies": {
     "@material-ui/core": "^1.2.3",
     "@material-ui/icons": "^1.1.0",
-    "@types/lodash": "^4.14.110",
+    "@types/lodash-es": "^4.17.0",
     "@types/qs": "^6.5.1",
     "cypress": "^3.0.1",
-    "lodash": "^4.17.10",
+    "lodash-es": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.0",
-    "react-scripts-ts": "2.16.0"
+    "react-scripts-ts": "2.16.0",
+    "source-map-explorer": "^1.5.0"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "pretest": "yarn lint",

@@ -1,10 +1,9 @@
 import AboutIcon from '@material-ui/icons/Info'
 import * as React from 'react'
-import Button from '../UI/Button'
-import Overlay from '../UI/Overlay'
-import AboutPage from './AboutPage'
+import Button from '../../UI/Button'
+import Overlay from '../../UI/Overlay'
 
-export interface ISettingsProps {
+interface ISettingsProps {
   className?: string
   solution: string[]
   updateSolution: (solution: string[]) => void
@@ -12,28 +11,19 @@ export interface ISettingsProps {
   restart: () => void
 }
 
-export interface ISettingsState {
+interface ISettingsState {
   value: string
-  aboutPageVisible: boolean
 }
 
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
   constructor(props: any) {
     super(props)
-    this.state = { value: '', aboutPageVisible: false }
+    this.state = { value: '' }
   }
 
   public render() {
     const { solution, updateSolution, restart, onNavigate } = this.props
     const { value } = this.state
-
-    if (this.state.aboutPageVisible) {
-      return (
-        <AboutPage
-          onClosePage={() => this.setState({ aboutPageVisible: false })}
-        />
-      )
-    }
 
     return (
       <Overlay>
@@ -45,10 +35,10 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
           value={value}
           placeholder={solution.join('')}
           onChange={e => {
-            this.setState({ value: e.target.value })
+            this.setState({ value: e.target.value.toUpperCase() })
           }}
           onBlur={e => {
-            const newSolution = e.target.value.toUpperCase().split('')
+            const newSolution = e.target.value.split('')
             if (newSolution.length > 2 && newSolution.length < 10) {
               updateSolution(newSolution)
             }
@@ -62,10 +52,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         >
           Save
         </Button>
-        <button
-          className="button-icon"
-          onClick={() => this.setState({ aboutPageVisible: true })}
-        >
+        <button className="button-icon" onClick={() => onNavigate('about')}>
           <AboutIcon className="about-icon" />
         </button>
       </Overlay>

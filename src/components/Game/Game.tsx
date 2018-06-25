@@ -1,25 +1,24 @@
 import * as React from 'react'
-import { GridType, IGameState, IGridItem } from '../../types'
-import Grid from '../grid'
+import { GridType, IGameState, IGridItem, StatusEnum } from '../../types'
+import Grid from '../UI/Grid'
 
-export interface IAddAnswer {
+interface IAddAnswer {
   answer: IGridItem
   solution: string[]
   grid: GridType
 }
 
-export interface IGameProps {
+interface IGameProps {
   game: IGameState
   addAnswer: ({ answer, solution, grid }: IAddAnswer) => void
 }
 
-function Game({ game, addAnswer }: IGameProps) {
-  if (!game.grid) {
-    return null // not loaded yet
-  }
-
+const Game = ({ game, addAnswer }: IGameProps) => {
   const handlePress = (item: IGridItem) => {
-    if (item.status) {
+    if (
+      item.status === StatusEnum.Correct ||
+      item.status === StatusEnum.Wrong
+    ) {
       return // already answered
     }
     addAnswer({ answer: item, solution: game.solution, grid: game.grid })
@@ -34,8 +33,9 @@ function Game({ game, addAnswer }: IGameProps) {
             key={`${rowIndex}-${columnIndex}`}
             onMouseDown={() => handlePress(item)}
             onTouchStart={() => handlePress(item)}
-            incorrect={item.status === 'incorrect'}
-            correct={item.status === 'correct'}
+            wrong={item.status === StatusEnum.Wrong}
+            correct={item.status === StatusEnum.Correct}
+            almostCorrect={item.status === StatusEnum.AlmostCorrect}
           >
             {item.letter}
           </Grid.Item>

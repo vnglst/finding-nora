@@ -1,13 +1,13 @@
 import * as React from 'react'
-import Button from '../UI/Button'
-import Overlay from '../UI/Overlay'
-import './AboutPage.css'
+import Button from '../../UI/Button'
+import Overlay from '../../UI/Overlay'
+import './About.css'
 
-export interface IAboutPageProps {
-  onClosePage: () => void
+interface IAboutPageProps {
+  onClose: () => void
 }
 
-const AboutPage = ({ onClosePage }: IAboutPageProps) => {
+const AboutPage = ({ onClose }: IAboutPageProps) => {
   return (
     <Overlay className="about-page">
       <p>
@@ -23,7 +23,7 @@ const AboutPage = ({ onClosePage }: IAboutPageProps) => {
           Github
         </a>
       </p>
-      <Button onClick={onClosePage}>Back</Button>
+      <Button onClick={onClose}>Back</Button>
     </Overlay>
   )
 }

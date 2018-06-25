@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './Button.css'
 
-export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
+interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode
   className?: string
 }

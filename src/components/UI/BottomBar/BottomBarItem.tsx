@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './BottomBarItem.css'
 
-export interface IBottomBarItemProps {
+interface IBottomBarItemProps {
   value: string
   onChange?: any
   selected?: boolean
@@ -9,13 +9,13 @@ export interface IBottomBarItemProps {
   label?: string
 }
 
-function BottomBarItem({
+const BottomBarItem = ({
   value,
   label,
   onChange,
   icon,
   selected,
-}: IBottomBarItemProps) {
+}: IBottomBarItemProps) => {
   let classes = 'item'
   if (selected) {
     classes += ' item-selected'

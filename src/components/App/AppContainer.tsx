@@ -1,22 +1,22 @@
 import { connect, Dispatch } from 'react-redux'
+import { didLoose, didWin, getRemainingSolution } from '../../model/game-model'
 import * as gameActions from '../../redux/game-actions'
-import { didLoose, didWin } from '../../redux/game-model'
 import * as navigationActions from '../../redux/navigation-actions'
 import { IStoreState } from '../../types'
 import App from './App'
 
 const mapStateToProps = ({ game, navigation }: IStoreState) => {
   return {
+    currentPage: navigation.currentPage,
     didLoose: didLoose(game.solution, game.grid),
     didWin: didWin(game.solution, game.grid),
-    navigation,
-    solution: game.solution,
+    remainingSolution: getRemainingSolution(game.solution, game.grid),
   }
 }
 
 const mapDispatchToProps = (
   dispatch: Dispatch<
-    navigationActions.ISetActiveScreen | gameActions.GameActionType
+    navigationActions.NavigationActionType | gameActions.GameActionType
   >,
 ) => {
   const updateSolution = (solution: string[]) => {

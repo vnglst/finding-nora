@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GridType, IGameState, IGridItem, StatusEnum } from '../../types'
-import Grid from '../grid'
+import Grid from '../UI/Grid'
 
 interface IAddAnswer {
   answer: IGridItem

@@ -1,9 +1,0 @@
-{
-  "name": "finding-nora",
-  "alias": "nora.now.sh",
-  "public": true,
-  "static": {
-    "public": "build"
-  },
-  "files": ["build"]
-}

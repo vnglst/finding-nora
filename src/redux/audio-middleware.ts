@@ -24,6 +24,9 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       if (action.item.status === StatusEnum.Wrong) {
         playAudio(sounds.squakk)
       }
+      if (action.item.status === StatusEnum.AlmostCorrect) {
+        playAudio(sounds.euh)
+      }
       if (action.item.status === StatusEnum.Correct) {
         playAudio(sounds.nock)
       }
@@ -47,6 +50,7 @@ const initSounds = () => {
 
   const soundUrls = [
     soundsBaseUrl + 'squakk.mp3',
+    soundsBaseUrl + 'euh.mp3',
     soundsBaseUrl + 'nock.mp3',
     soundsBaseUrl + 'hooyeah.mp3',
     soundsBaseUrl + 'restart.mp3',
@@ -54,9 +58,10 @@ const initSounds = () => {
 
   loadAudioUrls(soundUrls, bufferList => {
     sounds.squakk = bufferList[0]
-    sounds.nock = bufferList[1]
-    sounds.hooyeah = bufferList[2]
-    sounds.restart = bufferList[3]
+    sounds.euh = bufferList[1]
+    sounds.nock = bufferList[2]
+    sounds.hooyeah = bufferList[3]
+    sounds.restart = bufferList[4]
   })
 
   return loadedSounds

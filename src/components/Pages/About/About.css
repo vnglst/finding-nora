@@ -4,6 +4,8 @@
   border: 0;
   padding: 0;
   margin: 0;
+  height: 50px;
+  width: 50px;
 }
 
 .about-page p {

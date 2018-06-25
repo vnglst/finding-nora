@@ -1,5 +1,5 @@
 import { connect, Dispatch } from 'react-redux'
-import { didLoose, didWin } from '../../model/game-model'
+import { didLoose, didWin, getRemainingSolution } from '../../model/game-model'
 import * as gameActions from '../../redux/game-actions'
 import * as navigationActions from '../../redux/navigation-actions'
 import { IStoreState } from '../../types'
@@ -10,7 +10,7 @@ const mapStateToProps = ({ game, navigation }: IStoreState) => {
     didLoose: didLoose(game.solution, game.grid),
     didWin: didWin(game.solution, game.grid),
     navigation,
-    solution: game.solution,
+    remainingSolution: getRemainingSolution(game.solution, game.grid),
   }
 }
 

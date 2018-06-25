@@ -14,10 +14,6 @@ interface IGameProps {
 }
 
 const Game = ({ game, addAnswer }: IGameProps) => {
-  if (!game.grid) {
-    return null // not loaded yet
-  }
-
   const handlePress = (item: IGridItem) => {
     if (
       item.status === StatusEnum.Correct ||

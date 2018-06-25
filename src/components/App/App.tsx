@@ -4,7 +4,8 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import * as React from 'react'
 import { INavigationState } from '../../types'
 import Game from '../Game/'
-import Settings from '../Settings'
+import AboutPage from '../Pages/About'
+import SettingsPage from '../Pages/Settings'
 import BottomBar from '../UI/BottomBar'
 import Button from '../UI/Button'
 import Overlay from '../UI/Overlay'
@@ -14,7 +15,7 @@ interface IAppProps {
   navigation: INavigationState
   didWin: boolean
   didLoose: boolean
-  solution: string[]
+  remainingSolution: string[]
   updateSolution: (solution: string[]) => void
   onNavigate: (screen: string) => void
   restart: () => void
@@ -27,12 +28,12 @@ const App = ({
   updateSolution,
   onNavigate,
   restart,
-  solution,
+  remainingSolution,
 }: IAppProps) => (
   <div>
     <div className="background-image" />
     <div className="app">
-      <p>{solution}</p>
+      <p>{remainingSolution}</p>
       <Game />
       <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
         <BottomBar.Item value="home" icon={<HomeIcon />} />
@@ -59,11 +60,18 @@ const App = ({
         </Overlay>
       )}
       {navigation.currentScreen === 'settings' && (
-        <Settings
-          solution={solution}
+        <SettingsPage
+          solution={remainingSolution}
           updateSolution={updateSolution}
           restart={restart}
           onNavigate={onNavigate}
+        />
+      )}
+      {navigation.currentScreen === 'about' && (
+        <AboutPage
+          onClose={() => {
+            onNavigate('settings')
+          }}
         />
       )}
       {didWin &&

@@ -84,6 +84,13 @@ export const didLoose = (solution: string[], grid: GridType): boolean => {
   return notAnswered.length === 0 && !didWin(solution, grid)
 }
 
+export const getRemainingSolution = (solution: string[], grid: GridType) => {
+  const correctAnswers = getCorrectAnswers(grid)
+  const numberOfCorrectAnswers = correctAnswers.length
+  const remainingSolution = solution.slice(numberOfCorrectAnswers)
+  return remainingSolution
+}
+
 const getLastCorrectAnswer = (grid: GridType) => {
   const correctAnswers = getCorrectAnswers(grid)
   if (correctAnswers.length < 1) {
@@ -91,13 +98,6 @@ const getLastCorrectAnswer = (grid: GridType) => {
   }
   const lastCorrectAnswer = correctAnswers[correctAnswers.length - 1]
   return lastCorrectAnswer
-}
-
-const getRemainingSolution = (solution: string[], grid: GridType) => {
-  const correctAnswers = getCorrectAnswers(grid)
-  const numberOfCorrectAnswers = correctAnswers.length
-  const remainingSolution = solution.slice(numberOfCorrectAnswers)
-  return remainingSolution
 }
 
 const sortAnswers = (answers: IGridItem[]) =>

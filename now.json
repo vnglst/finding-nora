@@ -4,5 +4,6 @@
   "public": true,
   "static": {
     "public": "build"
-  }
+  },
+  "files": ["build"]
 }

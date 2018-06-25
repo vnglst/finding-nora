@@ -37,7 +37,7 @@ const Game = ({ game, addAnswer }: IGameProps) => {
             key={`${rowIndex}-${columnIndex}`}
             onMouseDown={() => handlePress(item)}
             onTouchStart={() => handlePress(item)}
-            incorrect={item.status === StatusEnum.Wrong}
+            wrong={item.status === StatusEnum.Wrong}
             correct={item.status === StatusEnum.Correct}
             almostCorrect={item.status === StatusEnum.AlmostCorrect}
           >

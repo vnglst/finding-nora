@@ -10,7 +10,7 @@ interface IRestartAction {
   type: constants.RESTART
 }
 
-export function restart(): IRestartAction {
+export const restart = (): IRestartAction => {
   return {
     type: constants.RESTART,
   }
@@ -21,7 +21,7 @@ interface IUpdateSolutionAction {
   type: constants.UPDATE_SOLUTION
 }
 
-export function updateSolution(solution: string[]): IUpdateSolutionAction {
+export const updateSolution = (solution: string[]): IUpdateSolutionAction => {
   return {
     solution,
     type: constants.UPDATE_SOLUTION,

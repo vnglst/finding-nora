@@ -7,7 +7,7 @@ interface IItemProps {
   onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>
   children: React.ReactNode
   correct?: boolean
-  incorrect?: boolean
+  wrong?: boolean
   almostCorrect?: boolean
 }
 
@@ -17,12 +17,12 @@ class Item extends React.Component<IItemProps, object> {
   }
 
   public render() {
-    const { children, correct, incorrect, almostCorrect, ...other } = this.props
+    const { children, correct, wrong, almostCorrect, ...other } = this.props
     let classes = 'grid-item'
     if (correct) {
       classes += ' correct'
     }
-    if (incorrect) {
+    if (wrong) {
       classes += ' wrong'
     }
     if (almostCorrect) {

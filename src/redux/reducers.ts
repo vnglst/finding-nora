@@ -8,7 +8,7 @@ import {
   UPDATE_SOLUTION,
 } from './constants'
 import { GameActionType } from './game-actions'
-import { ISetActiveScreen } from './navigation-actions'
+import { NavigationActionType } from './navigation-actions'
 
 const name = localStorage.getItem('name')
 const SOLUTION = (name || 'NORA').toUpperCase().split('')
@@ -20,7 +20,7 @@ const initialNavigationState: INavigationState = {
 
 function navigation(
   state = initialNavigationState,
-  action: ISetActiveScreen,
+  action: NavigationActionType,
 ): INavigationState {
   switch (action.type) {
     case SET_ACTIVE_SCREEN:

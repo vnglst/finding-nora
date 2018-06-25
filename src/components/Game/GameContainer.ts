@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux'
 import { isCorrectAnswer, isCorrectLetter } from '../../model/game-model'
 import * as actions from '../../redux/game-actions'
-import { IStoreState, StatusEnum } from '../../types'
+import { GridType, IGridItem, IStoreState, StatusEnum } from '../../types'
 import Game from './Game'
 
 const mapStateToProps = ({ game }: IStoreState) => {
@@ -10,8 +10,14 @@ const mapStateToProps = ({ game }: IStoreState) => {
   }
 }
 
+interface IAddAnswer {
+  answer: IGridItem
+  grid: GridType
+  solution: string[]
+}
+
 const mapDispatchToProps = (dispatch: Dispatch<actions.GameActionType>) => {
-  const addAnswer = ({ answer, solution, grid }: actions.IAddAnswer) => {
+  const addAnswer = ({ answer, solution, grid }: IAddAnswer) => {
     const isCorrect = isCorrectAnswer({ answer, solution, grid })
     let status = isCorrect ? StatusEnum.Correct : StatusEnum.Wrong
     if (!isCorrect && isCorrectLetter({ answer, grid, solution })) {

@@ -2,9 +2,9 @@ import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
 import * as React from 'react'
-import { INavigationState } from '../../types'
 import Game from '../Game/'
 import AboutPage from '../Pages/About'
+import NewGamePage from '../Pages/NewGame'
 import SettingsPage from '../Pages/Settings'
 import BottomBar from '../UI/BottomBar'
 import Button from '../UI/Button'
@@ -12,7 +12,7 @@ import Overlay from '../UI/Overlay'
 import './App.css'
 
 interface IAppProps {
-  navigation: INavigationState
+  currentPage: string
   didWin: boolean
   didLoose: boolean
   remainingSolution: string[]
@@ -24,7 +24,7 @@ interface IAppProps {
 const App = ({
   didWin,
   didLoose,
-  navigation,
+  currentPage,
   updateSolution,
   onNavigate,
   restart,
@@ -35,31 +35,15 @@ const App = ({
     <div className="app">
       <p>{remainingSolution}</p>
       <Game />
-      <BottomBar value={navigation.currentScreen} onChange={onNavigate}>
+      <BottomBar value={currentPage} onChange={onNavigate}>
         <BottomBar.Item value="home" icon={<HomeIcon />} />
         <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
         <BottomBar.Item value="settings" icon={<SettingsIcon />} />
       </BottomBar>
-      {navigation.currentScreen === 'new-game' && (
-        <Overlay>
-          <Button
-            onMouseDown={() => {
-              restart()
-              onNavigate('home')
-            }}
-          >
-            New game
-          </Button>
-          <Button
-            onMouseDown={() => {
-              onNavigate('home')
-            }}
-          >
-            Resume game
-          </Button>
-        </Overlay>
+      {currentPage === 'new-game' && (
+        <NewGamePage onNavigate={onNavigate} restart={restart} />
       )}
-      {navigation.currentScreen === 'settings' && (
+      {currentPage === 'settings' && (
         <SettingsPage
           solution={remainingSolution}
           updateSolution={updateSolution}
@@ -67,7 +51,7 @@ const App = ({
           onNavigate={onNavigate}
         />
       )}
-      {navigation.currentScreen === 'about' && (
+      {currentPage === 'about' && (
         <AboutPage
           onClose={() => {
             onNavigate('settings')
@@ -75,7 +59,7 @@ const App = ({
         />
       )}
       {didWin &&
-        navigation.currentScreen === 'home' && (
+        currentPage === 'home' && (
           <Overlay>
             <p>YOU WON</p>
             <Button onMouseDown={restart}>Play again?</Button>
@@ -83,7 +67,7 @@ const App = ({
         )}
 
       {didLoose &&
-        navigation.currentScreen === 'home' && (
+        currentPage === 'home' && (
           <Overlay>
             <p>YOU LOST</p>
             <Button onMouseDown={restart}>Play again?</Button>

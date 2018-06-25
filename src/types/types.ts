@@ -12,7 +12,7 @@ export interface IGameState {
 }
 
 export interface INavigationState {
-  currentScreen: string
+  currentPage: string
 }
 
 export interface IStoreState {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Button from '../../UI/Button'
 import Overlay from '../../UI/Overlay'
-import './AboutPage.css'
+import './About.css'
 
 interface IAboutPageProps {
   onClose: () => void

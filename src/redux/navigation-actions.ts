@@ -1,15 +1,15 @@
 import * as constants from './constants'
 
-export type NavigationActionType = ISetActiveScreen
+export type NavigationActionType = ISetActivePage
 
-interface ISetActiveScreen {
-  type: constants.SET_ACTIVE_SCREEN
-  screen: string
+interface ISetActivePage {
+  type: constants.SET_ACTIVE_PAGE
+  page: string
 }
 
-export const setActiveScreen = (screen: string): ISetActiveScreen => {
+export const setActiveScreen = (page: string): ISetActivePage => {
   return {
-    screen,
-    type: constants.SET_ACTIVE_SCREEN,
+    page,
+    type: constants.SET_ACTIVE_PAGE,
   }
 }

@@ -7,9 +7,9 @@ import App from './App'
 
 const mapStateToProps = ({ game, navigation }: IStoreState) => {
   return {
+    currentPage: navigation.currentPage,
     didLoose: didLoose(game.solution, game.grid),
     didWin: didWin(game.solution, game.grid),
-    navigation,
     remainingSolution: getRemainingSolution(game.solution, game.grid),
   }
 }

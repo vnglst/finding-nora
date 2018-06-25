@@ -4,7 +4,7 @@ import { IGameState, INavigationState } from '../types'
 import {
   ADD_ANSWER,
   RESTART,
-  SET_ACTIVE_SCREEN,
+  SET_ACTIVE_PAGE,
   UPDATE_SOLUTION,
 } from './constants'
 import { GameActionType } from './game-actions'
@@ -15,7 +15,7 @@ const SOLUTION = (name || 'NORA').toUpperCase().split('')
 const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 const initialNavigationState: INavigationState = {
-  currentScreen: 'home',
+  currentPage: 'home',
 }
 
 function navigation(
@@ -23,8 +23,8 @@ function navigation(
   action: NavigationActionType,
 ): INavigationState {
   switch (action.type) {
-    case SET_ACTIVE_SCREEN:
-      return { ...state, currentScreen: action.screen }
+    case SET_ACTIVE_PAGE:
+      return { ...state, currentPage: action.page }
     default:
       return state
   }

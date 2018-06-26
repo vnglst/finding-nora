@@ -37,7 +37,7 @@ yarn deploy:now # deploys on Now https://nora.now.sh`
 
 ## Conclusions about PWA's
 
-The results are very promising I think. Lots of things are still missing, like no `Add to Homescreen` popup and a hard refresh of the app every time you come back to it, but it does feel like a real app. It was even pretty kid proof, even though I wasn't able/willing to get rid of the pinch zooming.
+The results on iOS Safari are very promising I think. Lots of things are still missing, like no `Add to Homescreen` popup and a hard refresh of the app every time you come back to it, but it does feel like a real app. It was even pretty kid proof, even though I wasn't able/willing to get rid of the pinch zooming.
 
 ## Credits:
 

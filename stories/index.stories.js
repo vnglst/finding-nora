@@ -4,16 +4,16 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
-import MyButton from '../src/components/UI/Button'
+import Button from '../src/components/UI/Button'
 
-storiesOf('MyButton', module)
+storiesOf('Button', module)
   .add('with text', () => (
-    <MyButton onClick={action('clicked')}>Hello Button</MyButton>
+    <Button onClick={action('clicked')}>Hello Button</Button>
   ))
   .add('with some emoji', () => (
-    <MyButton onClick={action('clicked')}>
+    <Button onClick={action('clicked')}>
       <span role="img" aria-label="so cool">
         😀 😎 👍 💯
       </span>
-    </MyButton>
+    </Button>
   ))

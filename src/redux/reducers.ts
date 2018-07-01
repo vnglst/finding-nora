@@ -1,6 +1,6 @@
+import { generateGridWithPuzzle } from 'model/game-model'
 import { combineReducers } from 'redux'
-import { generateGridWithPuzzle } from '../model/game-model'
-import { IGameState, INavigationState } from '../types'
+import { IGameState, INavigationState } from 'types'
 import {
   ADD_ANSWER,
   RESTART,

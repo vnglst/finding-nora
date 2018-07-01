@@ -1,5 +1,5 @@
+import Button from 'components/UI/Button'
 import * as React from 'react'
-import Button from '../Button'
 import './Item.css'
 
 interface IItemProps {

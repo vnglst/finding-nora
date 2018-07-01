@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
-import Button from '../src/components/UI/Button'
+import Button from 'components/UI/Button'
 
 storiesOf('Button', module)
   .add('with text', () => (

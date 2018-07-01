@@ -1,4 +1,4 @@
-import { IGridItem } from '../types'
+import { IGridItem } from 'types'
 import * as constants from './constants'
 
 export type GameActionType =

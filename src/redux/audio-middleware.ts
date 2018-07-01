@@ -1,7 +1,7 @@
+import { didWin } from 'model/game-model'
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
-import { didWin } from '../model/game-model'
-import { IStoreState, StatusEnum } from '../types'
-import { loadAudioUrls, playAudio } from '../utils/play-web-audio'
+import { IStoreState, StatusEnum } from 'types'
+import { loadAudioUrls, playAudio } from 'utils/play-web-audio'
 import { ADD_ANSWER, RESTART } from './constants'
 import { GameActionType } from './game-actions'
 

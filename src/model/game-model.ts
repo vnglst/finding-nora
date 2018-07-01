@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash-es/cloneDeep'
 import sample from 'lodash-es/sample'
-import { GridType, IGridItem, StatusEnum } from '../types'
+import { GridType, IGridItem, StatusEnum } from 'types'
 
 export const generateGridWithPuzzle = ({
   size,

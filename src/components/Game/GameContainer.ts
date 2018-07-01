@@ -1,7 +1,7 @@
+import { isCorrectAnswer, isCorrectLetter } from 'model/game-model'
 import { connect, Dispatch } from 'react-redux'
-import { isCorrectAnswer, isCorrectLetter } from '../../model/game-model'
-import * as actions from '../../redux/game-actions'
-import { GridType, IGridItem, IStoreState, StatusEnum } from '../../types'
+import * as actions from 'redux/game-actions'
+import { GridType, IGridItem, IStoreState, StatusEnum } from 'types'
 import Game from './Game'
 
 const mapStateToProps = ({ game }: IStoreState) => {

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900');
 
 :root {
-  --blauw: #2188d2;
+  --blauw: #026781;
   --oranje: #ef7d00;
   --groen: #75b843;
   --rood: #f53757;
@@ -26,5 +26,6 @@ html {
 }
 
 body {
-  color: var(wit);
+  color: var(--wit);
+  background: var(--blauw);
 }

@@ -1,6 +1,6 @@
+import Button from 'components/UI/Button'
+import Overlay from 'components/UI/Overlay'
 import * as React from 'react'
-import Button from '../../UI/Button'
-import Overlay from '../../UI/Overlay'
 import './About.css'
 
 interface IAboutPageProps {

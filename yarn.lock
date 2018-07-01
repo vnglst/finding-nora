@@ -7396,6 +7396,10 @@ react-split-pane@^0.1.77:
     prop-types "^15.5.10"
     react-style-proptype "^3.0.0"
 
+react-storybook-decorator-background@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-storybook-decorator-background/-/react-storybook-decorator-background-1.0.5.tgz#e6f76250703792c50c6c4de393bb126e9dae428b"
+
 react-style-proptype@^3.0.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.2.1.tgz#7cfeb9b87ec7ab9dcbde9715170ed10c11fb86aa"

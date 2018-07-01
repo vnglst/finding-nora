@@ -1,19 +1,14 @@
-import React from 'react'
-
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { linkTo } from '@storybook/addon-links'
-
 import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
-
-import Button from 'components/UI/Button'
+import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react'
 import BottomBar from 'components/UI/BottomBar'
+import Button from 'components/UI/Button'
 import Grid from 'components/UI/Grid'
 import Overlay from 'components/UI/Overlay'
-
 import 'index.css'
+import React from 'react'
 
 storiesOf('Button', module)
   .add('with text', () => (

@@ -27,13 +27,13 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@material-ui/core": "^1.3.0",
+    "@material-ui/core": "^1.3.1",
     "@material-ui/icons": "^1.1.0",
     "@storybook/addon-actions": "^3.4.8",
     "@storybook/addon-links": "^3.4.8",
     "@storybook/addons": "^3.4.8",
     "@storybook/react": "^3.4.8",
-    "@types/jest": "^23.1.3",
+    "@types/jest": "^23.1.4",
     "@types/lodash-es": "^4.17.0",
     "@types/node": "^10.5.1",
     "@types/react": "^16.4.6",

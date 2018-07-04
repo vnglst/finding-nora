@@ -6650,6 +6650,12 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
+play-web-audio@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/play-web-audio/-/play-web-audio-1.0.3.tgz#ccc6e6f5d63d65ee300cd2902c3ca2b191efd060"
+  dependencies:
+    typescript "^2.9.2"
+
 pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
@@ -7003,6 +7009,12 @@ pretty-format@^22.4.0, pretty-format@^22.4.3:
   dependencies:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
+
+prevent-double-tap-zoom@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/prevent-double-tap-zoom/-/prevent-double-tap-zoom-2.0.4.tgz#18b5a81b29fcf9c44f5863305186c29c9f7ec593"
+  dependencies:
+    typescript "^2.9.2"
 
 private@^0.1.6, private@^0.1.8, private@~0.1.5:
   version "0.1.8"

@@ -10,7 +10,7 @@ import { IStoreState } from 'types'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 
-preventDoubleTapZoom(500)
+preventDoubleTapZoom({ delay: 500 })
 
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

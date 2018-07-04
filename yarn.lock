@@ -6643,9 +6643,9 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-play-web-audio@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/play-web-audio/-/play-web-audio-1.0.5.tgz#0cdfec1ab2c00f4531cb71603b9678c827325e22"
+play-web-audio@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/play-web-audio/-/play-web-audio-1.0.6.tgz#ce6254ab5f9bcc12606de36b0b40d125a1863933"
   dependencies:
     typescript "^2.9.2"
 

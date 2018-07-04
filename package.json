@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "lodash-es": "^4.17.10",
-    "play-web-audio": "^1.0.5",
+    "play-web-audio": "^1.0.6",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.0",

@@ -1,5 +1,6 @@
 import { didLoose, didWin, getRemainingSolution } from 'model/game-model'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import * as gameActions from 'redux/game-actions'
 import * as navigationActions from 'redux/navigation-actions'
 import { IStoreState } from 'types'

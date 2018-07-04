@@ -1,5 +1,6 @@
 import { isCorrectAnswer, isCorrectLetter } from 'model/game-model'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import * as actions from 'redux/game-actions'
 import { GridType, IGridItem, IStoreState, StatusEnum } from 'types'
 import Game from './Game'

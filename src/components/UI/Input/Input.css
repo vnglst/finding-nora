@@ -1,0 +1,17 @@
+input.my-input {
+  font-size: 24px;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 10px;
+  -webkit-user-select: auto;
+  border: 0;
+  transition: border-color 0.5s ease-out;
+}
+
+input.my-input.invalid {
+  border-bottom: 5px solid var(--rood);
+}
+
+input.my-input.valid {
+  border-bottom: 5px solid var(--groen);
+}

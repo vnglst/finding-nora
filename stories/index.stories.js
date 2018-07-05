@@ -7,8 +7,10 @@ import BottomBar from 'components/UI/BottomBar'
 import Button from 'components/UI/Button'
 import Grid from 'components/UI/Grid'
 import Overlay from 'components/UI/Overlay'
+import BackgroundImage from 'components/UI/BackgroundImage'
 import 'index.css'
 import React from 'react'
+import festen from 'assets/festen.jpg'
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -71,3 +73,12 @@ storiesOf('Overlay', module).add('with button', () => (
     <Button onMouseDown={action('restart')}>Play again?</Button>
   </Overlay>
 ))
+
+storiesOf('BackgroundImage', module).add(
+  'with image and example button',
+  () => (
+    <BackgroundImage imageSrc={festen}>
+      <Button onMouseDown={action('restart')}>Press me</Button>
+    </BackgroundImage>
+  ),
+)

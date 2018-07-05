@@ -1,7 +1,9 @@
 import HomeIcon from '@material-ui/icons/Home'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SettingsIcon from '@material-ui/icons/Settings'
+import festen from 'assets/festen.jpg'
 import Game from 'components/Game/'
+import BackgroundImage from 'components/UI/BackgroundImage'
 import BottomBar from 'components/UI/BottomBar'
 import Button from 'components/UI/Button'
 import Overlay from 'components/UI/Overlay'
@@ -30,8 +32,7 @@ const App = ({
   restart,
   remainingSolution,
 }: IAppProps) => (
-  <div>
-    <div className="background-image" />
+  <BackgroundImage imageSrc={festen}>
     <div className="app">
       <p>{remainingSolution}</p>
       <Game />
@@ -74,7 +75,7 @@ const App = ({
           </Overlay>
         )}
     </div>
-  </div>
+  </BackgroundImage>
 )
 
 export default App

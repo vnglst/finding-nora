@@ -7,6 +7,7 @@ import BottomBar from 'components/UI/BottomBar'
 import Button from 'components/UI/Button'
 import Grid from 'components/UI/Grid'
 import Overlay from 'components/UI/Overlay'
+import Input from 'components/UI/Input'
 import BackgroundImage from 'components/UI/BackgroundImage'
 import 'index.css'
 import React from 'react'
@@ -82,3 +83,28 @@ storiesOf('BackgroundImage', module).add(
     </BackgroundImage>
   ),
 )
+
+storiesOf('Input', module)
+  .add('with invalid input', () => (
+    <Input
+      valid={false}
+      type="text"
+      name="solution"
+      maxLength={9}
+      placeholder="NORA"
+      onChange={action('typing')}
+      onBlur={action('leaving input')}
+      required
+    />
+  ))
+  .add('with valid input', () => (
+    <Input
+      valid={true}
+      type="text"
+      name="solution"
+      maxLength={9}
+      placeholder="NORA"
+      onChange={action('typing')}
+      onBlur={action('leaving input')}
+    />
+  ))

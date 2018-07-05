@@ -30,14 +30,6 @@
   margin: 15px;
 }
 
-.overlay-content input {
-  font-size: 24px;
-  padding: 10px;
-  margin: 15px;
-  border-radius: 10px;
-  -webkit-user-select: auto;
-}
-
 .overlay-content p {
   color: white;
   font-size: 32px;

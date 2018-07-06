@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import './BackgroundImage.css'
 
@@ -12,18 +13,15 @@ const BackgroundImage = ({
   imageSrc,
   children,
   ...other
-}: IBackgroundImage) => {
-  const classes = 'background-image ' + className
-  return (
-    <div>
-      <div
-        className={classes}
-        style={{ backgroundImage: `url('${imageSrc}')` }}
-        {...other}
-      />
-      <div className="background-image-children">{children}</div>
-    </div>
-  )
-}
+}: IBackgroundImage) => (
+  <div>
+    <div
+      className={cx('background-image', className)}
+      style={{ backgroundImage: `url('${imageSrc}')` }}
+      {...other}
+    />
+    <div className="background-image-children">{children}</div>
+  </div>
+)
 
 export default BackgroundImage

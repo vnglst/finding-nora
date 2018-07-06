@@ -1,6 +1,7 @@
+import cx from 'classnames'
 import Button from 'components/UI/Button'
 import * as React from 'react'
-import './Item.css'
+import './GridItem.css'
 
 interface IItemProps {
   onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>
@@ -18,16 +19,12 @@ const Item = ({
   almostCorrect,
   ...other
 }: IItemProps) => {
-  let classes = 'grid-item'
-  if (correct) {
-    classes += ' correct'
-  }
-  if (wrong) {
-    classes += ' wrong'
-  }
-  if (almostCorrect) {
-    classes += ' almost-correct'
-  }
+  const classes = cx(
+    'grid-item',
+    { correct },
+    { wrong },
+    { 'almost-correct': almostCorrect },
+  )
   return (
     <Button className={classes} {...other}>
       {children}

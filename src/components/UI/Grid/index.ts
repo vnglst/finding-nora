@@ -1,6 +1,6 @@
 import Grid from './Grid'
-import Item from './Item'
+import GridItem from './GridItem'
 
-Grid.Item = Item
+Grid.Item = GridItem
 
 export default Grid

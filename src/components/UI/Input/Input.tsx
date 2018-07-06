@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import './Input.css'
 
@@ -7,7 +8,12 @@ interface IInputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 const Input = ({ className, valid, ...other }: IInputProps) => {
-  const classes = `my-input ${valid ? 'valid' : 'invalid'} ${className}`
+  const classes = cx(
+    'my-input',
+    { valid },
+    { invalid: !valid },
+    className,
+  )
   return <input className={classes} {...other} />
 }
 

@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import './BottomBarItem.css'
 
@@ -16,10 +17,7 @@ const BottomBarItem = ({
   icon,
   selected,
 }: IBottomBarItemProps) => {
-  let classes = 'item'
-  if (selected) {
-    classes += ' item-selected'
-  }
+  const classes = cx('item', { 'item-selected': selected })
   return (
     <button className={classes} onMouseDown={() => onChange(value)}>
       {icon}

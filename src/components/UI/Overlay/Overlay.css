@@ -7,10 +7,11 @@
   left: 0;
   right: 0;
   background: radial-gradient(
-    ellipse at left,
+    ellipse at bottom left,
     #2aa7ba 0%,
-    #12a5bb 44%,
-    #026781 100%
+    #12a5bb 30%,
+    #025f76 70%,
+    #025f76 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   z-index: 0;
   display: flex;

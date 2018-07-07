@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Item from '../Item.tsx'
+import GridItem from '../GridItem.tsx'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Item />, div)
+  ReactDOM.render(<GridItem />, div)
 })

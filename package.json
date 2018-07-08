@@ -5,7 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.10",
-    "play-web-audio": "^1.0.6",
+    "play-web-audio": "^1.0.7",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.0",

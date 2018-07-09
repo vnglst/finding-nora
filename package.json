@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "^0.1.0-11",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.10",
-    "play-web-audio": "^1.0.6",
+    "play-web-audio": "^1.0.7",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
-    "react-scripts-ts": "2.16.0",
     "redux": "^4.0.0"
   },
   "scripts": {
@@ -28,15 +30,13 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@material-ui/core": "^1.3.1",
-    "@material-ui/icons": "^1.1.0",
     "@storybook/addon-actions": "^3.4.8",
     "@storybook/addon-links": "^3.4.8",
     "@storybook/addons": "^3.4.8",
     "@storybook/react": "^3.4.8",
     "@types/jest": "^23.1.4",
     "@types/lodash-es": "^4.17.0",
-    "@types/node": "^10.5.1",
+    "@types/node": "^10.5.2",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.3",
@@ -44,6 +44,7 @@
     "babel-runtime": "^6.26.0",
     "cypress": "^3.0.2",
     "http-server": "^0.11.1",
+    "react-scripts-ts": "2.16.0",
     "source-map-explorer": "^1.5.0",
     "typescript": "^2.9.2"
   }

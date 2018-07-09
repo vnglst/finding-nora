@@ -1,6 +1,5 @@
-import HomeIcon from '@material-ui/icons/Home'
-import RefreshIcon from '@material-ui/icons/Refresh'
-import SettingsIcon from '@material-ui/icons/Settings'
+import { faCog, faHome, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import festen from 'assets/festen.jpg'
 import Game from 'components/Game/'
 import BackgroundImage from 'components/UI/BackgroundImage'
@@ -37,9 +36,15 @@ const App = ({
       <p>{remainingSolution}</p>
       <Game />
       <BottomBar value={currentPage} onChange={onNavigate}>
-        <BottomBar.Item value="home" icon={<HomeIcon />} />
-        <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
-        <BottomBar.Item value="settings" icon={<SettingsIcon />} />
+        <BottomBar.Item value="home" icon={<FontAwesomeIcon icon={faHome} />} />
+        <BottomBar.Item
+          value="new-game"
+          icon={<FontAwesomeIcon icon={faRedo} />}
+        />
+        <BottomBar.Item
+          value="settings"
+          icon={<FontAwesomeIcon icon={faCog} />}
+        />
       </BottomBar>
       {currentPage === 'new-game' && (
         <NewGamePage onNavigate={onNavigate} restart={restart} />

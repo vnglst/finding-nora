@@ -32,7 +32,7 @@ function navigation(
 
 const initialGameState: IGameState = {
   grid: generateGridWithPuzzle({
-    noise: NOISE,
+    noise: NOISE.filter(l => l !== SOLUTION[0]), // remove first letter of solution from noise array to improve gameplay
     size: 5,
     solution: SOLUTION,
   }),
@@ -47,7 +47,7 @@ function game(state = initialGameState, action: GameActionType): IGameState {
       return {
         ...state,
         grid: generateGridWithPuzzle({
-          noise: state.noise,
+          noise: state.noise.filter(l => l !== state.solution[0]), // remove first letter of solution from noise array to improve gameplay
           size: state.size,
           solution: state.solution,
         }),

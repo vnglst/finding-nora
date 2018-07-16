@@ -12,8 +12,8 @@ export const generateGridWithPuzzle = ({
   noise: string[]
 }) => {
   const grid = generateGrid({ size, noise })
-  const gridWithPuzzle = addPuzzle({ grid, solution })
-  return gridWithPuzzle as GridType
+  const gridWithPuzzle = addPuzzle({ grid, solution }) as GridType
+  return applyRandomTransformation(gridWithPuzzle)
 }
 
 export const itemsAreNeighbours = (item1: IGridItem, item2: IGridItem) =>
@@ -68,18 +68,6 @@ export const didWin = (solution: string[], grid: GridType): boolean => {
   return correctAnswers.length >= solution.length
 }
 
-const getNotAnswered = (grid: GridType) => {
-  const notAnswered: IGridItem[] = []
-  grid.forEach(row =>
-    row.forEach(column => {
-      if (!column.status) {
-        notAnswered.push(column)
-      }
-    }),
-  )
-  return notAnswered
-}
-
 export const didLoose = (solution: string[], grid: GridType): boolean => {
   const notAnswered = getNotAnswered(grid)
   return notAnswered.length === 0 && !didWin(solution, grid)
@@ -90,6 +78,65 @@ export const getRemainingSolution = (solution: string[], grid: GridType) => {
   const numberOfCorrectAnswers = correctAnswers.length
   const remainingSolution = solution.slice(numberOfCorrectAnswers)
   return remainingSolution
+}
+
+const applyRandomTransformation = (grid: GridType) => {
+  const transformations = [
+    (g: GridType) => g, // do nothing
+    mirrorGridHorizontal,
+    (g: GridType) => rotate(rotate(rotate(g))),
+  ]
+  const transformation =
+    transformations[Math.floor(Math.random() * transformations.length)]
+  return transformation(grid)
+}
+
+// mirrors a grid horizontally
+const mirrorGridHorizontal = (grid: GridType) => {
+  const mirroredGrid = grid.slice().reverse()
+  return updateRowsAndColumns(mirroredGrid)
+}
+
+// rotates a grid
+const rotate = (grid: GridType) => {
+  // reverse the rows
+  const rotatedGrid = grid.slice().reverse()
+
+  // swap elements
+  for (let i = 0; i < rotatedGrid.length; i++) {
+    for (let j = 0; j < i; j++) {
+      const temp = rotatedGrid[i][j]
+      rotatedGrid[i][j] = rotatedGrid[j][i]
+      rotatedGrid[j][i] = temp
+    }
+  }
+
+  return updateRowsAndColumns(rotatedGrid)
+}
+
+// updates indices
+const updateRowsAndColumns = (grid: GridType) => {
+  return grid.map((columns, row) =>
+    columns.map((el, column) => {
+      return {
+        ...el,
+        column,
+        row,
+      }
+    }),
+  )
+}
+
+const getNotAnswered = (grid: GridType) => {
+  const notAnswered: IGridItem[] = []
+  grid.forEach(row =>
+    row.forEach(column => {
+      if (!column.status) {
+        notAnswered.push(column)
+      }
+    }),
+  )
+  return notAnswered
 }
 
 const getLastCorrectAnswer = (grid: GridType) => {

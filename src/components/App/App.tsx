@@ -17,6 +17,7 @@ interface IAppProps {
   didWin: boolean
   didLoose: boolean
   remainingSolution: string[]
+  solution: string[]
   updateSolution: (solution: string[]) => void
   onNavigate: (screen: string) => void
   restart: () => void
@@ -29,6 +30,7 @@ const App = ({
   updateSolution,
   onNavigate,
   restart,
+  solution,
   remainingSolution,
 }: IAppProps) => (
   <BackgroundImage imageSrc={festen}>
@@ -51,7 +53,7 @@ const App = ({
       )}
       {currentPage === 'settings' && (
         <SettingsPage
-          solution={remainingSolution}
+          solution={solution}
           updateSolution={updateSolution}
           restart={restart}
           onNavigate={onNavigate}

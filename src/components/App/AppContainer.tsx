@@ -12,6 +12,7 @@ const mapStateToProps = ({ game, navigation }: IStoreState) => {
     didLoose: didLoose(game.solution, game.grid),
     didWin: didWin(game.solution, game.grid),
     remainingSolution: getRemainingSolution(game.solution, game.grid),
+    solution: game.solution,
   }
 }
 

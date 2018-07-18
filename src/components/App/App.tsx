@@ -39,14 +39,17 @@ const App = ({
       <Game />
       <BottomBar value={currentPage} onChange={onNavigate}>
         <BottomBar.Item
+          aria-label="New game"
           value="new-game"
           icon={<FontAwesomeIcon icon={faRedo} />}
         />
         <BottomBar.Item
+          aria-label="Settings"
           value="settings"
           icon={<FontAwesomeIcon icon={faCog} />}
         />
         <BottomBar.Item
+          aria-label="About this app"
           value="about"
           icon={<FontAwesomeIcon icon={faInfoCircle} />}
         />

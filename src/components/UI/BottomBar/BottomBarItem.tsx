@@ -16,10 +16,11 @@ const BottomBarItem = ({
   onChange,
   icon,
   selected,
+  ...other
 }: IBottomBarItemProps) => {
   const classes = cx('item', { 'item-selected': selected })
   return (
-    <button className={classes} onMouseDown={() => onChange(value)}>
+    <button className={classes} onMouseDown={() => onChange(value)} {...other}>
       {icon}
       {label && <p>{label}</p>}
     </button>

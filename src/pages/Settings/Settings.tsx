@@ -1,5 +1,3 @@
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/UI/Button'
 import Input from 'components/UI/Input'
 import Overlay from 'components/UI/Overlay'
@@ -61,9 +59,6 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         >
           Save
         </Button>
-        <button className="button-icon" onClick={() => onNavigate('about')}>
-          <FontAwesomeIcon icon={faInfoCircle} />
-        </button>
       </Overlay>
     )
   }

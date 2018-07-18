@@ -1,4 +1,4 @@
-import { faCog, faHome, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import festen from 'assets/festen.jpg'
 import Game from 'components/Game/'
@@ -38,7 +38,6 @@ const App = ({
       <p>{remainingSolution}</p>
       <Game />
       <BottomBar value={currentPage} onChange={onNavigate}>
-        <BottomBar.Item value="home" icon={<FontAwesomeIcon icon={faHome} />} />
         <BottomBar.Item
           value="new-game"
           icon={<FontAwesomeIcon icon={faRedo} />}
@@ -46,6 +45,10 @@ const App = ({
         <BottomBar.Item
           value="settings"
           icon={<FontAwesomeIcon icon={faCog} />}
+        />
+        <BottomBar.Item
+          value="about"
+          icon={<FontAwesomeIcon icon={faInfoCircle} />}
         />
       </BottomBar>
       {currentPage === 'new-game' && (
@@ -62,7 +65,7 @@ const App = ({
       {currentPage === 'about' && (
         <AboutPage
           onClose={() => {
-            onNavigate('settings')
+            onNavigate('home')
           }}
         />
       )}

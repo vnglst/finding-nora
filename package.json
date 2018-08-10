@@ -46,6 +46,6 @@
     "http-server": "^0.11.1",
     "react-scripts-ts": "2.16.0",
     "source-map-explorer": "^1.5.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   }
 }

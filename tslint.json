@@ -5,6 +5,7 @@
   },
   "rules": {
     "jsx-no-lambda": false,
-    "no-console": false
+    "no-console": false,
+    "prefer-for-of": false
   }
 }

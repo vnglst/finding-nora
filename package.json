@@ -32,7 +32,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.8",
     "@storybook/addon-links": "^3.4.8",
-    "@storybook/addons": "^3.4.8",
+    "@storybook/addons": "^3.4.10",
     "@storybook/react": "^3.4.8",
     "@types/jest": "^23.1.6",
     "@types/lodash-es": "^4.17.0",

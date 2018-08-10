@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generated grid should match snapshot 1`] = `
+Array [
+  Array [
+    Object {
+      "column": 0,
+      "letter": "X",
+      "row": 0,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 1,
+      "letter": "H",
+      "row": 0,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 2,
+      "letter": "M",
+      "row": 0,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 3,
+      "letter": "V",
+      "row": 0,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 4,
+      "letter": "S",
+      "row": 0,
+      "updatedAt": 2017-07-14T02:40:00.000Z,
+    },
+  ],
+  Array [
+    Object {
+      "column": 0,
+      "letter": "A",
+      "row": 1,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 1,
+      "letter": "O",
+      "row": 1,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 2,
+      "letter": "D",
+      "row": 1,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 3,
+      "letter": "E",
+      "row": 1,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 4,
+      "letter": "J",
+      "row": 1,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+  ],
+  Array [
+    Object {
+      "column": 0,
+      "letter": "A",
+      "row": 2,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 1,
+      "letter": "N",
+      "row": 2,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 2,
+      "letter": "C",
+      "row": 2,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 3,
+      "letter": "J",
+      "row": 2,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 4,
+      "letter": "G",
+      "row": 2,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+  ],
+  Array [
+    Object {
+      "column": 0,
+      "letter": "G",
+      "row": 3,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 1,
+      "letter": "L",
+      "row": 3,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 2,
+      "letter": "G",
+      "row": 3,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 3,
+      "letter": "T",
+      "row": 3,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 4,
+      "letter": "O",
+      "row": 3,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+  ],
+  Array [
+    Object {
+      "column": 0,
+      "letter": "U",
+      "row": 4,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 1,
+      "letter": "T",
+      "row": 4,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 2,
+      "letter": "G",
+      "row": 4,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 3,
+      "letter": "R",
+      "row": 4,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+    Object {
+      "column": 4,
+      "letter": "E",
+      "row": 4,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
+    },
+  ],
+]
+`;

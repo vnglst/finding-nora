@@ -1,6 +1,5 @@
-import cloneDeep from 'lodash-es/cloneDeep'
-import sample from 'lodash-es/sample'
 import { GridType } from 'types'
+import { sample } from 'utils/general'
 
 export const generateGridWithPuzzle = ({
   size,
@@ -61,7 +60,7 @@ const addPuzzle = ({
     return grid
   }
 
-  const clonedGrid = cloneDeep(grid)
+  const clonedGrid = JSON.parse(JSON.stringify(grid))
   const legalMoves = getLegalNextMoves({ grid: clonedGrid, row, column })
   const nextMove = sample(legalMoves)
   if (!nextMove) {

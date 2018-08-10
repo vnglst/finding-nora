@@ -10,7 +10,7 @@
     "lodash-es": "^4.17.10",
     "play-web-audio": "^1.0.7",
     "prevent-double-tap-zoom": "^2.0.4",
-    "react": "^16.4.1",
+    "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"

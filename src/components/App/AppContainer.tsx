@@ -1,4 +1,4 @@
-import { didLoose, didWin, getRemainingSolution } from 'model/game-model'
+import { didLoose, didWin, getRemainingSolution } from 'model'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import * as gameActions from 'redux/game-actions'

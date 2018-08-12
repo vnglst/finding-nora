@@ -1,5 +1,9 @@
 import { GridType } from 'types'
-import { sample } from 'utils/general'
+import { cloneDeep, compose, sample } from 'utils/general'
+import {
+  mirrorMatrixHorizontally,
+  rotateMatrixCounterClockwise,
+} from 'utils/matrix'
 
 export const generateGridWithPuzzle = ({
   size,
@@ -15,7 +19,7 @@ export const generateGridWithPuzzle = ({
   const transformations = [
     noTransform,
     mirrorGridHorizontal,
-    (g: GridType) => rotate(rotate(rotate(g))),
+    (g: GridType) => rotate(g),
   ]
   const transformedGridWithPuzzle = applyRandomTransformation(
     transformations,
@@ -68,7 +72,7 @@ const addPuzzle = ({
     return grid
   }
 
-  const clonedGrid = JSON.parse(JSON.stringify(grid))
+  const clonedGrid = cloneDeep(grid)
   const legalMoves = getLegalNextMoves({ grid: clonedGrid, row, column })
   const nextMove = sample(legalMoves)
   if (!nextMove) {
@@ -143,34 +147,7 @@ const applyRandomTransformation = (
   return transformation(grid)
 }
 
-// do nothing
-const noTransform = (grid: GridType) => grid
-
-// mirrors a grid horizontally
-const mirrorGridHorizontal = (grid: GridType) => {
-  const mirroredGrid = grid.slice().reverse()
-  return updateRowsAndColumns(mirroredGrid)
-}
-
-// rotates a grid
-const rotate = (grid: GridType) => {
-  // reverse the rows
-  const rotatedGrid = grid.slice().reverse()
-
-  // swap elements
-  // TODO: fix linting, use for .. of instead https://palantir.github.io/tslint/rules/prefer-for-of/
-  for (let i = 0; i < rotatedGrid.length; i++) {
-    for (let j = 0; j < i; j++) {
-      const temp = rotatedGrid[i][j]
-      rotatedGrid[i][j] = rotatedGrid[j][i]
-      rotatedGrid[j][i] = temp
-    }
-  }
-
-  return updateRowsAndColumns(rotatedGrid)
-}
-
-// updates indices
+// updates indices grid
 const updateRowsAndColumns = (grid: GridType) => {
   return grid.map((columns, row) =>
     columns.map((el, column) => {
@@ -182,3 +159,18 @@ const updateRowsAndColumns = (grid: GridType) => {
     }),
   )
 }
+
+// do nothing
+const noTransform = (grid: GridType) => grid
+
+// mirrors grid horizontally
+const mirrorGridHorizontal = compose(
+  updateRowsAndColumns,
+  mirrorMatrixHorizontally,
+)
+
+// rotates grid counterclockwise
+const rotate = compose(
+  updateRowsAndColumns,
+  rotateMatrixCounterClockwise,
+)

@@ -25,7 +25,7 @@ Array [
       "column": 3,
       "letter": "A",
       "row": 0,
-      "updatedAt": 2017-07-14T02:40:00.000Z,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
     },
     Object {
       "column": 4,
@@ -1563,7 +1563,7 @@ Array [
       "column": 1,
       "letter": "R",
       "row": 0,
-      "updatedAt": 2017-07-14T02:40:00.000Z,
+      "updatedAt": "2017-07-14T02:40:00.000Z",
     },
   ],
   Array [

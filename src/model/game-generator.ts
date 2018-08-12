@@ -12,7 +12,15 @@ export const generateGridWithPuzzle = ({
 }) => {
   const grid = generateGrid({ size, noise })
   const gridWithPuzzle = addPuzzle({ grid, solution }) as GridType
-  const transformedGridWithPuzzle = applyRandomTransformation(gridWithPuzzle)
+  const transformations = [
+    noTransform,
+    mirrorGridHorizontal,
+    (g: GridType) => rotate(rotate(rotate(g))),
+  ]
+  const transformedGridWithPuzzle = applyRandomTransformation(
+    transformations,
+    gridWithPuzzle,
+  )
   return transformedGridWithPuzzle
 }
 
@@ -127,14 +135,11 @@ const getAllMoves = ({ grid }: { grid: GridType }) => {
   return legalMoves
 }
 
-const applyRandomTransformation = (grid: GridType) => {
-  const transformations = [
-    noTransform,
-    mirrorGridHorizontal,
-    (g: GridType) => rotate(rotate(rotate(g))),
-  ]
-  const transformation =
-    transformations[Math.floor(Math.random() * transformations.length)]
+const applyRandomTransformation = (
+  transformations: Array<(grid: GridType) => void>,
+  grid: GridType,
+) => {
+  const transformation = sample(transformations)
   return transformation(grid)
 }
 

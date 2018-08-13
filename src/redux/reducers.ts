@@ -1,4 +1,4 @@
-import { generateGridWithPuzzle } from 'model'
+import PuzzleGenerator from 'model/puzzle-generator'
 import { combineReducers } from 'redux'
 import { IGameState, INavigationState } from 'types'
 import {
@@ -31,11 +31,7 @@ function navigation(
 }
 
 const initialGameState: IGameState = {
-  grid: generateGridWithPuzzle({
-    noise: NOISE.filter(l => l !== SOLUTION[0]), // remove first letter of solution from noise array to improve gameplay
-    size: 5,
-    solution: SOLUTION,
-  }),
+  grid: new PuzzleGenerator(5, SOLUTION, NOISE).grid,
   noise: NOISE,
   size: 5,
   solution: SOLUTION,
@@ -46,11 +42,7 @@ function game(state = initialGameState, action: GameActionType): IGameState {
     case RESTART:
       return {
         ...state,
-        grid: generateGridWithPuzzle({
-          noise: state.noise.filter(l => l !== state.solution[0]), // remove first letter of solution from noise array to improve gameplay
-          size: state.size,
-          solution: state.solution,
-        }),
+        grid: new PuzzleGenerator(state.size, state.solution, state.noise).grid,
       }
     case UPDATE_SOLUTION: {
       return {

@@ -1,4 +1,4 @@
-import { isCorrectAnswer, isCorrectLetter } from 'model'
+import { isCorrectAnswer, isCorrectLetter } from 'model/game-utils'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import * as actions from 'redux/game-actions'

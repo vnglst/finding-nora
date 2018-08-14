@@ -1,6 +1,5 @@
-import HomeIcon from '@material-ui/icons/Home'
-import RefreshIcon from '@material-ui/icons/Refresh'
-import SettingsIcon from '@material-ui/icons/Settings'
+import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
 import BottomBar from 'components/UI/BottomBar'
@@ -27,9 +26,21 @@ storiesOf('Button', module)
 
 storiesOf('BottomBar', module).add('with Home, Refresh and Settings', () => (
   <BottomBar value="home" onChange={action('menu item changed')}>
-    <BottomBar.Item value="home" icon={<HomeIcon />} />
-    <BottomBar.Item value="new-game" icon={<RefreshIcon />} />
-    <BottomBar.Item value="settings" icon={<SettingsIcon />} />
+    <BottomBar.Item
+      aria-label="New game"
+      value="new-game"
+      icon={<FontAwesomeIcon icon={faRedo} />}
+    />
+    <BottomBar.Item
+      aria-label="Settings"
+      value="settings"
+      icon={<FontAwesomeIcon icon={faCog} />}
+    />
+    <BottomBar.Item
+      aria-label="About this app"
+      value="about"
+      icon={<FontAwesomeIcon icon={faInfoCircle} />}
+    />
   </BottomBar>
 ))
 

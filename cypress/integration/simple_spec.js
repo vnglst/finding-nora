@@ -13,8 +13,8 @@ describe('Clicking N should turn button green', function() {
   })
 })
 
-describe('First clicking O should turn button red', function() {
-  it('finds O, clicks it and it should turn red', function() {
+describe('First clicking O should turn button orange (almost correct)', function() {
+  it('finds O, clicks it and it should turn orange', function() {
     cy.visit('http://localhost:3000/')
 
     cy.get('.grid')
@@ -24,6 +24,6 @@ describe('First clicking O should turn button red', function() {
     cy.get('.grid')
       .contains('O')
       .click()
-      .should('have.class', 'wrong')
+      .should('have.class', 'almost-correct')
   })
 })

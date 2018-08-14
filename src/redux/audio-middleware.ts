@@ -1,4 +1,4 @@
-import { didWin } from 'model/game-utils'
+import { didWin } from 'model/puzzle-utils'
 import { loadAudioUrls, playAudio } from 'play-web-audio'
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
 import { IStoreState, StatusEnum } from 'types'

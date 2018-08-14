@@ -7,7 +7,7 @@ import {
 
 class PuzzleGenerator {
   public grid: GridType
-  private noise: string[]
+  public noise: string[]
 
   constructor(
     readonly size: number,
@@ -112,10 +112,10 @@ class PuzzleGenerator {
   public toString() {
     let s: string = ''
     this.grid.forEach(row => {
-      s += '\n'
       row.forEach(item => {
-        s += ' ' + item.letter
+        s += item.letter
       })
+      s += '\n'
     })
     return s
   }

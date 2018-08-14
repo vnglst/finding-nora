@@ -1,7 +1,12 @@
+import { mockMathRandom } from 'utils/mockMathRandom'
 import PuzzleGenerator from '../puzzle-generator'
 
 const noise = 'ABCDEFGHIJKLMNOPQRSTVWUXYZ'.split('')
 const solution = 'NORA'.toUpperCase().split('')
+
+beforeEach(() => {
+  mockMathRandom()
+})
 
 describe('Puzzle', () => {
   it('Should generate a 6 x 6 grid', () => {
@@ -25,6 +30,12 @@ describe('Puzzle', () => {
     const puzzle = new PuzzleGenerator(8, solution, noise)
     expect(puzzle.grid).toMatchSnapshot()
   })
+})
+
+describe('removeSolutionLettersFrom()', () => {
+  const puzzle = new PuzzleGenerator(6, solution, noise)
+  puzzle.removeSolutionLettersFrom('NORABCD'.split(''))
+  expect(puzzle.noise).toEqual(['B', 'C', 'D'])
 })
 
 describe('calculateStepsToEdge()', () => {
@@ -67,8 +78,27 @@ describe('updateIndices()', () => {
 })
 
 describe('applyTransformations()', () => {
-  it('Should ...', () => {
-    // const puzzle = new PuzzleGenerator(6, solution, noise)
-    //
+  it('Should do nothing on first tranformation', () => {
+    const puzzle = new PuzzleGenerator(4, solution, noise)
+    puzzle.applyRandomTransformation()
+    const str = puzzle.toString()
+    expect(str.startsWith('BLGA')).toBeTruthy()
+  })
+
+  it('Should rotate counterclockwise on second tranformation', () => {
+    const puzzle = new PuzzleGenerator(4, solution, noise)
+    puzzle.applyRandomTransformation()
+    puzzle.applyRandomTransformation()
+    const str = puzzle.toString()
+    expect(str.startsWith('ARKD')).toBeTruthy()
+  })
+
+  it('Should mirror horizontally on third tranformation', () => {
+    const puzzle = new PuzzleGenerator(4, solution, noise)
+    puzzle.applyRandomTransformation()
+    puzzle.applyRandomTransformation()
+    puzzle.applyRandomTransformation()
+    const str = puzzle.toString()
+    expect(str.endsWith('ARKD\n')).toBeTruthy()
   })
 })

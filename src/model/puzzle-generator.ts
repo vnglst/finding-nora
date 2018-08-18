@@ -54,16 +54,18 @@ class PuzzleGenerator {
     let currentRow = startRow
     let currentColumn = startColumn
     this.solution.forEach(letter => {
-      const legalMoves = this.getLegalNextMoves(currentRow, currentColumn)
-      const nextMove = sample(legalMoves)
-      this.grid[nextMove.row][nextMove.column] = {
-        column: nextMove.column,
+      this.grid[currentRow][currentColumn] = {
+        column: currentRow,
         letter,
-        row: nextMove.row,
+        row: currentRow,
         updatedAt: new Date(),
       }
-      currentRow = nextMove.row
-      currentColumn = nextMove.column
+      const legalMoves = this.getLegalNextMoves(currentRow, currentColumn)
+      if (legalMoves.length > 0) {
+        const nextMove = sample(legalMoves)
+        currentRow = nextMove.row
+        currentColumn = nextMove.column
+      }
     })
   }
 
@@ -73,9 +75,15 @@ class PuzzleGenerator {
     let startColumn = this.generateRandomPosition()
     const requiredSteps = this.solution.length
     let tryAgain = true
+    let counter = 0
     while (tryAgain) {
+      counter++
+      if (counter > 100) {
+        tryAgain = false
+        throw new Error('help')
+      }
       const stepsToEdge = this.calculateStepsToEdge(startRow, startColumn)
-      if (requiredSteps < stepsToEdge) {
+      if (requiredSteps <= stepsToEdge) {
         tryAgain = false
       } else {
         startRow = this.generateRandomPosition()

@@ -26,6 +26,12 @@ describe('Puzzle', () => {
       expect(puzzle.find(letter).length).toBeLessThan(2)
     })
   })
+  it('Should be able to generate a puzzle with a solution of max 9 letters', () => {
+    const puzzle = new PuzzleGenerator(5, 'ABCDEFGHI'.split(''), noise)
+    solution.forEach(letter => {
+      expect(puzzle.find(letter)).toBeTruthy()
+    })
+  })
   it('Should match snapshot for large puzzle', () => {
     const puzzle = new PuzzleGenerator(8, solution, noise)
     expect(puzzle.grid).toMatchSnapshot()
@@ -40,9 +46,9 @@ describe('removeSolutionLettersFrom()', () => {
 
 describe('calculateStepsToEdge()', () => {
   it('Should calculate steps to edge start at origin', () => {
-    const puzzle = new PuzzleGenerator(6, solution, noise)
+    const puzzle = new PuzzleGenerator(5, solution, noise)
     const steps = puzzle.calculateStepsToEdge(0, 0)
-    expect(steps).toEqual(11)
+    expect(steps).toEqual(9)
   })
   it('Should calculate steps to edge start at center', () => {
     const puzzle = new PuzzleGenerator(6, solution, noise)
@@ -60,7 +66,7 @@ describe('generateLegalRandomStartPoint()', () => {
   })
   it('Should throw error if puzzle cannot be added', () => {
     expect(() => {
-      const puzzle = new PuzzleGenerator(2, solution, noise)
+      const puzzle = new PuzzleGenerator(5, 'ABCDEFGHIJ'.split(''), noise)
       puzzle.generateLegalRandomStartPoint()
     }).toThrowError('Puzzle too long')
   })
@@ -80,9 +86,10 @@ describe('updateIndices()', () => {
 describe('applyTransformations()', () => {
   it('Should do nothing on first tranformation', () => {
     const puzzle = new PuzzleGenerator(4, solution, noise)
+    const before = puzzle.toString()
     puzzle.applyRandomTransformation()
-    const str = puzzle.toString()
-    expect(str.startsWith('BLGA')).toBeTruthy()
+    const after = puzzle.toString()
+    expect(after).toEqual(before)
   })
 
   it('Should rotate counterclockwise on second tranformation', () => {
@@ -90,7 +97,7 @@ describe('applyTransformations()', () => {
     puzzle.applyRandomTransformation()
     puzzle.applyRandomTransformation()
     const str = puzzle.toString()
-    expect(str.startsWith('ARKD')).toBeTruthy()
+    expect(str.startsWith('DKLA')).toBeTruthy()
   })
 
   it('Should mirror horizontally on third tranformation', () => {
@@ -99,6 +106,6 @@ describe('applyTransformations()', () => {
     puzzle.applyRandomTransformation()
     puzzle.applyRandomTransformation()
     const str = puzzle.toString()
-    expect(str.endsWith('ARKD\n')).toBeTruthy()
+    expect(str.endsWith('DKLA\n')).toBeTruthy()
   })
 })

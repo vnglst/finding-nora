@@ -23,7 +23,7 @@ describe('isCorrectAnswer()', () => {
   it('Confirm that N at 4 0 is correct answer', () => {
     const puzzle = new PuzzleGenerator(6, solution, noise)
     const isCorrect = isCorrectAnswer({
-      answer: puzzle.grid[4][0],
+      answer: puzzle.grid[5][0],
       grid: puzzle.grid,
       solution: puzzle.solution,
     })
@@ -38,11 +38,11 @@ describe('isCorrectAnswer()', () => {
     })
     expect(isCorrect).toBeFalsy()
   })
-  it('Confirm that O at 4 1 is correct answer after answering N', () => {
+  it('Confirm that O at 4 0 is correct answer after answering N', () => {
     const puzzle = new PuzzleGenerator(6, solution, noise)
-    setAnswerToCorrect(4, 0, puzzle.grid)
+    setAnswerToCorrect(5, 0, puzzle.grid)
     const isCorrect = isCorrectAnswer({
-      answer: puzzle.grid[4][1],
+      answer: puzzle.grid[4][0],
       grid: puzzle.grid,
       solution: puzzle.solution,
     })

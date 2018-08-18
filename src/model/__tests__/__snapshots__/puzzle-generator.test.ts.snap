@@ -241,7 +241,7 @@ Array [
     },
     Object {
       "column": 6,
-      "letter": "D",
+      "letter": "N",
       "row": 4,
       "updatedAt": 2017-07-14T02:40:00.000Z,
     },
@@ -291,7 +291,7 @@ Array [
     },
     Object {
       "column": 6,
-      "letter": "N",
+      "letter": "O",
       "row": 5,
       "updatedAt": 2017-07-14T02:40:00.000Z,
     },
@@ -341,13 +341,13 @@ Array [
     },
     Object {
       "column": 6,
-      "letter": "O",
+      "letter": "R",
       "row": 6,
       "updatedAt": 2017-07-14T02:40:00.000Z,
     },
     Object {
       "column": 7,
-      "letter": "R",
+      "letter": "A",
       "row": 6,
       "updatedAt": 2017-07-14T02:40:00.000Z,
     },
@@ -397,7 +397,7 @@ Array [
     },
     Object {
       "column": 7,
-      "letter": "A",
+      "letter": "S",
       "row": 7,
       "updatedAt": 2017-07-14T02:40:00.000Z,
     },

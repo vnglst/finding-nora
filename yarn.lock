@@ -323,20 +323,14 @@
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react-redux@^6.0.6":
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.6.tgz#87f1d0a6ea901b93fcaf95fa57641ff64079d277"
+"@types/react-redux@^6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.7.tgz#ac61cd8d137ca7205b831d66e279f42fe2a1c3cd"
   dependencies:
     "@types/react" "*"
     redux "^4.0.0"
 
-"@types/react@*":
-  version "16.4.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.7.tgz#f33f6d759a7e1833befa15224d68942d178a5a3f"
-  dependencies:
-    csstype "^2.2.0"
-
-"@types/react@^16.4.13":
+"@types/react@*", "@types/react@^16.4.13":
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.13.tgz#1385f5dc3486aa493849a32ccce626a817543e28"
   dependencies:

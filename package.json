@@ -9,8 +9,8 @@
     "classnames": "^2.2.6",
     "play-web-audio": "^1.0.7",
     "prevent-double-tap-zoom": "^2.0.4",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"
   },

@@ -12,14 +12,14 @@ const AboutPage = ({ onClose }: IAboutPageProps) => {
     <Overlay className="about-page">
       <p>
         Game created by{' '}
-        <a target="_blank" href="https://koenvangilst.nl">
+        <a href="https://koenvangilst.nl">
           Koen van Gilst
         </a>
       </p>
       <p>Extensive beta testing by my kids 🐵🐵</p>
       <p>
         Source code on{' '}
-        <a target="_blank" href="https://github.com/vnglst/finding-nora">
+        <a href="https://github.com/vnglst/finding-nora">
           Github
         </a>
       </p>

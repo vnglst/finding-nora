@@ -14,8 +14,20 @@ html {
   box-sizing: border-box;
   font-family: 'Lato', verdana, sans-serif;
   font-weight: 900;
-  font-size: 24px;
+  letter-spacing: 2px;
+  font-size: calc(0.5em + 1vmin);
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+
+@media only screen and (min-width: 800px) {
+  html {
+    font-size: 0.8em;
+  }
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 1.75em 0;
 }
 
 *,

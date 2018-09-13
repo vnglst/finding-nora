@@ -31,11 +31,11 @@ const App = ({
   onNavigate,
   restart,
   solution,
-  remainingSolution,
+  remainingSolution
 }: IAppProps) => (
   <BackgroundImage imageSrc={festen}>
     <div className="app">
-      <p>{remainingSolution}</p>
+      <h1>{remainingSolution}</h1>
       <Game />
       <BottomBar value={currentPage} onChange={onNavigate}>
         <BottomBar.Item

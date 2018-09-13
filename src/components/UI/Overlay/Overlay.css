@@ -13,7 +13,6 @@
     #025f76 70%,
     #025f76 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,10 +32,10 @@
 
 .overlay-content p {
   color: white;
-  font-size: 2em;
+  font-size: 2.5em;
   margin: 0;
-  padding: 0.5em 1em;
-  line-height: 2;
+  padding: 1em;
+  line-height: 1.5;
 }
 
 .overlay-content a {

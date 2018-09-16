@@ -9,3 +9,4 @@ scripts:
   - yarn
   - yarn test
   - yarn build
+  - yarn cypress:ci

@@ -23,9 +23,8 @@
     "eject": "react-scripts-ts eject",
     "deploy": "yarn build && netlify deploy ./build",
     "deploy:now": "yarn build && now alias $(now ./build --public --static) nora.now.sh",
-    "cypress:ci": "cypress run --record",
+    "cypress:ci": "cypress run --record --key d9fcfab5-00ab-4c62-900a-80aefc8e3117",
     "cypress:open": "cypress open",
-    "cypress": "cypress",
     "lint": "tslint --project ./",
     "storybook": "start-storybook -p 6006"
   },

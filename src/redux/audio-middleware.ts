@@ -1,15 +1,17 @@
 import { didWin } from 'model/puzzle-utils'
-import { loadAudioUrls, playAudio } from 'play-web-audio'
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
 import { IStoreState, StatusEnum } from 'types'
+import { loadSounds } from './audio-init'
 import { ADD_ANSWER, RESTART } from './constants'
 import { GameActionType } from './game-actions'
+
+const sounds = loadSounds()
 
 /**
  * Middleware that plays sounds based on Redux actions
  */
 export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
-  next: Dispatch,
+  next: Dispatch
 ) => (action: GameActionType) => {
   const result = next(action)
 
@@ -17,22 +19,22 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
 
   switch (action.type) {
     case RESTART: {
-      playAudio(sounds.restart)
+      sounds.restart.play()
       return result
     }
     case ADD_ANSWER: {
       if (action.item.status === StatusEnum.Wrong) {
-        playAudio(sounds.squakk)
+        sounds.squakk.play()
       }
       if (action.item.status === StatusEnum.AlmostCorrect) {
-        playAudio(sounds.euh)
+        sounds.euh.play()
       }
       if (action.item.status === StatusEnum.Correct) {
-        playAudio(sounds.nock)
+        sounds.nock.play()
       }
       const hasWon = didWin(nextState.game.solution, nextState.game.grid)
       if (hasWon) {
-        playAudio(sounds.hooyeah)
+        sounds.hooyeah.play()
       }
 
       return result
@@ -41,30 +43,3 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       return result
   }
 }
-
-const initSounds = () => {
-  const loadedSounds: any = {}
-
-  const soundsBaseUrl =
-    'https://raw.githubusercontent.com/vnglst/finding-nora/master/public/sounds/'
-
-  const soundUrls = [
-    soundsBaseUrl + 'squakk.mp3',
-    soundsBaseUrl + 'euh.mp3',
-    soundsBaseUrl + 'nock.mp3',
-    soundsBaseUrl + 'hooyeah.mp3',
-    soundsBaseUrl + 'restart.mp3',
-  ]
-
-  loadAudioUrls(soundUrls, bufferList => {
-    sounds.squakk = bufferList[0]
-    sounds.euh = bufferList[1]
-    sounds.nock = bufferList[2]
-    sounds.hooyeah = bufferList[3]
-    sounds.restart = bufferList[4]
-  })
-
-  return loadedSounds
-}
-
-const sounds = initSounds()

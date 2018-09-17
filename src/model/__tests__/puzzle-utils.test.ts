@@ -1,5 +1,5 @@
+import { mockMathRandom } from 'test-utils/mockMathRandom'
 import { GridType, StatusEnum } from 'types'
-import { mockMathRandom } from 'utils/mockMathRandom'
 import PuzzleGenerator from '../puzzle-generator'
 import { didWin, isCorrectAnswer } from '../puzzle-utils'
 
@@ -11,7 +11,7 @@ const setAnswerToCorrect = (row: number, column: number, grid: GridType) => {
   grid[row][column] = {
     ...grid[row][column],
     status: StatusEnum.Correct,
-    updatedAt: new Date(),
+    updatedAt: new Date()
   }
 }
 
@@ -25,7 +25,7 @@ describe('isCorrectAnswer()', () => {
     const isCorrect = isCorrectAnswer({
       answer: puzzle.grid[5][0],
       grid: puzzle.grid,
-      solution: puzzle.solution,
+      solution: puzzle.solution
     })
     expect(isCorrect).toBeTruthy()
   })
@@ -34,7 +34,7 @@ describe('isCorrectAnswer()', () => {
     const isCorrect = isCorrectAnswer({
       answer: puzzle.grid[0][0],
       grid: puzzle.grid,
-      solution: puzzle.solution,
+      solution: puzzle.solution
     })
     expect(isCorrect).toBeFalsy()
   })
@@ -44,7 +44,7 @@ describe('isCorrectAnswer()', () => {
     const isCorrect = isCorrectAnswer({
       answer: puzzle.grid[4][0],
       grid: puzzle.grid,
-      solution: puzzle.solution,
+      solution: puzzle.solution
     })
     expect(isCorrect).toBeTruthy()
   })

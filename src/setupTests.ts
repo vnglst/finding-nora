@@ -1,4 +1,3 @@
-import { mockDate } from './utils/mockDate'
-import { mockMathRandom } from './utils/mockMathRandom'
+import { mockDate } from './test-utils/mockDate'
 
 mockDate()

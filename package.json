@@ -22,6 +22,7 @@
     "build": "react-scripts-ts build",
     "pretest": "yarn lint",
     "test": "react-scripts-ts test --env=jsdom",
+    "test:ci": "yarn test; yarn build; yarn storybook:build; yarn cypress:ci",
     "eject": "react-scripts-ts eject",
     "deploy": "yarn build && netlify deploy ./build",
     "deploy:now": "yarn build && now alias $(now ./build --public --static) nora.now.sh",

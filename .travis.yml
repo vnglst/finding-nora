@@ -4,10 +4,7 @@ node_js:
 cache:
   yarn: true
 before_script:
-  - yarn start -- --silent &
+  - yarn start --silent &
 script:
   - yarn
-  - yarn test
-  - yarn build
-  - yarn storybook:build
-  - yarn cypress:ci
+  - yarn test:ci

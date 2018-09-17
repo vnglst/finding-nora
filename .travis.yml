@@ -9,4 +9,5 @@ script:
   - yarn
   - yarn test
   - yarn build
+  - yarn storybook:build
   - yarn cypress:ci

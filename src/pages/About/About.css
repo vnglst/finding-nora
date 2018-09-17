@@ -1,4 +1,5 @@
 .about-page p {
   font-size: 1.8em;
   color: var(--zwart);
+  text-align: center;
 }

@@ -30,18 +30,6 @@
   margin: 1em;
 }
 
-.overlay-content p {
-  color: white;
-  font-size: 2.5em;
-  margin: 0;
-  padding: 1em;
-  line-height: 1.5;
-}
-
-.overlay-content a {
-  color: var(--wit);
-}
-
 .slide-in-top {
   animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

@@ -2,7 +2,7 @@
   background-size: cover;
   display: block;
   filter: blur(2px);
-  height: 100%;
+  min-height: 100%;
   left: 0;
   right: 0;
   position: fixed;

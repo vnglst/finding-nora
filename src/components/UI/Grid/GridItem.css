@@ -21,17 +21,17 @@
 
 .grid-item.wrong {
   background-color: var(--rood);
-  animation: loader 1200ms 1 ease-in forwards;
+  animation: falldown 1200ms 1 ease-in forwards;
 }
 
-@keyframes loader {
+@keyframes falldown {
   0% {
     opacity: 1;
     transform: translate(0, 0px) rotateZ(0deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(0px, 600px, 0) rotate(-170deg);
+    transform: translate3d(0px, 50vh, 0) rotate(-170deg);
   }
 }
 

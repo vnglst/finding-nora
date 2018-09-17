@@ -11,7 +11,7 @@
 }
 
 .bottom-bar button {
-  height: 6em;
+  min-height: 6em;
   min-width: 6em;
   max-width: 12em;
   background: none;

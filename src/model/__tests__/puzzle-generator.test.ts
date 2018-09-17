@@ -1,4 +1,4 @@
-import { mockMathRandom } from 'utils/mockMathRandom'
+import { mockMathRandom } from 'test-utils/mockMathRandom'
 import PuzzleGenerator from '../puzzle-generator'
 
 const noise = 'ABCDEFGHIJKLMNOPQRSTVWUXYZ'.split('')

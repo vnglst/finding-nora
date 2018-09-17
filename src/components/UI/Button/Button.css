@@ -1,4 +1,4 @@
-.my-button {
+.button {
   font-weight: 900;
   font-size: 1.5em;
   padding: 1em;
@@ -12,7 +12,7 @@
   text-decoration: none;
 }
 
-.my-button:disabled {
+.button:disabled {
   background: grey;
   color: #002747;
 }

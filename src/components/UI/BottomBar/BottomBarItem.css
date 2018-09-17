@@ -15,14 +15,12 @@
   min-width: 6em;
   max-width: 12em;
   background: none;
-  color: rgb(37, 37, 37);
   border: none;
   padding: 0;
   margin: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
-  flex: 1 1 auto;
+  flex: 1;
 }
 
 .bottom-bar button:hover {

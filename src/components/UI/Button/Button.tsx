@@ -8,7 +8,7 @@ interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 const Button = ({ children, className, ...other }: IButtonProps) => (
-  <button className={cx('my-button', className)} {...other}>
+  <button className={cx('button', className)} {...other}>
     {children}
   </button>
 )

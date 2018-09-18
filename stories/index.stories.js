@@ -2,15 +2,15 @@ import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
-import BottomBar from 'components/UI/BottomBar'
-import Button from 'components/UI/Button'
-import Grid from 'components/UI/Grid'
-import Overlay from 'components/UI/Overlay'
-import Input from 'components/UI/Input'
-import BackgroundImage from 'components/UI/BackgroundImage'
 import 'index.css'
 import React from 'react'
-import festen from 'assets/festen.jpg'
+import BackgroundImage from 'shared/components/BackgroundImage'
+import BottomBar from 'shared/components/BottomBar'
+import Button from 'shared/components/Button'
+import Grid from 'shared/components/Grid'
+import Input from 'shared/components/Input'
+import Overlay from 'shared/components/Overlay'
+import festen from './festen.jpg'
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -92,7 +92,7 @@ storiesOf('BackgroundImage', module).add(
     <BackgroundImage imageSrc={festen}>
       <Button onMouseDown={action('restart')}>Press me</Button>
     </BackgroundImage>
-  ),
+  )
 )
 
 storiesOf('Input', module)

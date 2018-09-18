@@ -1,12 +1,14 @@
-import App from 'components/App'
+import { Router } from '@reach/router'
+import FindingColors from 'finding-colors'
+import FindingWords from 'finding-words'
+import { audioMiddleware } from 'finding-words/redux/audio-middleware'
+import { IStoreState } from 'finding-words/types'
 import preventDoubleTapZoom from 'prevent-double-tap-zoom'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
-import { audioMiddleware } from 'redux/audio-middleware'
-import rootReducer from 'redux/reducers'
-import { IStoreState } from 'types'
+import rootReducer from 'shared/redux/root-reducer'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 
@@ -17,13 +19,16 @@ const composeEnhancers =
 
 const store = createStore<IStoreState, any, any, any>(
   rootReducer,
-  composeEnhancers(applyMiddleware(audioMiddleware)),
+  composeEnhancers(applyMiddleware(audioMiddleware))
 )
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <FindingWords path="/" />
+      <FindingColors path="/finding-colors" />
+    </Router>
   </Provider>,
-  document.getElementById('root') as HTMLElement,
+  document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

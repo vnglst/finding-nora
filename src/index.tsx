@@ -25,7 +25,7 @@ const store = createStore<IStoreState, any, any, any>(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <FindingWords path="/" />
+      <FindingWords path="/" default={true} />
       <FindingColors path="/finding-colors" />
     </Router>
   </Provider>,

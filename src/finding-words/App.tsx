@@ -1,5 +1,6 @@
 import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { RouteComponentProps } from '@reach/router'
 import Game from 'finding-words/components/Game/'
 import AboutPage from 'finding-words/pages/About'
 import NewGamePage from 'finding-words/pages/NewGame'
@@ -12,7 +13,7 @@ import Overlay from 'shared/components/Overlay'
 import './App.css'
 import festen from './festen.jpg'
 
-interface IAppProps {
+interface IAppProps extends RouteComponentProps {
   currentPage: string
   didWin: boolean
   didLoose: boolean

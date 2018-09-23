@@ -100,10 +100,14 @@
     global "^4.3.2"
     prop-types "^15.6.1"
 
-"@storybook/addons@3.4.10", "@storybook/addons@^3.4.10":
+"@storybook/addons@3.4.10":
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-3.4.10.tgz#13298cdcb7ccc396321b1336b9785b69273a022d"
   integrity sha512-Be/ZxfQ6F434qNQPLK0Q7xNvSMf63LmLZgwoy4mT2fIc2ye2yNXfO7nxh97s5zhMXMGmFispUNiRAMXzbjfpJA==
+
+"@storybook/addons@^3.4.11":
+  version "3.4.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-3.4.11.tgz#f3e27c46d80ad1f171888c4aad0a19a8a032d072"
 
 "@storybook/channel-postmessage@3.4.10":
   version "3.4.10"

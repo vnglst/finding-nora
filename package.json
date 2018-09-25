@@ -38,7 +38,7 @@
     "@storybook/react": "^3.4.10",
     "@types/howler": "^2.0.5",
     "@types/jest": "^23.3.2",
-    "@types/node": "^10.9.4",
+    "@types/node": "^10.10.3",
     "@types/reach__router": "^1.0.1",
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",

@@ -11,7 +11,9 @@ import BottomBar from 'shared/components/BottomBar'
 import Button from 'shared/components/Button'
 import Overlay from 'shared/components/Overlay'
 import './App.css'
-import festen from './festen.jpg'
+
+const festenUrl =
+  'https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg'
 
 interface IAppProps extends RouteComponentProps {
   currentPage: string
@@ -34,7 +36,7 @@ const App = ({
   solution,
   remainingSolution
 }: IAppProps) => (
-  <BackgroundImage imageSrc={festen}>
+  <BackgroundImage imageSrc={festenUrl}>
     <div className="app">
       <h1>{remainingSolution}</h1>
       <Game />

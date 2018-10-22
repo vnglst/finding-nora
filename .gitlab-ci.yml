@@ -1,0 +1,33 @@
+stages:
+  - lint
+  - build
+  - test
+
+image: node:8
+
+lint:
+  stage: lint
+  before_script:
+    - yarn
+  cache:
+    untracked: true
+  script:
+    - yarn lint
+
+build:
+  stage: build
+  before_script:
+    - yarn
+  cache:
+    untracked: true
+  script:
+    - yarn build
+
+test:
+  stage: test
+  before_script:
+    - yarn
+  cache:
+    untracked: true
+  script:
+    - yarn test

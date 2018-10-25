@@ -32,7 +32,7 @@
     "redux": "^4.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addons": "^3.4.11",
     "@storybook/react": "^3.4.10",

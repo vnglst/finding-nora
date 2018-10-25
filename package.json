@@ -35,7 +35,7 @@
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
     "@storybook/addons": "^3.4.11",
-    "@storybook/react": "^3.4.10",
+    "@storybook/react": "^3.4.11",
     "@types/howler": "^2.0.5",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.12.0",

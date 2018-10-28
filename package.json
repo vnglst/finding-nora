@@ -19,7 +19,7 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.6",
+    "@fortawesome/fontawesome-svg-core": "^1.2.7",
     "@fortawesome/free-solid-svg-icons": "^5.4.1",
     "@fortawesome/react-fontawesome": "^0.1.3",
     "@reach/router": "^1.2.1",

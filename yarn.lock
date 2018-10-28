@@ -370,10 +370,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/reach__router@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@types/reach__router/-/reach__router-1.0.1.tgz#f927a0c6ae198e032b5990196c2b7606a9fb14a1"
-  integrity sha512-i2bswRNBtAxtxEThrYBTCnDtMPosywAJVBT05JsJaczhaIRMbjqmlZ5wUDde1cUl7OJs9WfM3FUkZE9NRF3pMQ==
+"@types/reach__router@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/reach__router/-/reach__router-1.2.0.tgz#189c211870a608bec3d4162ade78ec372ad982b5"
+  integrity sha512-+mzlpU4fbeIrFECUJhx+wCV5GRQeWlP62O9JL4OQajIBH4WpcTTfFvmX0/HPFJ44l5S5HSHxMJbd5Tz2ngcXAg==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"

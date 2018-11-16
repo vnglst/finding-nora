@@ -1,33 +1,42 @@
 stages:
-  - lint
-  - build
-  - test
+  - verify
+  - e2e
 
-image: vnglst/finding-nora:latest
+image: cypress/base:10
 
 lint:
-  stage: lint
+  stage: verify
   before_script:
     - yarn
-  cache:
-    untracked: true
   script:
     - yarn lint
 
-build:
-  stage: build
+jest-unit-tests:
+  stage: verify
   before_script:
     - yarn
-  cache:
-    untracked: true
+  script:
+    - yarn test
+
+check-build:
+  stage: verify
+  before_script:
+    - yarn
   script:
     - yarn build
 
-test:
-  stage: test
+cypress-e2e-tests:
+  image: cypress/base:10
+  stage: e2e
   before_script:
     - yarn
-  cache:
-    untracked: true
+    - npm install
+    - yarn start &
   script:
-    - yarn test
+    - yarn cypress:ci
+  artifacts:
+    expire_in: 1 day
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos

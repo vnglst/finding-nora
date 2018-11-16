@@ -394,10 +394,10 @@
     "@types/react" "*"
     redux "^4.0.0"
 
-"@types/react@*", "@types/react@^16.4.13":
-  version "16.4.13"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.13.tgz#1385f5dc3486aa493849a32ccce626a817543e28"
-  integrity sha512-a2Z7UmwnAzZ23bTHV6on141S8vvSC7MEJGG85R5/VG80ybzkt5QJqNzlaJ0Y6OX1dncrXFW8B0vWPIx7QuOUqA==
+"@types/react@*", "@types/react@^16.7.6":
+  version "16.7.6"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.6.tgz#80e4bab0d0731ad3ae51f320c4b08bdca5f03040"
+  integrity sha512-QBUfzftr/8eg/q3ZRgf/GaDP6rTYc7ZNem+g4oZM38C9vXyV8AWRWaTQuW5yCoZTsfHrN7b3DeEiUnqH9SrnpA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"

@@ -1,42 +1,53 @@
 stages:
   - verify
   - e2e
+  - deploy
 
 image: cypress/base:10
 
-lint:
-  stage: verify
+staging:
+  stage: deploy
   before_script:
     - yarn
   script:
-    - yarn lint
+    - echo "Deploy a review app"
+    - yarn start
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://$CI_ENVIRONMENT_SLUG.finding-nora.com
+#
+# lint:
+#   stage: verify
+#   before_script:
+#     - yarn
+#   script:
+#     - yarn lint
 
-jest-unit-tests:
-  stage: verify
-  before_script:
-    - yarn
-  script:
-    - yarn test
+# jest-unit-tests:
+#   stage: verify
+#   before_script:
+#     - yarn
+#   script:
+#     - yarn test
 
-check-build:
-  stage: verify
-  before_script:
-    - yarn
-  script:
-    - yarn build
+# check-build:
+#   stage: verify
+#   before_script:
+#     - yarn
+#   script:
+#     - yarn build
 
-cypress-e2e-tests:
-  image: cypress/base:10
-  stage: e2e
-  before_script:
-    - yarn
-    - npm install
-    - yarn start &
-  script:
-    - yarn cypress:ci
-  artifacts:
-    expire_in: 1 day
-    when: always
-    paths:
-      - cypress/screenshots
-      - cypress/videos
+# cypress-e2e-tests:
+#   stage: e2e
+#   before_script:
+#     - yarn
+#     - npm install
+#     - yarn start &
+#   script:
+#     - yarn cypress:ci
+#   artifacts:
+#     expire_in: 1 day
+#     when: always
+#     paths:
+#       - cypress/screenshots
+#       - cypress/videos

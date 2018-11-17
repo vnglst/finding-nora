@@ -10,7 +10,7 @@ import Button from 'shared/components/Button'
 import Grid from 'shared/components/Grid'
 import Input from 'shared/components/Input'
 import Overlay from 'shared/components/Overlay'
-import festen from 'https://res.cloudinary.com/vnglst/image/upload/v1537882150/festen.jpg'
+import festen from './festen.jpg'
 
 storiesOf('Button', module)
   .add('with text', () => (

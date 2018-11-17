@@ -25,6 +25,13 @@ check-build:
   script:
     - yarn build
 
+check-storybook:
+  stage: verify
+  before_script:
+    - yarn
+  script:
+    - yarn build-storybook
+
 cypress-e2e-tests:
   image: cypress/base:10
   stage: e2e

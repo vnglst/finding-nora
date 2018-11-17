@@ -5,7 +5,7 @@ stages:
 
 image: cypress/base:10
 
-staging:
+deploy_staging:
   stage: deploy
   before_script:
     - yarn
@@ -13,7 +13,7 @@ staging:
     - echo "Deploy a review app"
     - yarn start
   environment:
-    name: review/$CI_COMMIT_REF_NAME
+    name: staging
     url: https://$CI_ENVIRONMENT_SLUG.finding-nora.com
 #
 # lint:

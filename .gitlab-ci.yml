@@ -14,7 +14,7 @@ deploy_staging:
     - yarn deploy
   environment:
     name: $CI_COMMIT_REF_NAME
-    url: https://$CI_ENVIRONMENT_SLUG--finding-nora.netlify.com
+    url: https://$CI_ENVIRONMENT_SLUG.nora.netlify.com
 #
 # lint:
 #   stage: verify

@@ -8,6 +8,7 @@ image: cypress/base:10
 deploy_staging:
   stage: deploy
   before_script:
+    - npm i -g netlify
     - yarn
   script:
     - echo "Deploy a review app"

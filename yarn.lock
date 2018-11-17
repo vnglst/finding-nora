@@ -43,24 +43,24 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@fortawesome/fontawesome-common-types@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.6.tgz#3f26b9d1bf2d057dfe0f448fe4a2c372508e97f0"
-  integrity sha512-AoBpRaR7IVaXgF2rh0G6cY+WSQhGqDf+JheJMGoSH0E0YjVIUxwha7Nf0SuwQuSQe1GwxZbuaoPUTXA74cRS3w==
+"@fortawesome/fontawesome-common-types@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.8.tgz#8cacd1efd1aa956e1ef173f0abcf2ce1b7a0c66f"
+  integrity sha512-0sU7JDLdEeGQlWBSr5uEE6PZOM15YM1s9rFlpZV+WhNdX2V6Co3Sj0OW5el4F54X1Tw+nfxf4Cc3dUedudaDWg==
 
-"@fortawesome/fontawesome-svg-core@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.6.tgz#6314da68ff1018633a861ae9fe59e006c4f759a9"
-  integrity sha512-784NAqscnUuMZmf7eNSOn2L71VecLQAkEhfyYzTYnh6i+ycxy7tvpw4Ys4wc6RiglKqTddWRkWBZZ9uGAtfoWg==
+"@fortawesome/fontawesome-svg-core@^1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.8.tgz#b802b7f3d5b9d9d92ae92c18e865df468dcdf561"
+  integrity sha512-cvcMQZ5F8WSNSGMk9uWlkmZNfDzmdsWLRrTMrNwwihHcEmWRlIuSbDt+PQ/rXsnGmJnmLQJLFBT1cse/3swxbg==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.6"
+    "@fortawesome/fontawesome-common-types" "^0.2.8"
 
-"@fortawesome/free-solid-svg-icons@^5.4.1":
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.4.1.tgz#9aa1a07176a16886aa176fc0c9d809ab1697fd47"
-  integrity sha512-GRYr+T0sAnfjImhDJt6Gko3sW554+/fEUHgDFJonEEFYLbfLyv6Qn5i/VB8nXcJJLgqHbVwIvwH5Ol3IehIjow==
+"@fortawesome/free-solid-svg-icons@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.5.0.tgz#4d815df4bba076f209eb409bc56d9d830367a7c0"
+  integrity sha512-VawIT2owNP97EwehZmxkvZDhoKwEevU/1HOMkln6kc4OtfE+JKYr6DpyzQnHVWXvz/eFj36QElHNe6zT8gR+Tg==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.6"
+    "@fortawesome/fontawesome-common-types" "^0.2.8"
 
 "@fortawesome/react-fontawesome@^0.1.3":
   version "0.1.3"
@@ -8588,15 +8588,15 @@ react-docgen@^3.0.0-beta11:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-react-dom@^16.6.0:
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.0.tgz#6375b8391e019a632a89a0988bce85f0cc87a92f"
-  integrity sha512-Stm2D9dXEUUAQdvpvhvFj/DEXwC2PAL/RwEMhoN4dvvD2ikTlJegEXf97xryg88VIAU22ZAP7n842l+9BTz6+w==
+react-dom@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.3.tgz#8fa7ba6883c85211b8da2d0efeffc9d3825cccc0"
+  integrity sha512-8ugJWRCWLGXy+7PmNh8WJz3g1TaTUt1XyoIcFN+x0Zbkoz+KKdUyx1AQLYJdbFXjuF41Nmjn5+j//rxvhFjgSQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.10.0"
+    scheduler "^0.11.2"
 
 react-error-overlay@^4.0.0:
   version "4.0.0"
@@ -8760,15 +8760,15 @@ react-treebeard@^2.1.0:
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
 
-react@^16.6.0:
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.6.0.tgz#b34761cfaf3e30f5508bc732fb4736730b7da246"
-  integrity sha512-zJPnx/jKtuOEXCbQ9BKaxDMxR0001/hzxXwYxG8septeyYGfsgAei6NgfbVgOhbY1WOP2o3VPs/E9HaN+9hV3Q==
+react@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
+  integrity sha512-zCvmH2vbEolgKxtqXL2wmGCUxUyNheYn/C+PD1YAjfxHC54+MhdruyhO7QieQrYsYeTxrn93PM2y0jRH1zEExw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.10.0"
+    scheduler "^0.11.2"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -9308,10 +9308,10 @@ sax@^1.2.1, sax@^1.2.4, sax@~1.2.1:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.10.0.tgz#7988de90fe7edccc774ea175a783e69c40c521e1"
-  integrity sha512-+TSTVTCBAA3h8Anei3haDc1IRwMeDmtI/y/o3iBe3Mjl2vwYF9DtPDt929HyRmV/e7au7CLu8sc4C4W0VOs29w==
+scheduler@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.2.tgz#a8db5399d06eba5abac51b705b7151d2319d33d3"
+  integrity sha512-+WCP3s3wOaW4S7C1tl3TEXp4l9lJn0ZK8G3W3WKRWmw77Z2cIFUW2MiNTMHn5sCjxN+t7N43HAOOgMjyAg5hlg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

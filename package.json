@@ -34,7 +34,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.7",
     "@storybook/addon-links": "^4.0.7",
-    "@storybook/addons": "^4.0.7",
+    "@storybook/addons": "^4.0.8",
     "@storybook/react": "^4.0.7",
     "@types/howler": "^2.0.5",
     "@types/jest": "^23.3.2",

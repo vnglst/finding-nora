@@ -41,7 +41,7 @@
     "@types/node": "^11.9.5",
     "@types/reach__router": "^1.2.3",
     "@types/react": "^16.4.13",
-    "@types/react-dom": "^16.0.9",
+    "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",

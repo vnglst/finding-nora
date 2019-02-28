@@ -22,8 +22,8 @@ cypress-e2e-tests:
   image: cypress/base:10
   stage: e2e
   before_script:
-    - yarn
     - npm install
+    - yarn
     - yarn start &
   script:
     - yarn cypress:ci

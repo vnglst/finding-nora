@@ -4,13 +4,6 @@ stages:
 
 image: cypress/base:10
 
-lint:
-  stage: verify
-  before_script:
-    - yarn
-  script:
-    - yarn lint
-
 jest-unit-tests:
   stage: verify
   before_script:
@@ -24,13 +17,6 @@ check-build:
     - yarn
   script:
     - yarn build
-
-check-storybook:
-  stage: verify
-  before_script:
-    - yarn
-  script:
-    - yarn build-storybook
 
 cypress-e2e-tests:
   image: cypress/base:10

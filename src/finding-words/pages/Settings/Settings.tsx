@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Button from 'shared/components/Button'
-import Input from 'shared/components/Input'
-import Overlay from 'shared/components/Overlay'
+import Button from 'src/shared/components/Button'
+import Input from 'src/shared/components/Input'
+import Overlay from 'src/shared/components/Overlay'
 
 const MIN_NAME_LENGTH = 3
 const MAX_NAME_LENGTH = 9

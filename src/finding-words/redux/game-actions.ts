@@ -1,4 +1,4 @@
-import { IGridItem } from 'finding-words/types'
+import { IGridItem } from 'src/finding-words/types'
 import * as constants from './constants'
 
 export type GameActionType =

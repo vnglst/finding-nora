@@ -2,12 +2,12 @@ import {
   didLoose,
   didWin,
   getRemainingSolution
-} from 'finding-words/model/puzzle-utils'
-import * as gameActions from 'finding-words/redux/game-actions'
-import { IStoreState } from 'finding-words/types'
+} from 'src/finding-words/model/puzzle-utils'
+import * as gameActions from 'src/finding-words/redux/game-actions'
+import { IStoreState } from 'src/finding-words/types'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import * as navigationActions from 'shared/redux/navigation-actions'
+import * as navigationActions from 'src/shared/redux/navigation-actions'
 import App from './App'
 
 const mapStateToProps = ({ game, navigation }: IStoreState) => {

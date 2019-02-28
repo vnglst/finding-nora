@@ -1,6 +1,11 @@
-import { GridType, IGameState, IGridItem, StatusEnum } from 'finding-words/types'
+import {
+  GridType,
+  IGameState,
+  IGridItem,
+  StatusEnum
+} from 'src/finding-words/types'
 import * as React from 'react'
-import Grid from 'shared/components/Grid'
+import Grid from 'src/shared/components/Grid'
 
 interface IAddAnswer {
   answer: IGridItem

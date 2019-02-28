@@ -1,5 +1,5 @@
-import PuzzleGenerator from 'finding-words/model/puzzle-generator'
-import { IGameState } from 'finding-words/types'
+import PuzzleGenerator from 'src/finding-words/model/puzzle-generator'
+import { IGameState } from 'src/finding-words/types'
 import { ADD_ANSWER, RESTART, UPDATE_SOLUTION } from './constants'
 import { GameActionType } from './game-actions'
 

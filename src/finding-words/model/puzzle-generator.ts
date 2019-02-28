@@ -1,9 +1,9 @@
-import { GridType, IGridItem } from 'finding-words/types'
-import { sample } from 'shared/utils/general'
+import { GridType, IGridItem } from 'src/finding-words/types'
+import { sample } from 'src/shared/utils/general'
 import {
   mirrorMatrixHorizontally,
   rotateMatrixCounterClockwise
-} from 'shared/utils/matrix'
+} from 'src/shared/utils/matrix'
 
 class PuzzleGenerator {
   public grid: GridType
@@ -14,6 +14,8 @@ class PuzzleGenerator {
     readonly solution: string[],
     noise: string[]
   ) {
+    this.grid = []
+    this.noise = []
     this.removeSolutionLettersFrom(noise)
     this.generate()
     this.addPuzzle()
@@ -31,7 +33,6 @@ class PuzzleGenerator {
   }
 
   public generate() {
-    this.grid = []
     for (let row = 0; row < this.size; row++) {
       const columns = []
       for (let column = 0; column < this.size; column++) {

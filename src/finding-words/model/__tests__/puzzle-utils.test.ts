@@ -1,5 +1,5 @@
-import { GridType, StatusEnum } from 'finding-words/types'
-import { mockMathRandom } from 'shared/test-utils/mockMathRandom'
+import { GridType, StatusEnum } from 'src/finding-words/types'
+import { mockMathRandom } from 'src/shared/test-utils/mockMathRandom'
 import PuzzleGenerator from '../puzzle-generator'
 import { didWin, isCorrectAnswer } from '../puzzle-utils'
 

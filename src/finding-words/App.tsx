@@ -1,15 +1,15 @@
 import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { RouteComponentProps } from '@reach/router'
-import Game from 'finding-words/components/Game/'
-import AboutPage from 'finding-words/pages/About'
-import NewGamePage from 'finding-words/pages/NewGame'
-import SettingsPage from 'finding-words/pages/Settings'
+import Game from 'src/finding-words/components/Game/'
+import AboutPage from 'src/finding-words/pages/About'
+import NewGamePage from 'src/finding-words/pages/NewGame'
+import SettingsPage from 'src/finding-words/pages/Settings'
 import * as React from 'react'
-import BackgroundImage from 'shared/components/BackgroundImage'
-import BottomBar from 'shared/components/BottomBar'
-import Button from 'shared/components/Button'
-import Overlay from 'shared/components/Overlay'
+import BackgroundImage from 'src/shared/components/BackgroundImage'
+import BottomBar from 'src/shared/components/BottomBar'
+import Button from 'src/shared/components/Button'
+import Overlay from 'src/shared/components/Overlay'
 import './App.css'
 
 const festenUrl =
@@ -75,21 +75,19 @@ const App = ({
           }}
         />
       )}
-      {didWin &&
-        currentPage === 'home' && (
-          <Overlay>
-            <p>YOU WON</p>
-            <Button onMouseDown={restart}>Play again?</Button>
-          </Overlay>
-        )}
+      {didWin && currentPage === 'home' && (
+        <Overlay>
+          <p>YOU WON</p>
+          <Button onMouseDown={restart}>Play again?</Button>
+        </Overlay>
+      )}
 
-      {didLoose &&
-        currentPage === 'home' && (
-          <Overlay>
-            <p>YOU LOST</p>
-            <Button onMouseDown={restart}>Play again?</Button>
-          </Overlay>
-        )}
+      {didLoose && currentPage === 'home' && (
+        <Overlay>
+          <p>YOU LOST</p>
+          <Button onMouseDown={restart}>Play again?</Button>
+        </Overlay>
+      )}
     </div>
   </BackgroundImage>
 )

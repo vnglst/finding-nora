@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Button from 'shared/components/Button'
-import Overlay from 'shared/components/Overlay'
+import Button from 'src/shared/components/Button'
+import Overlay from 'src/shared/components/Overlay'
 import './About.css'
 
 interface IAboutPageProps {

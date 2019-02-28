@@ -1,6 +1,14 @@
-import { isCorrectAnswer, isCorrectLetter } from 'finding-words/model/puzzle-utils'
-import * as actions from 'finding-words/redux/game-actions'
-import { GridType, IGridItem, IStoreState, StatusEnum } from 'finding-words/types'
+import {
+  isCorrectAnswer,
+  isCorrectLetter
+} from 'src/finding-words/model/puzzle-utils'
+import * as actions from 'src/finding-words/redux/game-actions'
+import {
+  GridType,
+  IGridItem,
+  IStoreState,
+  StatusEnum
+} from 'src/finding-words/types'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import Game from './Game'

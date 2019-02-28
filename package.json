@@ -3,35 +3,22 @@
   "version": "3.4.0",
   "private": true,
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "pretest": "yarn lint",
-    "test": "react-scripts-ts test --env=jsdom",
-    "verify": "yarn test; yarn build; yarn storybook:build; yarn cypress:ci",
-    "eject": "react-scripts-ts eject",
+    "verify": "yarn test; yarn build; yarn cypress:ci",
     "deploy": "yarn build && netlify deploy ./build",
     "deploy:now": "yarn build && now alias $(now ./build --public --static) nora.now.sh",
     "cypress:ci": "cypress run --record --key d9fcfab5-00ab-4c62-900a-80aefc8e3117",
-    "cypress:open": "cypress open",
-    "lint": "tslint --project ./",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@reach/router": "^1.2.1",
-    "classnames": "^2.2.6",
-    "howler": "^2.1.1",
-    "prevent-double-tap-zoom": "^2.0.4",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-redux": "^6.0.1",
-    "redux": "^4.0.1"
-  },
-  "devDependencies": {
     "@storybook/addon-actions": "^4.1.13",
     "@storybook/addon-links": "^4.1.13",
     "@storybook/addons": "^4.1.13",
@@ -45,10 +32,26 @@
     "@types/react-redux": "^7.0.1",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
     "cypress": "^3.1.5",
+    "howler": "^2.1.1",
     "http-server": "^0.11.1",
-    "react-scripts-ts": "^3.1.0",
+    "prevent-double-tap-zoom": "^2.0.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
     "source-map-explorer": "^1.7.0",
     "typescript": "^3.3.3333"
-  }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

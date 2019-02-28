@@ -33,22 +33,22 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.1.13",
-    "@storybook/addon-links": "^4.0.7",
+    "@storybook/addon-links": "^4.1.13",
     "@storybook/addons": "^4.1.13",
-    "@storybook/react": "^4.0.7",
+    "@storybook/react": "^4.1.13",
     "@types/howler": "^2.0.5",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",
     "@types/reach__router": "^1.2.3",
     "@types/react": "^16.8.6",
-    "@types/react-dom": "^16.0.9",
+    "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "cypress": "^3.1.5",
     "http-server": "^0.11.1",
-    "react-scripts-ts": "3.1.0",
+    "react-scripts-ts": "^3.1.0",
     "source-map-explorer": "^1.7.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.3.3333"
   }
 }

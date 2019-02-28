@@ -2,6 +2,7 @@
   "name": "finding-nora",
   "version": "3.4.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -23,6 +24,7 @@
     "@storybook/addon-links": "^4.1.13",
     "@storybook/addons": "^4.1.13",
     "@storybook/react": "^4.1.13",
+    "@types/classnames": "^2.2.7",
     "@types/howler": "^2.0.5",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",

@@ -1633,10 +1633,10 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
   integrity sha512-ui3WwXmjTaY73fOQ3/m3nnajU/Orhi6cEu5rzX+BrAAJxa3eITXZ5ch9suPqtM03OWhAHhPSyBGCN4UKoxO20Q==
 
-"@types/howler@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.0.5.tgz#eb5eb99b943fe423abe3ca713163ed911e2a0d76"
-  integrity sha512-4zO47MpD8ztLGK1Q3DsVMxP5q1yIGRS+vtLqXuVGXHdiDkD/IvYM2vBByuX4eMW4fmLk5SWQpd6FFL2jvJkItw==
+"@types/howler@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.0.6.tgz#dcc58541b5406b4b7536870755733caa3cec20aa"
+  integrity sha512-o73DVTNMSvzNifT3L/MxmHWGWurvRyE4cJxrZj1fLN18kH2EvnTorKoLY348B2z5zTZrcMp0GZ8zdCdAciwkag==
 
 "@types/jest-diff@*":
   version "20.0.1"

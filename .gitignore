@@ -22,7 +22,7 @@ yarn-error.log*
 
 # cypress
 cypress/screenshots/*
-cypress/videos/*
+cypress/videos/*.mp4
 
 #storybook
 /storybook-static

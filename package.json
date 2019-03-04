@@ -1,7 +1,6 @@
 {
   "name": "finding-nora",
   "version": "3.4.0",
-  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
@@ -11,7 +10,6 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "verify": "yarn test; yarn build; yarn cypress:ci",
     "deploy": "yarn build && netlify deploy ./build",
-    "deploy:now": "yarn build && now alias $(now ./build --public --static) nora.now.sh",
     "cypress:ci": "cypress run --record --key d9fcfab5-00ab-4c62-900a-80aefc8e3117",
     "cypress:open": "cypress open"
   },
@@ -28,12 +26,9 @@
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
     "cypress": "^3.1.5",
     "howler": "^2.1.1",
-    "http-server": "^0.11.1",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",

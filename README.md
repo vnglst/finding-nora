@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/vnglst/finding-nora.svg?branch=master)](https://travis-ci.org/vnglst/finding-nora)
 
+[![Coverage Status](https://coveralls.io/repos/github/vnglst/finding-nora/badge.svg?branch=master)](https://coveralls.io/github/vnglst/finding-nora?branch=master)
+
 I made this app to test what you can accomplish with current PWA technology (especially on iOS). My kids loved it, I hope you do too! 🎉
 
 It's a word search game made with following web technology:

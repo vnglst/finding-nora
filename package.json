@@ -20,7 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@reach/router": "^1.2.1",
     "@types/classnames": "^2.2.7",
-    "@types/howler": "^2.0.6",
+    "@types/howler": "^2.1.0",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.10.4",
     "@types/reach__router": "^1.2.3",

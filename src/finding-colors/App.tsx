@@ -1,5 +1,3 @@
-// tslint:disable:no-console
-
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import BackgroundImage from 'src/shared/components/BackgroundImage'
@@ -10,9 +8,7 @@ import dog from './charles-deluvio-628935-unsplash.jpg'
 
 // credits image: Photo by Charles Deluvio 🇵🇭🇨🇦 on Unsplash
 
-interface Props extends RouteComponentProps {
-  currentAnswer?: string
-}
+interface Props extends RouteComponentProps {}
 
 interface State {
   currentAnswer?: string

@@ -1,10 +1,11 @@
+import * as React from 'react'
 import {
   GridType,
   IGameState,
   IGridItem,
   StatusEnum
 } from 'src/finding-words/types'
-import * as React from 'react'
+
 import Grid from 'src/shared/components/Grid'
 
 interface IAddAnswer {
@@ -38,9 +39,10 @@ const Game = ({ game, addAnswer }: IGameProps) => {
             key={`${rowIndex}-${columnIndex}`}
             onMouseDown={() => handlePress(item)}
             onTouchStart={() => handlePress(item)}
-            wrong={item.status === StatusEnum.Wrong}
-            correct={item.status === StatusEnum.Correct}
-            almostCorrect={item.status === StatusEnum.AlmostCorrect}
+            falldown={item.status === StatusEnum.Wrong}
+            red={item.status === StatusEnum.Wrong}
+            green={item.status === StatusEnum.Correct}
+            orange={item.status === StatusEnum.AlmostCorrect}
           >
             {item.letter}
           </Grid.Item>

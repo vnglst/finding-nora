@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900');
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-  -webkit-user-select: none; /* disable text selection for all elements */
-}
-
 :root {
   --blauw: #025f76;
   --oranje: #ef7d00;
@@ -32,6 +25,18 @@ html {
   }
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  -webkit-user-select: none; /* disable text selection for all elements */
+}
+
+body {
+  color: var(--wit);
+  background: var(--blauw);
+}
+
 h1 {
   font-size: 2.5em;
   margin: 1.75em 0;
@@ -47,9 +52,4 @@ p {
 
 a {
   color: var(--wit);
-}
-
-body {
-  color: var(--wit);
-  background: var(--blauw);
 }

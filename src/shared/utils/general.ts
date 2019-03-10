@@ -9,5 +9,5 @@ export const compose = (...functions: any[]) => (data: any) =>
 
 export const cloneDeep = compose(
   JSON.parse,
-  JSON.stringify,
+  JSON.stringify
 )

@@ -11,7 +11,8 @@
     "verify": "yarn test; yarn build; yarn cypress:ci",
     "deploy": "yarn build && netlify deploy ./build",
     "cypress:ci": "cypress run --record --key d9fcfab5-00ab-4c62-900a-80aefc8e3117",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "coveralls": "yarn test --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
     "classnames": "^2.2.6",
+    "coveralls": "^3.0.3",
     "cypress": "^3.1.5",
     "howler": "^2.1.1",
     "prevent-double-tap-zoom": "^2.0.4",

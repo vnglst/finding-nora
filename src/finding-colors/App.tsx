@@ -49,7 +49,9 @@ class App extends React.Component<Props, State> {
     return (
       <BackgroundImage imageSrc={dog}>
         <div className="app">
-          <h1 className="question">{this.state.question.toUpperCase()}</h1>
+          <h1 className="question" data-testid="question">
+            {this.state.question.toUpperCase()}
+          </h1>
           {this.renderAnswers(this.state.answers)}
         </div>
       </BackgroundImage>
@@ -69,6 +71,7 @@ class App extends React.Component<Props, State> {
               currentAnswer === question && currentAnswer !== answer.name
             }
             style={{ backgroundColor: answer.colorCode }}
+            data-testid={`button-${answer.name}`}
           />
         ))}
       </Grid>

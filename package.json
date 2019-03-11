@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose=false",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer build/static/js/main.*",
     "verify": "yarn test; yarn build; yarn cypress:ci",
@@ -33,11 +33,13 @@
     "coveralls": "^3.0.3",
     "cypress": "^3.1.5",
     "howler": "^2.1.1",
+    "jest-dom": "^3.1.2",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "react-scripts": "^2.1.8",
+    "react-testing-library": "^6.0.0",
     "redux": "^4.0.1",
     "source-map-explorer": "^1.7.0",
     "typescript": "^3.3.3333"

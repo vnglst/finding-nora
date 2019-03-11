@@ -2,6 +2,8 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import BackgroundImage from 'src/shared/components/BackgroundImage'
 import Grid from 'src/shared/components/Grid'
+import Overlay from 'src/shared/components/Overlay'
+import Button from 'src/shared/components/Button'
 import { sample } from 'src/shared/utils/general'
 import './App.css'
 import dog from './charles-deluvio-628935-unsplash.jpg'
@@ -14,6 +16,7 @@ interface State {
   currentAnswer?: string
   answers: Answer[]
   question: string
+  didWin: boolean
 }
 
 interface Answer {
@@ -36,7 +39,10 @@ class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
     const puzzle = this.generatePuzzle()
-    this.state = puzzle
+    this.state = {
+      ...puzzle,
+      didWin: false
+    }
   }
 
   public generatePuzzle = () => {
@@ -54,6 +60,12 @@ class App extends React.Component<Props, State> {
           </h1>
           {this.renderAnswers(this.state.answers)}
         </div>
+        {this.state.didWin && (
+          <Overlay>
+            <p data-testid="youwon">YOU WON</p>
+            <Button onMouseDown={this.resetGame}>Play again?</Button>
+          </Overlay>
+        )}
       </BackgroundImage>
     )
   }
@@ -83,13 +95,13 @@ class App extends React.Component<Props, State> {
     const { question } = this.state
     this.setState({ currentAnswer })
     if (currentAnswer === question) {
-      setTimeout(this.resetGame, 1000)
+      setTimeout(() => this.setState({ didWin: true }), 1000)
     }
   }
 
   public resetGame = () => {
     const puzzle = this.generatePuzzle()
-    this.setState({ ...puzzle, currentAnswer: undefined })
+    this.setState({ ...puzzle, currentAnswer: undefined, didWin: false })
   }
 }
 

@@ -2,27 +2,20 @@ import cx from 'classnames'
 import * as React from 'react'
 import './BackgroundImage.css'
 
-interface IBackgroundImage {
+interface Props {
   className?: string
-  imageSrc: any
+  imageSrc: string
   children: React.ReactNode
 }
 
-const BackgroundImage = ({
-  className,
-  imageSrc,
-  children,
-  ...other
-}: IBackgroundImage) => (
-  <div>
-    <div
-      className={cx('background-image', className)}
-      style={{
-        backgroundImage: `url('${imageSrc}')`
-      }}
-      {...other}
-    />
-    <div className="background-image-children">{children}</div>
+const BackgroundImage = ({ className, imageSrc, children }: Props) => (
+  <div
+    className={cx('background', className)}
+    style={{
+      backgroundImage: `url('${imageSrc}')`
+    }}
+  >
+    {children}
   </div>
 )
 

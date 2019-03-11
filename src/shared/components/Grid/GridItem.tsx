@@ -3,27 +3,37 @@ import * as React from 'react'
 import Button from '../Button'
 import './GridItem.css'
 
-interface IItemProps {
+interface Props {
   onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>
   onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>
-  children: React.ReactNode
-  correct?: boolean
-  wrong?: boolean
-  almostCorrect?: boolean
+  children?: React.ReactNode
+  falldown?: boolean
+  slideouttop?: boolean
+  green?: boolean
+  red?: boolean
+  orange?: boolean
+  className?: string
+  style?: object
 }
 
 const Item = ({
   children,
-  correct,
-  wrong,
-  almostCorrect,
+  green,
+  orange,
+  red,
+  falldown,
+  slideouttop,
+  className,
   ...other
-}: IItemProps) => {
+}: Props) => {
   const classes = cx(
     'grid-item',
-    { correct },
-    { wrong },
-    { 'almost-correct': almostCorrect }
+    { falldown },
+    { slideouttop },
+    { red },
+    { green },
+    { orange },
+    { className }
   )
   return (
     <Button className={classes} {...other}>

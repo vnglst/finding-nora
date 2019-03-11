@@ -1,3 +1,5 @@
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import {
   didLoose,
   didWin,
@@ -5,8 +7,6 @@ import {
 } from 'src/finding-words/model/puzzle-utils'
 import * as gameActions from 'src/finding-words/redux/game-actions'
 import { IStoreState } from 'src/finding-words/types'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
 import * as navigationActions from 'src/shared/redux/navigation-actions'
 import App from './App'
 
@@ -26,7 +26,7 @@ const mapDispatchToProps = (
   >
 ) => {
   const updateSolution = (solution: string[]) => {
-    // safe name to localstorage, TODO: use redux-persist for this
+    // save name to localstorage, TODO: use redux-persist for this
     localStorage.setItem('name', solution.join(''))
     dispatch(gameActions.updateSolution(solution))
   }

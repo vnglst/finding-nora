@@ -1,20 +1,9 @@
-.background-image {
-  background-size: cover;
-  display: block;
-  filter: blur(2px);
-  min-height: 100%;
-  left: 0;
-  right: 0;
-  position: fixed;
-  transform: scale(
-    1.1
-  ); /* adds scaling to avoid white border on blurred image */
-}
-
-.background-image-children {
+.background {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  background-position: center;
+  background-size: cover;
 }

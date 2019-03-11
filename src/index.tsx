@@ -34,7 +34,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <FindingWords path="/" default={true} />
-        <FindingColors path="/finding-colors" />
+        <FindingColors path="/colors" />
       </Router>
     </Provider>
   </ErrorBoundary>,

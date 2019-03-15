@@ -1,4 +1,5 @@
 import { Router } from '@reach/router'
+import { initialize } from 'minimal-analytics'
 import preventDoubleTapZoom from 'prevent-double-tap-zoom'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -11,7 +12,6 @@ import { IStoreState } from 'src/finding-words/types'
 import rootReducer from 'src/shared/redux/root-reducer'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import { initialize } from './shared/utils/minimal-analytics'
 import { BugsnagErrorBoundary } from './shared/utils/bugsnag'
 
 const composeEnhancers =

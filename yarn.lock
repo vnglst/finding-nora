@@ -6973,6 +6973,11 @@ mini-css-extract-plugin@0.5.0:
     schema-utils "^1.0.0"
     webpack-sources "^1.1.0"
 
+minimal-analytics@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/minimal-analytics/-/minimal-analytics-0.1.4.tgz#193b5f10a4fc1ad453f8235fae558f0ec06d6430"
+  integrity sha512-EJLM57zIw2ZAZNgfyB7OjwC3bOLRbxHTe8E2RJcxHcC21hjvLjKpTwUDwYctHuhc+bNYvAmqjqwVv8a4rwc3UA==
+
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"

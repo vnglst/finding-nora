@@ -95,16 +95,3 @@ export function initialize(context, trackingId, options) {
     trackException
   }
 }
-
-export function initializeAnalyticsOnProd() {
-  // only track on production
-  if (process.env.NODE_ENV === 'production') {
-    initialize(window, 'UA-135954444-1', {
-      anonymizeIp: true,
-      colorDepth: true,
-      characterSet: true,
-      screenSize: true,
-      language: true
-    })
-  }
-}

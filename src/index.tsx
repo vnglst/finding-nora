@@ -11,7 +11,7 @@ import { IStoreState } from 'src/finding-words/types'
 import rootReducer from 'src/shared/redux/root-reducer'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import { initializeAnalytics } from './shared/utils/analytics'
+import { initializeAnalyticsOnProd } from './shared/utils/analytics'
 import { BugsnagErrorBoundary } from './shared/utils/bugsnag'
 
 const composeEnhancers =
@@ -36,4 +36,4 @@ ReactDOM.render(
 
 preventDoubleTapZoom({ delay: 500 })
 registerServiceWorker()
-initializeAnalytics()
+initializeAnalyticsOnProd()

@@ -1,4 +1,4 @@
-function initialize(context, trackingId, options) {
+export function initialize(context, trackingId, options) {
   const history = context.history
   const doc = document
   const nav = navigator || {}
@@ -96,15 +96,15 @@ function initialize(context, trackingId, options) {
   }
 }
 
-export function initializeAnalytics() {
+export function initializeAnalyticsOnProd() {
   // only track on production
-  if (process.env.NODE_ENV !== 'production') return
-
-  initialize(window, 'UA-135954444-1', {
-    anonymizeIp: true,
-    colorDepth: true,
-    characterSet: true,
-    screenSize: true,
-    language: true
-  })
+  if (process.env.NODE_ENV === 'production') {
+    initialize(window, 'UA-135954444-1', {
+      anonymizeIp: true,
+      colorDepth: true,
+      characterSet: true,
+      screenSize: true,
+      language: true
+    })
+  }
 }

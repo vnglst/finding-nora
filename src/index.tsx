@@ -1,4 +1,5 @@
 import { Router } from '@reach/router'
+import { initialize } from 'minimal-analytics'
 import preventDoubleTapZoom from 'prevent-double-tap-zoom'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -11,7 +12,6 @@ import { IStoreState } from 'src/finding-words/types'
 import rootReducer from 'src/shared/redux/root-reducer'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import { initializeAnalyticsOnProd } from './shared/utils/analytics'
 import { BugsnagErrorBoundary } from './shared/utils/bugsnag'
 
 const composeEnhancers =
@@ -36,4 +36,17 @@ ReactDOM.render(
 
 preventDoubleTapZoom({ delay: 500 })
 registerServiceWorker()
-initializeAnalyticsOnProd()
+
+function initializeAnalyticsOnProduction() {
+  if (process.env.NODE_ENV === 'production') {
+    initialize(window, 'UA-135954444-1', {
+      anonymizeIp: true,
+      colorDepth: true,
+      characterSet: true,
+      screenSize: true,
+      language: true
+    })
+  }
+}
+
+initializeAnalyticsOnProduction()

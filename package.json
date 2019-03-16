@@ -40,7 +40,7 @@
     "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
     "howler": "^2.1.1",
-    "minimal-analytics": "^0.1.14",
+    "minimal-analytics": "^0.1.15",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

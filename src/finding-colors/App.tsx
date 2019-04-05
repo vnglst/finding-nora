@@ -1,12 +1,12 @@
-import { RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import BackgroundImage from 'src/shared/components/BackgroundImage'
-import Grid from 'src/shared/components/Grid'
-import Overlay from 'src/shared/components/Overlay'
-import Button from 'src/shared/components/Button'
-import { sample } from 'src/shared/utils/general'
-import './App.css'
-import dog from './charles-deluvio-628935-unsplash.jpg'
+import { RouteComponentProps } from "@reach/router"
+import * as React from "react"
+import BackgroundImage from "src/shared/components/BackgroundImage"
+import Grid from "src/shared/components/Grid"
+import Overlay from "src/shared/components/Overlay"
+import Button from "src/shared/components/Button"
+import { sample } from "src/shared/utils/general"
+import "./App.css"
+import dog from "./charles-deluvio-628935-unsplash.jpg"
 
 // credits image: Photo by Charles Deluvio 🇵🇭🇨🇦 on Unsplash
 
@@ -25,14 +25,14 @@ interface Answer {
 }
 
 const possibleAnswers = [
-  { name: 'blue', colorCode: '#124bf8' },
-  { name: 'orange', colorCode: '#ef7d00' },
-  { name: 'green', colorCode: '#75b843' },
-  { name: 'red', colorCode: '#d01534' },
-  { name: 'white', colorCode: '#ffffff' },
-  { name: 'yellow', colorCode: '#ffd332' },
-  { name: 'black', colorCode: '#00141a' },
-  { name: 'purple', colorCode: '#9b128f' }
+  { name: "blue", colorCode: "#124bf8" },
+  { name: "orange", colorCode: "#ef7d00" },
+  { name: "green", colorCode: "#75b843" },
+  { name: "red", colorCode: "#d01534" },
+  { name: "white", colorCode: "#ffffff" },
+  { name: "yellow", colorCode: "#ffd332" },
+  { name: "black", colorCode: "#00141a" },
+  { name: "purple", colorCode: "#9b128f" }
 ]
 
 class App extends React.Component<Props, State> {

@@ -11,7 +11,7 @@ import { audioMiddleware } from "src/finding-words/redux/audio-middleware";
 import { IStoreState } from "src/finding-words/types";
 import rootReducer from "src/shared/redux/root-reducer";
 import "./index.css";
-import { unregister } from "./registerServiceWorker";
+import register from "./registerServiceWorker";
 import { BugsnagErrorBoundary } from "./shared/utils/bugsnag";
 
 const composeEnhancers =
@@ -35,7 +35,7 @@ ReactDOM.render(
 );
 
 preventDoubleTapZoom({ delay: 500 });
-unregister();
+register();
 
 function initializeAnalyticsOnProduction() {
   if (process.env.NODE_ENV === "production") {

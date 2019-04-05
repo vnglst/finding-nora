@@ -1,3 +1,3 @@
-import NewGame from './NewGame'
+import NewGame from "./NewGame";
 
-export default NewGame
+export default NewGame;

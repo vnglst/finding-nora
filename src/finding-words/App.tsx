@@ -1,29 +1,29 @@
-import { faCog, faInfoCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import Game from 'src/finding-words/components/Game/'
-import AboutPage from 'src/finding-words/pages/About'
-import NewGamePage from 'src/finding-words/pages/NewGame'
-import SettingsPage from 'src/finding-words/pages/Settings'
-import BackgroundImage from 'src/shared/components/BackgroundImage'
-import BottomBar from 'src/shared/components/BottomBar'
-import Button from 'src/shared/components/Button'
-import Overlay from 'src/shared/components/Overlay'
-import './App.css'
+import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RouteComponentProps } from "@reach/router";
+import * as React from "react";
+import Game from "src/finding-words/components/Game/";
+import AboutPage from "src/finding-words/pages/About";
+import NewGamePage from "src/finding-words/pages/NewGame";
+import SettingsPage from "src/finding-words/pages/Settings";
+import BackgroundImage from "src/shared/components/BackgroundImage";
+import BottomBar from "src/shared/components/BottomBar";
+import Button from "src/shared/components/Button";
+import Overlay from "src/shared/components/Overlay";
+import "./App.css";
 
 const festenUrl =
-  'https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg'
+  "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";
 
 interface IAppProps extends RouteComponentProps {
-  currentPage: string
-  didWin: boolean
-  didLoose: boolean
-  remainingSolution: string[]
-  solution: string[]
-  updateSolution: (solution: string[]) => void
-  onNavigate: (screen: string) => void
-  restart: () => void
+  currentPage: string;
+  didWin: boolean;
+  didLoose: boolean;
+  remainingSolution: string[];
+  solution: string[];
+  updateSolution: (solution: string[]) => void;
+  onNavigate: (screen: string) => void;
+  restart: () => void;
 }
 
 const App = ({
@@ -57,10 +57,10 @@ const App = ({
           icon={<FontAwesomeIcon icon={faInfoCircle} />}
         />
       </BottomBar>
-      {currentPage === 'new-game' && (
+      {currentPage === "new-game" && (
         <NewGamePage onNavigate={onNavigate} restart={restart} />
       )}
-      {currentPage === 'settings' && (
+      {currentPage === "settings" && (
         <SettingsPage
           solution={solution}
           updateSolution={updateSolution}
@@ -68,21 +68,21 @@ const App = ({
           onNavigate={onNavigate}
         />
       )}
-      {currentPage === 'about' && (
+      {currentPage === "about" && (
         <AboutPage
           onClose={() => {
-            onNavigate('home')
+            onNavigate("home");
           }}
         />
       )}
-      {didWin && currentPage === 'home' && (
+      {didWin && currentPage === "home" && (
         <Overlay>
           <p>YOU WON</p>
           <Button onMouseDown={restart}>Play again?</Button>
         </Overlay>
       )}
 
-      {didLoose && currentPage === 'home' && (
+      {didLoose && currentPage === "home" && (
         <Overlay>
           <p>YOU LOST</p>
           <Button onMouseDown={restart}>Play again?</Button>
@@ -90,6 +90,6 @@ const App = ({
       )}
     </div>
   </BackgroundImage>
-)
+);
 
-export default App
+export default App;

@@ -1,36 +1,36 @@
-import { IGridItem } from 'src/finding-words/types'
-import * as constants from './constants'
+import { IGridItem } from "src/finding-words/types";
+import * as constants from "./constants";
 
 export type GameActionType =
   | IAddAnswerAction
   | IRestartAction
-  | IUpdateSolutionAction
+  | IUpdateSolutionAction;
 
 interface IRestartAction {
-  type: constants.RESTART
+  type: constants.RESTART;
 }
 
 export const restart = (): IRestartAction => {
   return {
     type: constants.RESTART
-  }
-}
+  };
+};
 
 interface IUpdateSolutionAction {
-  solution: string[]
-  type: constants.UPDATE_SOLUTION
+  solution: string[];
+  type: constants.UPDATE_SOLUTION;
 }
 
 export const updateSolution = (solution: string[]): IUpdateSolutionAction => {
   return {
     solution,
     type: constants.UPDATE_SOLUTION
-  }
-}
+  };
+};
 
 interface IAddAnswerAction {
-  type: constants.ADD_ANSWER
-  item: IGridItem
+  type: constants.ADD_ANSWER;
+  item: IGridItem;
 }
 
 export const addAnswer = (answer: IGridItem): IAddAnswerAction => ({
@@ -39,4 +39,4 @@ export const addAnswer = (answer: IGridItem): IAddAnswerAction => ({
     updatedAt: new Date()
   },
   type: constants.ADD_ANSWER
-})
+});

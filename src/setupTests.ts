@@ -1,3 +1,3 @@
-import { mockDate } from './shared/test-utils/mockDate'
+import { mockDate } from "./shared/test-utils/mockDate";
 
-mockDate()
+mockDate();

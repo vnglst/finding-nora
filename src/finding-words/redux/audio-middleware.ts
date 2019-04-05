@@ -1,11 +1,11 @@
-import { didWin } from 'src/finding-words/model/puzzle-utils'
-import { IStoreState, StatusEnum } from 'src/finding-words/types'
-import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
-import { loadSounds } from './audio-init'
-import { ADD_ANSWER, RESTART } from './constants'
-import { GameActionType } from './game-actions'
+import { didWin } from "src/finding-words/model/puzzle-utils";
+import { IStoreState, StatusEnum } from "src/finding-words/types";
+import { Dispatch, Middleware, MiddlewareAPI } from "redux";
+import { loadSounds } from "./audio-init";
+import { ADD_ANSWER, RESTART } from "./constants";
+import { GameActionType } from "./game-actions";
 
-const sounds = loadSounds()
+const sounds = loadSounds();
 
 /**
  * Middleware that plays sounds based on Redux actions
@@ -13,33 +13,33 @@ const sounds = loadSounds()
 export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
   next: Dispatch
 ) => (action: GameActionType) => {
-  const result = next(action)
+  const result = next(action);
 
-  const nextState = getState() as IStoreState
+  const nextState = getState() as IStoreState;
 
   switch (action.type) {
     case RESTART: {
-      sounds.restart.play()
-      return result
+      sounds.restart.play();
+      return result;
     }
     case ADD_ANSWER: {
       if (action.item.status === StatusEnum.Wrong) {
-        sounds.squakk.play()
+        sounds.squakk.play();
       }
       if (action.item.status === StatusEnum.AlmostCorrect) {
-        sounds.euh.play()
+        sounds.euh.play();
       }
       if (action.item.status === StatusEnum.Correct) {
-        sounds.nock.play()
+        sounds.nock.play();
       }
-      const hasWon = didWin(nextState.game.solution, nextState.game.grid)
+      const hasWon = didWin(nextState.game.solution, nextState.game.grid);
       if (hasWon) {
-        sounds.hooyeah.play()
+        sounds.hooyeah.play();
       }
 
-      return result
+      return result;
     }
     default:
-      return result
+      return result;
   }
-}
+};

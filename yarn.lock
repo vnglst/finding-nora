@@ -8801,10 +8801,10 @@ react-scripts@^2.1.8:
   optionalDependencies:
     fsevents "1.2.4"
 
-react-testing-library@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-6.1.1.tgz#81085c25c9228268e02c28ee12181df450fefcab"
-  integrity sha512-LzJEdAaYBc79+JmWb4UyetlNfmKH1/4BgTdtX762OR/RKAWD30Uk3c6epxpGXs9LUyHP9rrbOKAypFqQ42M7Vg==
+react-testing-library@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-6.1.2.tgz#f6bba6eeecedac736eb00b22b4c70bae04535a4f"
+  integrity sha512-z69lhRDGe7u/NOjDCeFRoe1cB5ckJ4656n0tj/Fdcr6OoBUu7q9DBw0ftR7v5i3GRpdSWelnvl+feZFOyXyxwg==
   dependencies:
     "@babel/runtime" "^7.4.2"
     dom-testing-library "^3.19.0"

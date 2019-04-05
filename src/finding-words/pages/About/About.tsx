@@ -1,10 +1,10 @@
-import * as React from 'react'
-import Button from 'src/shared/components/Button'
-import Overlay from 'src/shared/components/Overlay'
-import './About.css'
+import * as React from "react";
+import Button from "src/shared/components/Button";
+import Overlay from "src/shared/components/Overlay";
+import "./About.css";
 
 interface IAboutPageProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
 const AboutPage = ({ onClose }: IAboutPageProps) => {
@@ -15,12 +15,12 @@ const AboutPage = ({ onClose }: IAboutPageProps) => {
       </p>
       <p>Extensive beta testing by my kids 🐵🐵</p>
       <p>
-        Source code on{' '}
+        Source code on{" "}
         <a href="https://github.com/vnglst/finding-nora">Github</a>
       </p>
       <Button onClick={onClose}>Back</Button>
     </Overlay>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;

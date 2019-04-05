@@ -1,3 +1,3 @@
-import GameContainer from './GameContainer'
+import GameContainer from "./GameContainer";
 
-export default GameContainer
+export default GameContainer;

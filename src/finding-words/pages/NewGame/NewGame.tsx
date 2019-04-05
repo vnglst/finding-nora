@@ -1,10 +1,10 @@
-import * as React from 'react'
-import Button from 'src/shared/components/Button'
-import Overlay from 'src/shared/components/Overlay'
+import * as React from "react";
+import Button from "src/shared/components/Button";
+import Overlay from "src/shared/components/Overlay";
 
 interface INewGameProps {
-  onNavigate: (screen: string) => void
-  restart: () => void
+  onNavigate: (screen: string) => void;
+  restart: () => void;
 }
 
 const NewGamePage = ({ onNavigate, restart }: INewGameProps) => {
@@ -12,21 +12,21 @@ const NewGamePage = ({ onNavigate, restart }: INewGameProps) => {
     <Overlay>
       <Button
         onMouseDown={() => {
-          restart()
-          onNavigate('home')
+          restart();
+          onNavigate("home");
         }}
       >
         New game
       </Button>
       <Button
         onMouseDown={() => {
-          onNavigate('home')
+          onNavigate("home");
         }}
       >
         Resume game
       </Button>
     </Overlay>
-  )
-}
+  );
+};
 
-export default NewGamePage
+export default NewGamePage;

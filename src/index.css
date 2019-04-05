@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,900');
+@import url("https://fonts.googleapis.com/css?family=Lato:400,900");
 
 :root {
   --blauw: #025f76;
@@ -12,7 +12,7 @@
 
 html {
   box-sizing: border-box;
-  font-family: 'Lato', verdana, sans-serif;
+  font-family: "Lato", verdana, sans-serif;
   font-weight: 900;
   letter-spacing: 2px;
   font-size: calc(0.5em + 1vmin);

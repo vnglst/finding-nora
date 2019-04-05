@@ -1,27 +1,27 @@
-import { RouteComponentProps } from "@reach/router"
-import * as React from "react"
-import BackgroundImage from "src/shared/components/BackgroundImage"
-import Grid from "src/shared/components/Grid"
-import Overlay from "src/shared/components/Overlay"
-import Button from "src/shared/components/Button"
-import { sample } from "src/shared/utils/general"
-import "./App.css"
-import dog from "./charles-deluvio-628935-unsplash.jpg"
+import { RouteComponentProps } from "@reach/router";
+import * as React from "react";
+import BackgroundImage from "src/shared/components/BackgroundImage";
+import Grid from "src/shared/components/Grid";
+import Overlay from "src/shared/components/Overlay";
+import Button from "src/shared/components/Button";
+import { sample } from "src/shared/utils/general";
+import "./App.css";
+import dog from "./charles-deluvio-628935-unsplash.jpg";
 
 // credits image: Photo by Charles Deluvio 🇵🇭🇨🇦 on Unsplash
 
 interface Props extends RouteComponentProps {}
 
 interface State {
-  currentAnswer?: string
-  answers: Answer[]
-  question: string
-  didWin: boolean
+  currentAnswer?: string;
+  answers: Answer[];
+  question: string;
+  didWin: boolean;
 }
 
 interface Answer {
-  name: string
-  colorCode: string
+  name: string;
+  colorCode: string;
 }
 
 const possibleAnswers = [
@@ -33,23 +33,23 @@ const possibleAnswers = [
   { name: "yellow", colorCode: "#ffd332" },
   { name: "black", colorCode: "#00141a" },
   { name: "purple", colorCode: "#9b128f" }
-]
+];
 
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
-    const puzzle = this.generatePuzzle()
+    super(props);
+    const puzzle = this.generatePuzzle();
     this.state = {
       ...puzzle,
       didWin: false
-    }
+    };
   }
 
   public generatePuzzle = () => {
-    const answers = new Array(25).fill(null).map(a => sample(possibleAnswers))
-    const question = sample(answers).name
-    return { answers, question }
-  }
+    const answers = new Array(25).fill(null).map(a => sample(possibleAnswers));
+    const question = sample(answers).name;
+    return { answers, question };
+  };
 
   public render() {
     return (
@@ -67,11 +67,11 @@ class App extends React.Component<Props, State> {
           </Overlay>
         )}
       </BackgroundImage>
-    )
+    );
   }
 
   public renderAnswers(answers: Answer[]) {
-    const { currentAnswer, question } = this.state
+    const { currentAnswer, question } = this.state;
     return (
       <Grid>
         {answers.map((answer, index) => (
@@ -87,22 +87,22 @@ class App extends React.Component<Props, State> {
           />
         ))}
       </Grid>
-    )
+    );
   }
 
   public handlePress = (item: Answer) => {
-    const currentAnswer = item.name
-    const { question } = this.state
-    this.setState({ currentAnswer })
+    const currentAnswer = item.name;
+    const { question } = this.state;
+    this.setState({ currentAnswer });
     if (currentAnswer === question) {
-      setTimeout(() => this.setState({ didWin: true }), 1000)
+      setTimeout(() => this.setState({ didWin: true }), 1000);
     }
-  }
+  };
 
   public resetGame = () => {
-    const puzzle = this.generatePuzzle()
-    this.setState({ ...puzzle, currentAnswer: undefined, didWin: false })
-  }
+    const puzzle = this.generatePuzzle();
+    this.setState({ ...puzzle, currentAnswer: undefined, didWin: false });
+  };
 }
 
-export default App
+export default App;

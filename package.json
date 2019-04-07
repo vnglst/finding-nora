@@ -27,7 +27,7 @@
     "cypress": "^3.2.0",
     "jest-dom": "^3.1.3",
     "react-scripts": "^2.1.8",
-    "react-testing-library": "^6.1.1",
+    "react-testing-library": "^6.1.2",
     "source-map-explorer": "^1.8.0",
     "typescript": "^3.4.1"
   },

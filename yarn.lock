@@ -885,10 +885,10 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-react@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-6.0.0.tgz#4d42b911c943ce0ef999b9119c6e3150dc4c42bf"
-  integrity sha512-N1W9akB7X3wbpugrPM1ooZiKbWF2o1CXK93JZsHThOFWIh4v6Rv30rwFiRlzX4nu7dUAZAM5PdZ1+g7HQBSWNQ==
+"@bugsnag/plugin-react@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-6.2.0.tgz#47941f434d9be547f89b139ce80781e7d5e7fe44"
+  integrity sha512-JI56D3ZhXGjH5UqeSTltdxVTPjMpfNI/Vd5XP0V/gBAJb6CeILX3hLe5G1VmxxZciVNEfG5724YKgadqp6/uWg==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

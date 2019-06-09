@@ -39,7 +39,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
-    "howler": "^2.1.1",
+    "howler": "^2.1.2",
     "minimal-analytics": "^0.1.15",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.8.6",

@@ -15,7 +15,7 @@
     "coveralls": "yarn test --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.7",
+    "@types/classnames": "^2.2.8",
     "@types/howler": "^2.1.0",
     "@types/jest": "^24.0.11",
     "@types/node": "^12.0.8",

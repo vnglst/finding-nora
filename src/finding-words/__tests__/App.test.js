@@ -93,3 +93,22 @@ it("should render Settings page when cog icon is clicked", async () => {
   const heading = getByRole("heading");
   expect(heading).toHaveTextContent("TIBO");
 });
+
+it("should be possible to restart the game", async () => {
+  const { getByLabelText, getByText, queryByText } = renderWithRedux(<App />);
+
+  const A = getByText("A");
+  fireEvent.mouseDown(A);
+  expect(A).toHaveClass("orange");
+
+  const button = getByLabelText("New game");
+
+  fireEvent.mouseDown(button);
+
+  expect(getByText(/New game/)).toBeInTheDocument();
+
+  fireEvent.mouseDown(getByText("New game"));
+
+  expect(queryByText(/New game/)).not.toBeInTheDocument();
+  expect(getByText("A")).not.toHaveClass("orange");
+});

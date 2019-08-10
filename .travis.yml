@@ -13,7 +13,6 @@ cache:
     - ~/.yarn
   override:
     - npm ci
-    - npm run cy:verify
 before_script:
   - yarn start --silent &
 script:

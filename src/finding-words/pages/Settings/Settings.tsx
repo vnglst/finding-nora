@@ -42,9 +42,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
           placeholder={solution.join("")}
           onChange={e => {
             this.setState({ value: e.currentTarget.value.toUpperCase() });
-          }}
-          onBlur={e => {
-            const newSolution = e.target.value.split("");
+            const newSolution = e.currentTarget.value.split("");
             if (valid) {
               updateSolution(newSolution);
             }

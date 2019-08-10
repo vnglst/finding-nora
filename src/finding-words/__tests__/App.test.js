@@ -4,12 +4,12 @@ import {
   cleanup,
   fireEvent,
   render,
-  waitForElement
+  waitForElement,
+  wait
 } from "@testing-library/react";
 import rootReducer from "shared/redux/root-reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { mockMathRandom } from "../../shared/test-utils/mockMathRandom";
 import App from "../AppContainer";
 
 afterEach(() => {
@@ -60,4 +60,45 @@ it("should be possible to finish game by clicking NORA", async () => {
   fireEvent.mouseDown(getByText("Play again?"));
 
   expect(queryByText("Play again?")).not.toBeInTheDocument();
+});
+
+it("should render About page when info icon is clicked", async () => {
+  const { getByLabelText, getByText, queryByText, debug } = renderWithRedux(
+    <App />
+  );
+
+  const infoButton = getByLabelText("About this app");
+
+  fireEvent.mouseDown(infoButton);
+
+  expect(getByText(/Koen van Gilst/)).toBeInTheDocument();
+
+  fireEvent.click(getByText("Back"));
+
+  expect(queryByText(/Koen van Gilst/)).not.toBeInTheDocument();
+});
+
+it("should render Settings page when cog icon is clicked", async () => {
+  const {
+    getByLabelText,
+    getByText,
+    getByRole,
+    queryByText,
+    debug
+  } = renderWithRedux(<App />);
+
+  const button = getByLabelText("Settings");
+
+  fireEvent.mouseDown(button);
+
+  expect(getByText(/Finding.../)).toBeInTheDocument();
+
+  const input = getByRole("textbox");
+
+  fireEvent.change(input, { target: { value: "TIBO" } });
+
+  fireEvent.click(getByText("Save"));
+
+  const heading = getByRole("heading");
+  expect(heading).toHaveTextContent("TIBO");
 });

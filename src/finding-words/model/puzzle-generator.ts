@@ -1,9 +1,9 @@
-import { GridType, IGridItem } from "src/finding-words/types";
-import { sample } from "src/shared/utils/general";
+import { GridType, IGridItem } from "../types";
+import { sample } from "shared/utils/general";
 import {
   mirrorMatrixHorizontally,
   rotateMatrixCounterClockwise
-} from "src/shared/utils/matrix";
+} from "shared/utils/matrix";
 
 class PuzzleGenerator {
   public grid: GridType;

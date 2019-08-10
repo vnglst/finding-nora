@@ -1,4 +1,4 @@
-import { GridType, IGridItem, StatusEnum } from "src/finding-words/types";
+import { GridType, IGridItem, StatusEnum } from "../types";
 
 interface ICorrectAnswer {
   answer: IGridItem;

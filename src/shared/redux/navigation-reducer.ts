@@ -1,4 +1,4 @@
-import { INavigationState } from "src/finding-words/types";
+import { INavigationState } from "finding-words/types";
 import { SET_ACTIVE_PAGE } from "./constants";
 import { NavigationActionType } from "./navigation-actions";
 

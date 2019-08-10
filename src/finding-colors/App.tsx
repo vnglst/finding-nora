@@ -1,10 +1,10 @@
 import { RouteComponentProps } from "@reach/router";
 import * as React from "react";
-import BackgroundImage from "src/shared/components/BackgroundImage";
-import Grid from "src/shared/components/Grid";
-import Overlay from "src/shared/components/Overlay";
-import Button from "src/shared/components/Button";
-import { sample } from "src/shared/utils/general";
+import BackgroundImage from "shared/components/BackgroundImage";
+import Grid from "shared/components/Grid";
+import Overlay from "shared/components/Overlay";
+import Button from "shared/components/Button";
+import { sample } from "shared/utils/general";
 import "./App.css";
 import dog from "./charles-deluvio-628935-unsplash.jpg";
 

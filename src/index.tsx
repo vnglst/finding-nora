@@ -5,7 +5,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
-import FindingColors from "finding-colors";
 import FindingWords from "finding-words";
 import { audioMiddleware } from "finding-words/redux/audio-middleware";
 import { IStoreState } from "finding-words/types";
@@ -27,7 +26,6 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <FindingWords path="/" default={true} />
-        <FindingColors path="/colors" />
       </Router>
     </Provider>
   </BugsnagErrorBoundary>,

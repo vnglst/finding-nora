@@ -1,6 +1,6 @@
 import * as React from "react";
-import Button from "src/shared/components/Button";
-import Overlay from "src/shared/components/Overlay";
+import Button from "shared/components/Button";
+import Overlay from "shared/components/Overlay";
 import "./About.css";
 
 interface IAboutPageProps {
@@ -13,7 +13,12 @@ const AboutPage = ({ onClose }: IAboutPageProps) => {
       <p>
         Game created by <a href="https://koenvangilst.nl">Koen van Gilst</a>
       </p>
-      <p>Extensive beta testing by my kids 🐵🐵</p>
+      <p>
+        Extensive beta testing by my kids{" "}
+        <span role="img" aria-label="two emoji monkeys">
+          🐵🐵
+        </span>
+      </p>
       <p>
         Source code on{" "}
         <a href="https://github.com/vnglst/finding-nora">Github</a>

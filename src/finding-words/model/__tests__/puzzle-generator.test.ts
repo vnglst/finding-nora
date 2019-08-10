@@ -1,4 +1,4 @@
-import { mockMathRandom } from "src/shared/test-utils/mockMathRandom";
+import { mockMathRandom } from "shared/test-utils/mockMathRandom";
 import PuzzleGenerator from "../puzzle-generator";
 
 const noise = "ABCDEFGHIJKLMNOPQRSTVWUXYZ".split("");

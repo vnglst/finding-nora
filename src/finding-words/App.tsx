@@ -2,14 +2,16 @@ import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RouteComponentProps } from "@reach/router";
 import * as React from "react";
-import Game from "src/finding-words/components/Game/";
-import AboutPage from "src/finding-words/pages/About";
-import NewGamePage from "src/finding-words/pages/NewGame";
-import SettingsPage from "src/finding-words/pages/Settings";
-import BackgroundImage from "src/shared/components/BackgroundImage";
-import BottomBar from "src/shared/components/BottomBar";
-import Button from "src/shared/components/Button";
-import Overlay from "src/shared/components/Overlay";
+
+import Game from "./components/Game/";
+import AboutPage from "./pages/About";
+import NewGamePage from "./pages/NewGame";
+import SettingsPage from "./pages/Settings";
+
+import BackgroundImage from "shared/components/BackgroundImage";
+import BottomBar from "shared/components/BottomBar";
+import Button from "shared/components/Button";
+import Overlay from "shared/components/Overlay";
 import "./App.css";
 
 const festenUrl =

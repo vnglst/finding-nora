@@ -1,12 +1,7 @@
 import * as React from "react";
-import {
-  GridType,
-  IGameState,
-  IGridItem,
-  StatusEnum
-} from "src/finding-words/types";
+import { GridType, IGameState, IGridItem, StatusEnum } from "../../types";
 
-import Grid from "src/shared/components/Grid";
+import Grid from "shared/components/Grid";
 
 interface IAddAnswer {
   answer: IGridItem;

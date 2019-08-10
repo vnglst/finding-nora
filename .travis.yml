@@ -1,11 +1,22 @@
 language: node_js
 node_js:
   - 10
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 cache:
   yarn: true
+  directories:
+    - ~/.cache
+    - ~/.npm
+    - ~/.yarn
+  override:
+    - npm ci
 before_script:
   - yarn start --silent &
 script:
   - yarn
+  - npx cypress install
   - yarn verify
   - yarn coveralls

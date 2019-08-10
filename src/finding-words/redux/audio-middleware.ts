@@ -1,5 +1,5 @@
-import { didWin } from "src/finding-words/model/puzzle-utils";
-import { IStoreState, StatusEnum } from "src/finding-words/types";
+import { didWin } from "../model/puzzle-utils";
+import { IStoreState, StatusEnum } from "../types";
 import { Dispatch, Middleware, MiddlewareAPI } from "redux";
 import { loadSounds } from "./audio-init";
 import { ADD_ANSWER, RESTART } from "./constants";

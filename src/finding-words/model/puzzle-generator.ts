@@ -1,9 +1,9 @@
-import { GridType, IGridItem } from "src/finding-words/types";
-import { sample } from "src/shared/utils/general";
+import { sample } from "shared/utils/general";
 import {
   mirrorMatrixHorizontally,
   rotateMatrixCounterClockwise
-} from "src/shared/utils/matrix";
+} from "shared/utils/matrix";
+import { GridType, IGridItem } from "../types";
 
 class PuzzleGenerator {
   public grid: GridType;
@@ -153,12 +153,10 @@ class PuzzleGenerator {
 
   public updateIndices() {
     this.grid.forEach((columns, row) =>
-      columns.map((el, column) => {
-        this.grid[row][column] = {
-          ...el,
-          column,
-          row
-        };
+      columns.map((el, column) => this.grid[row][column] = {
+        ...el,
+        column,
+        row
       })
     );
   }

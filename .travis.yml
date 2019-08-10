@@ -17,5 +17,6 @@ before_script:
   - yarn start --silent &
 script:
   - yarn
+  - npx cypress install
   - yarn verify
   - yarn coveralls

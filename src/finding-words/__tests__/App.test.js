@@ -4,8 +4,7 @@ import {
   cleanup,
   fireEvent,
   render,
-  waitForElement,
-  wait
+  waitForElement
 } from "@testing-library/react";
 import rootReducer from "shared/redux/root-reducer";
 import { Provider } from "react-redux";
@@ -63,9 +62,7 @@ it("should be possible to finish game by clicking NORA", async () => {
 });
 
 it("should render About page when info icon is clicked", async () => {
-  const { getByLabelText, getByText, queryByText, debug } = renderWithRedux(
-    <App />
-  );
+  const { getByLabelText, getByText, queryByText } = renderWithRedux(<App />);
 
   const infoButton = getByLabelText("About this app");
 
@@ -79,13 +76,7 @@ it("should render About page when info icon is clicked", async () => {
 });
 
 it("should render Settings page when cog icon is clicked", async () => {
-  const {
-    getByLabelText,
-    getByText,
-    getByRole,
-    queryByText,
-    debug
-  } = renderWithRedux(<App />);
+  const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
 
   const button = getByLabelText("Settings");
 

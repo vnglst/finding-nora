@@ -52,9 +52,6 @@
     "redux": "^4.0.1",
     "tslint": "^5.18.0"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [
     ">1%",
     "not dead",

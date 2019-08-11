@@ -1229,10 +1229,10 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
-"@testing-library/react@^9.0.2":
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.0.2.tgz#6164cef63e9cd1a721ca8d5f2edd23e6387057d2"
-  integrity sha512-bM7NczdgG9p/Uni5kTAACU8ofuwbLsI4X8bKjuUAxnrQ+fX2XMbo2juur1sYn9wcNReStxbZIXAwcRcUBi5aug==
+"@testing-library/react@^9.1.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.1.0.tgz#c00c4ff90c5f9015365f63b7759a57c428b6ab56"
+  integrity sha512-XMtU8AmGX472c7+qXaaVZ2QpDKPA56vRaVEjlFBPDL8im2erM6DF0KJlwzLcc2wrvfYkcMDbreFyL0vdalubrQ==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"

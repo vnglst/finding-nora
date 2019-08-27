@@ -50,7 +50,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
-    "tslint": "^5.18.0"
+    "tslint": "^5.19.0"
   },
   "browserslist": [
     ">1%",

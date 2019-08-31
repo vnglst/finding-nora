@@ -3,7 +3,7 @@ import Button from "shared/components/Button";
 import Input from "shared/components/Input";
 import Overlay from "shared/components/Overlay";
 
-const MIN_NAME_LENGTH = 3;
+const MIN_NAME_LENGTH = 4;
 const MAX_NAME_LENGTH = 9;
 
 interface ISettingsProps {
@@ -27,29 +27,29 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
   public render() {
     const { solution, updateSolution, restart, onNavigate } = this.props;
     const { value } = this.state;
-    const valid =
-      value.length > MIN_NAME_LENGTH && value.length <= MAX_NAME_LENGTH;
 
     return (
       <Overlay>
         <p>Finding...</p>
         <Input
           type="text"
-          valid={valid}
+          valid={this.isValid(value)}
           name="solution"
           maxLength={9}
           value={value}
           placeholder={solution.join("")}
           onChange={e => {
-            this.setState({ value: e.currentTarget.value.toUpperCase() });
-            const newSolution = e.currentTarget.value.split("");
-            if (valid) {
+            const newValue = e.currentTarget.value.toUpperCase();
+            this.setState({ value: newValue });
+
+            if (this.isValid(newValue)) {
+              const newSolution = newValue.split("");
               updateSolution(newSolution);
             }
           }}
         />
         <Button
-          disabled={!valid}
+          disabled={!this.isValid(value)}
           onClick={() => {
             restart();
             onNavigate("home");
@@ -59,6 +59,10 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         </Button>
       </Overlay>
     );
+  }
+
+  private isValid(value: string) {
+    return value.length >= MIN_NAME_LENGTH && value.length <= MAX_NAME_LENGTH;
   }
 }
 

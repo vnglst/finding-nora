@@ -30,9 +30,6 @@
     "jest-dom": "^4.0.0",
     "react-scripts": "^3.1.1",
     "source-map-explorer": "^2.0.1",
-    "tslint": "^5.19.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^4.0.0",
     "typescript": "^3.6.2"
   },
   "dependencies": {

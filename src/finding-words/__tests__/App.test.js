@@ -75,7 +75,7 @@ it("should render About page when info icon is clicked", async () => {
   expect(queryByText(/Koen van Gilst/)).not.toBeInTheDocument();
 });
 
-it("should render Settings page when cog icon is clicked", async () => {
+it("should be possible to change the name", async () => {
   const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
 
   const button = getByLabelText("Settings");
@@ -92,6 +92,40 @@ it("should render Settings page when cog icon is clicked", async () => {
 
   const heading = getByRole("heading");
   expect(heading).toHaveTextContent("TIBO");
+});
+
+it("should be not possible to change to a too short name", async () => {
+  const { getByLabelText, getByText, getByRole, debug } = renderWithRedux(
+    <App />
+  );
+
+  const button = getByLabelText("Settings");
+
+  fireEvent.mouseDown(button);
+
+  expect(getByText(/Finding.../)).toBeInTheDocument();
+
+  const input = getByRole("textbox");
+
+  fireEvent.change(input, { target: { value: "TIB" } });
+
+  fireEvent.click(getByText("Save"));
+
+  expect(getByRole("textbox")).toHaveClass("invalid");
+
+  expect(getByText("Save")).toBeDisabled();
+
+  expect(getByRole("heading")).toHaveTextContent("NORA");
+
+  fireEvent.change(input, { target: { value: "THIS IS TO LONG A NAME" } });
+
+  fireEvent.click(getByText("Save"));
+
+  expect(getByRole("textbox")).toHaveClass("invalid");
+
+  expect(getByText("Save")).toBeDisabled();
+
+  expect(getByRole("heading")).toHaveTextContent("NORA");
 });
 
 it("should be possible to restart the game", async () => {

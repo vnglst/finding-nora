@@ -8,6 +8,7 @@ interface IAboutPageProps {
 }
 
 const AboutPage = ({ onClose }: IAboutPageProps) => {
+  console.log(process.env);
   return (
     <Overlay className="about-page">
       <p>
@@ -23,6 +24,7 @@ const AboutPage = ({ onClose }: IAboutPageProps) => {
         Source code on{" "}
         <a href="https://github.com/vnglst/finding-nora">Github</a>
       </p>
+      <small>v{process.env.REACT_APP_VERSION}</small>
       <Button onClick={onClose}>Back</Button>
     </Overlay>
   );

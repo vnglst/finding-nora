@@ -1,11 +1,25 @@
-name: CI
+name: Node CI
 
 on: [push]
 
 jobs:
-  audit:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
     steps:
-      - uses: jakejarvis/lighthouse-action@master
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          url: "https://deploy-preview-${{ github.number }}.--nora.netlify.com/"
+          node-version: ${{ matrix.node-version }}
+      - name: yarn install, build, and test
+        run: |
+          yarn
+          yarn build --if-present
+          yarn test
+        env:
+          CI: true

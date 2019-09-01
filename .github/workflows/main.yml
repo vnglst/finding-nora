@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: jakejarvis/lighthouse-action@master
       with:
-        url: 'https://deploy-preview-276--nora.netlify.com/'
+        url: 'https://deploy-preview-${github.number}.--nora.netlify.com/'

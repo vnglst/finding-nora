@@ -27,11 +27,7 @@ yarn build
 ## Deploy
 
 ```sh
-yarn deploy # deploys on Netlify https://nora.koenvangilst.nl`
-```
-
-```sh
-yarn deploy:now # deploys on Now https://nora.now.sh`
+yarn deploy # deploys on Netlify https://finding-nora.com`
 ```
 
 ## Conclusions about PWA's

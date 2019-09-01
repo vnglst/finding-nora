@@ -3,3 +3,8 @@
   color: var(--zwart);
   text-align: center;
 }
+
+.about-page small {
+  margin: 2em;
+  color: var(--zwart);
+}

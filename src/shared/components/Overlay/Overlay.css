@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 6em;
 }
 
 .overlay-content button {

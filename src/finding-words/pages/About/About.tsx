@@ -8,7 +8,6 @@ interface IAboutPageProps {
 }
 
 const AboutPage = ({ onClose }: IAboutPageProps) => {
-  console.log(process.env);
   return (
     <Overlay className="about-page">
       <p>

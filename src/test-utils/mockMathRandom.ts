@@ -1,6 +1,6 @@
 export const mockMathRandom = () => {
   const mockGlobalMathLibrary = Object.create(global.Math);
-  mockGlobalMathLibrary.random = generatePseudoRandomNumberWithSeed(42);
+  mockGlobalMathLibrary.random = generatePseudoRandomNumberWithSeed(43);
   global.Math = mockGlobalMathLibrary;
 };
 

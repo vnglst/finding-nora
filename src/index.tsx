@@ -1,4 +1,3 @@
-import { Router } from "@reach/router";
 import { initialize } from "minimal-analytics";
 import preventDoubleTapZoom from "prevent-double-tap-zoom";
 import * as React from "react";
@@ -24,9 +23,7 @@ const store = createStore<IStoreState, any, any, any>(
 ReactDOM.render(
   <BugsnagErrorBoundary>
     <Provider store={store}>
-      <Router>
-        <App path="/" default={true} />
-      </Router>
+      <App />
     </Provider>
   </BugsnagErrorBoundary>,
   document.getElementById("root") as HTMLElement

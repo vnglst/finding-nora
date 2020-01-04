@@ -1,6 +1,5 @@
 import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { RouteComponentProps } from "@reach/router";
 import * as React from "react";
 
 import Game from "./components/Game/";
@@ -17,7 +16,7 @@ import "./App.css";
 const festenUrl =
   "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";
 
-interface IAppProps extends RouteComponentProps {
+interface IAppProps {
   currentPage: string;
   didWin: boolean;
   didLoose: boolean;

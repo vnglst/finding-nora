@@ -10,6 +10,11 @@ import rootReducer from "../redux/root-reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "../AppContainer";
+import { mockMathRandom } from "../test-utils/mockMathRandom";
+
+beforeEach(() => {
+  mockMathRandom(43);
+});
 
 afterEach(() => {
   cleanup();

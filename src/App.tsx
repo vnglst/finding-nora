@@ -2,7 +2,7 @@ import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 
-import Game from "./components/Game/";
+import Grid from "./components/Grid";
 import AboutPage from "./pages/About";
 import NewGamePage from "./pages/NewGame";
 import SettingsPage from "./pages/Settings";
@@ -12,10 +12,16 @@ import BottomBar from "./components/BottomBar";
 import Button from "./components/Button";
 import Overlay from "./components/Overlay";
 import "./App.css";
+import { GridType, IGameState, IGridItem, StatusEnum } from "./types";
 
 const festenUrl =
   "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";
 
+interface IAddAnswer {
+  answer: IGridItem;
+  solution: string[];
+  grid: GridType;
+}
 interface IAppProps {
   didWin: boolean;
   didLoose: boolean;
@@ -23,6 +29,8 @@ interface IAppProps {
   solution: string[];
   updateSolution: (solution: string[]) => void;
   restart: () => void;
+  game: IGameState;
+  addAnswer: ({ answer, solution, grid }: IAddAnswer) => void;
 }
 
 export default function App({
@@ -31,15 +39,42 @@ export default function App({
   updateSolution,
   restart,
   solution,
-  remainingSolution
+  remainingSolution,
+  game,
+  addAnswer
 }: IAppProps) {
   const [page, setPage] = React.useState("home");
+
+  const handleClick = (item: IGridItem) => {
+    if (
+      item.status === StatusEnum.Correct ||
+      item.status === StatusEnum.Wrong
+    ) {
+      return; // already answered
+    }
+    addAnswer({ answer: item, solution: game.solution, grid: game.grid });
+  };
 
   return (
     <BackgroundImage imageSrc={festenUrl}>
       <div className="app">
         <h1>{remainingSolution}</h1>
-        <Game />
+        <Grid>
+          {game.grid.map((row, rowIndex) =>
+            row.map((item, columnIndex) => (
+              <Grid.Item
+                key={`${rowIndex}-${columnIndex}`}
+                onClick={() => handleClick(item)}
+                falldown={item.status === StatusEnum.Wrong}
+                red={item.status === StatusEnum.Wrong}
+                green={item.status === StatusEnum.Correct}
+                orange={item.status === StatusEnum.AlmostCorrect}
+              >
+                {item.letter}
+              </Grid.Item>
+            ))
+          )}
+        </Grid>
         <BottomBar value={page} onChange={setPage}>
           <BottomBar.Item
             aria-label="New game"

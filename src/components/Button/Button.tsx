@@ -7,6 +7,7 @@ interface IButtonProps {
   className?: string;
   disabled?: boolean;
   onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>;
+  onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>;
   onClick?: React.EventHandler<React.MouseEvent<HTMLElement>>;
 }
 

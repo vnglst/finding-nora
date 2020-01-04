@@ -1,27 +1,63 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { didLoose, didWin, getRemainingSolution } from "./model/puzzle-utils";
-import * as gameActions from "./redux/game-actions";
-import { IGameState } from "./types";
+import {
+  didLoose,
+  didWin,
+  getRemainingSolution,
+  isCorrectAnswer,
+  isCorrectLetter
+} from "./model/puzzle-utils";
+import * as actions from "./redux/game-actions";
+import { GridType, IGridItem, StatusEnum, IGameState } from "./types";
 import App from "./App";
+
+const getAnswerStatus = ({ answer, solution, grid }: IAddAnswer) => {
+  const isCorrect = isCorrectAnswer({ answer, solution, grid });
+  if (isCorrect) {
+    return StatusEnum.Correct;
+  }
+
+  if (!isCorrect && isCorrectLetter({ answer, grid, solution })) {
+    return StatusEnum.AlmostCorrect;
+  }
+
+  return StatusEnum.Wrong;
+};
 
 const mapStateToProps = (state: IGameState) => {
   return {
     didLoose: didLoose(state.solution, state.grid),
     didWin: didWin(state.solution, state.grid),
     remainingSolution: getRemainingSolution(state.solution, state.grid),
-    solution: state.solution
+    solution: state.solution,
+    game: state
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<gameActions.GameActionType>) => {
+interface IAddAnswer {
+  answer: IGridItem;
+  grid: GridType;
+  solution: string[];
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<actions.GameActionType>) => {
   const updateSolution = (solution: string[]) => {
     localStorage.setItem("name", solution.join(""));
-    dispatch(gameActions.updateSolution(solution));
+    dispatch(actions.updateSolution(solution));
+  };
+
+  const addAnswer = ({ answer, solution, grid }: IAddAnswer) => {
+    const status = getAnswerStatus({ answer, solution, grid });
+    const answerWithStatus = {
+      ...answer,
+      status
+    };
+    dispatch(actions.addAnswer(answerWithStatus));
   };
 
   return {
-    restart: () => dispatch(gameActions.restart()),
+    restart: () => dispatch(actions.restart()),
+    addAnswer,
     updateSolution
   };
 };

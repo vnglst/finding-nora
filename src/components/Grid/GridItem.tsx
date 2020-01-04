@@ -4,8 +4,9 @@ import Button from "../Button";
 import "./GridItem.css";
 
 interface Props {
-  onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>;
-  onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>;
+  onClick: () => void;
+  // onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>;
+  // onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>;
   children?: React.ReactNode;
   falldown?: boolean;
   slideouttop?: boolean;
@@ -24,6 +25,7 @@ const Item = ({
   falldown,
   slideouttop,
   className,
+  onClick,
   ...other
 }: Props) => {
   const classes = cx(
@@ -35,8 +37,21 @@ const Item = ({
     { orange },
     { className }
   );
+
+  function handleClick(
+    e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>
+  ) {
+    e.preventDefault();
+    onClick();
+  }
+
   return (
-    <Button className={classes} {...other}>
+    <Button
+      onMouseDown={handleClick}
+      onTouchStart={handleClick}
+      className={classes}
+      {...other}
+    >
       {children}
     </Button>
   );

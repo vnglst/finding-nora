@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GridType, IGameState, IGridItem, StatusEnum } from "../../types";
 
-import Grid from "shared/components/Grid";
+import Grid from "../../components/Grid";
 
 interface IAddAnswer {
   answer: IGridItem;

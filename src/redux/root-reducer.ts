@@ -1,4 +1,4 @@
-import game from "finding-words/redux/reducers";
+import game from "./reducers";
 import { combineReducers } from "redux";
 import navigation from "./navigation-reducer";
 

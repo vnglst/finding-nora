@@ -1,5 +1,5 @@
 import { GridType, StatusEnum } from "../../types";
-import { mockMathRandom } from "shared/test-utils/mockMathRandom";
+import { mockMathRandom } from "../../test-utils/mockMathRandom";
 import PuzzleGenerator from "../puzzle-generator";
 import { didWin, isCorrectAnswer } from "../puzzle-utils";
 

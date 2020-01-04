@@ -8,10 +8,10 @@ import AboutPage from "./pages/About";
 import NewGamePage from "./pages/NewGame";
 import SettingsPage from "./pages/Settings";
 
-import BackgroundImage from "shared/components/BackgroundImage";
-import BottomBar from "shared/components/BottomBar";
-import Button from "shared/components/Button";
-import Overlay from "shared/components/Overlay";
+import BackgroundImage from "./components/BackgroundImage";
+import BottomBar from "./components/BottomBar";
+import Button from "./components/Button";
+import Overlay from "./components/Overlay";
 import "./App.css";
 
 const festenUrl =

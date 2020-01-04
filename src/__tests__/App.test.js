@@ -6,7 +6,7 @@ import {
   render,
   waitForElement
 } from "@testing-library/react";
-import rootReducer from "shared/redux/root-reducer";
+import rootReducer from "../redux/root-reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "../AppContainer";

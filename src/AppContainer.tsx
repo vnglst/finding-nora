@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { didLoose, didWin, getRemainingSolution } from "./model/puzzle-utils";
 import * as gameActions from "./redux/game-actions";
 import { IStoreState } from "./types";
-import * as navigationActions from "shared/redux/navigation-actions";
+import * as navigationActions from "./redux/navigation-actions";
 import App from "./App";
 
 const mapStateToProps = ({ game, navigation }: IStoreState) => {
@@ -22,7 +22,6 @@ const mapDispatchToProps = (
   >
 ) => {
   const updateSolution = (solution: string[]) => {
-    // save name to localstorage, TODO: use redux-persist for this
     localStorage.setItem("name", solution.join(""));
     dispatch(gameActions.updateSolution(solution));
   };
@@ -35,7 +34,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

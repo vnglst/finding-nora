@@ -1,8 +1,8 @@
-import { sample } from "shared/utils/general";
+import { sample } from "../utils/general";
 import {
   mirrorMatrixHorizontally,
   rotateMatrixCounterClockwise
-} from "shared/utils/matrix";
+} from "../utils/matrix";
 import { GridType, IGridItem } from "../types";
 
 class PuzzleGenerator {

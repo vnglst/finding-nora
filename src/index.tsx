@@ -5,13 +5,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
-import FindingWords from "finding-words";
-import { audioMiddleware } from "finding-words/redux/audio-middleware";
-import { IStoreState } from "finding-words/types";
-import rootReducer from "shared/redux/root-reducer";
+import App from "./AppContainer";
+import { audioMiddleware } from "./redux/audio-middleware";
+import { IStoreState } from "./types";
+import rootReducer from "./redux/root-reducer";
 import "./index.css";
 import register from "./registerServiceWorker";
-import { BugsnagErrorBoundary } from "./shared/utils/bugsnag";
+import { BugsnagErrorBoundary } from "./utils/bugsnag";
 
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -25,7 +25,7 @@ ReactDOM.render(
   <BugsnagErrorBoundary>
     <Provider store={store}>
       <Router>
-        <FindingWords path="/" default={true} />
+        <App path="/" default={true} />
       </Router>
     </Provider>
   </BugsnagErrorBoundary>,

@@ -7,7 +7,6 @@
     "build": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "test": "react-scripts test --verbose=false",
     "eject": "react-scripts eject",
-    "analyze": "source-map-explorer build/static/js/main.*",
     "verify": "yarn test; yarn build; yarn cypress:ci",
     "deploy": "yarn build && netlify deploy ./build",
     "cypress:ci": "cypress run",
@@ -27,9 +26,8 @@
     "@types/react-redux": "^7.1.5",
     "coveralls": "^3.0.9",
     "cypress": "^3.8.1",
-    "jest-dom": "^4.0.0",
+    "global": "^4.4.0",
     "react-scripts": "^3.3.0",
-    "source-map-explorer": "^2.2.1",
     "typescript": "^3.7.4"
   },
   "dependencies": {
@@ -39,7 +37,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "classnames": "^2.2.6",
-    "global": "^4.4.0",
     "howler": "^2.1.3",
     "minimal-analytics": "^0.1.15",
     "prevent-double-tap-zoom": "^2.0.4",

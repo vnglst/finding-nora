@@ -6,8 +6,8 @@ import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import App from "./AppContainer";
 import { audioMiddleware } from "./redux/audio-middleware";
-import { IStoreState } from "./types";
-import rootReducer from "./redux/root-reducer";
+import { IGameState } from "./types";
+import reducers from "./redux/reducers";
 import "./index.css";
 import register from "./registerServiceWorker";
 import { BugsnagErrorBoundary } from "./utils/bugsnag";
@@ -15,8 +15,8 @@ import { BugsnagErrorBoundary } from "./utils/bugsnag";
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore<IStoreState, any, any, any>(
-  rootReducer,
+const store = createStore<IGameState, any, any, any>(
+  reducers,
   composeEnhancers(applyMiddleware(audioMiddleware))
 );
 

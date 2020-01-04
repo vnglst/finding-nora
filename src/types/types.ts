@@ -11,14 +11,6 @@ export interface IGameState {
   size: number;
 }
 
-export interface INavigationState {
-  currentPage: string;
-}
-
-export interface IStoreState {
-  game: IGameState;
-  navigation: INavigationState;
-}
 
 export interface IGridItem {
   column: number;

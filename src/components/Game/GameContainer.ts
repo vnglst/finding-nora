@@ -1,6 +1,6 @@
 import { isCorrectAnswer, isCorrectLetter } from "../../model/puzzle-utils";
 import * as actions from "../../redux/game-actions";
-import { GridType, IGridItem, IStoreState, StatusEnum } from "../../types";
+import { GridType, IGridItem, IGameState, StatusEnum } from "../../types";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Game from "./Game";
@@ -18,9 +18,9 @@ const getAnswerStatus = ({ answer, solution, grid }: IAddAnswer) => {
   return StatusEnum.Wrong;
 };
 
-const mapStateToProps = ({ game }: IStoreState) => {
+const mapStateToProps = (state: IGameState) => {
   return {
-    game
+    game: state
   };
 };
 

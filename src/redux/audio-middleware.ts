@@ -1,5 +1,5 @@
 import { didWin } from "../model/puzzle-utils";
-import { IStoreState, StatusEnum } from "../types";
+import { IGameState, StatusEnum } from "../types";
 import { Dispatch, Middleware, MiddlewareAPI } from "redux";
 import { loadSounds } from "./audio-init";
 import { ADD_ANSWER, RESTART } from "./constants";
@@ -15,7 +15,7 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
 ) => (action: GameActionType) => {
   const result = next(action);
 
-  const nextState = getState() as IStoreState;
+  const nextState = getState() as IGameState;
 
   switch (action.type) {
     case RESTART: {
@@ -32,7 +32,7 @@ export const audioMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
       if (action.item.status === StatusEnum.Correct) {
         sounds.nock.play();
       }
-      const hasWon = didWin(nextState.game.solution, nextState.game.grid);
+      const hasWon = didWin(nextState.solution, nextState.grid);
       if (hasWon) {
         sounds.hooyeah.play();
       }

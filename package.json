@@ -22,7 +22,7 @@
     "@types/node": "^13.1.4",
     "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
+    "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.5",
     "coveralls": "^3.0.9",
     "cypress": "^3.8.1",

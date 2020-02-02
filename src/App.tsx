@@ -1,6 +1,7 @@
 import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Grid from "./components/Grid";
 import AboutPage from "./pages/About";
@@ -11,59 +12,60 @@ import BackgroundImage from "./components/BackgroundImage";
 import BottomBar from "./components/BottomBar";
 import Button from "./components/Button";
 import Overlay from "./components/Overlay";
+import { IGridItem, StatusEnum } from "./types";
+import { IGameState } from "./redux/reducers";
+
 import "./App.css";
-import { GridType, IGameState, IGridItem, StatusEnum } from "./types";
+import { filterPossibleSolutions } from "model/puzzle";
 
 const festenUrl =
   "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";
 
-interface IAddAnswer {
-  answer: IGridItem;
-  solution: string[];
-  grid: GridType;
-}
-interface IAppProps {
-  didWin: boolean;
-  didLoose: boolean;
-  remainingSolution: string[];
-  solution: string[];
-  updateSolution: (solution: string[]) => void;
-  restart: () => void;
-  game: IGameState;
-  addAnswer: ({ answer, solution, grid }: IAddAnswer) => void;
-}
+export default function App() {
+  const [page, setPage] = useState("home");
+  const dispatch = useDispatch();
+  const grid = useSelector((state: IGameState) => state.grid);
+  const remaining = useSelector((state: IGameState) => state.remaining);
+  const solution = useSelector((state: IGameState) => state.solution);
+  const solutions = useSelector((state: IGameState) => state.solutions);
+  const didWin = useSelector(
+    (state: IGameState) => state.remaining.length === 0
+  );
 
-export default function App({
-  didWin,
-  didLoose,
-  updateSolution,
-  restart,
-  solution,
-  remainingSolution,
-  game,
-  addAnswer
-}: IAppProps) {
-  const [page, setPage] = React.useState("home");
+  function handleClick(answer: IGridItem) {
+    if (answer.status === StatusEnum.Correct) return;
 
-  const handleClick = (item: IGridItem) => {
-    if (
-      item.status === StatusEnum.Correct ||
-      item.status === StatusEnum.Wrong
-    ) {
-      return; // already answered
+    const possibleSolutions = filterPossibleSolutions(solutions, answer);
+
+    if (possibleSolutions.length > 0) {
+      dispatch({ type: "CORRECT_ANSWER", payload: answer });
+      if (remaining.length <= 1) dispatch({ type: "YOU_WON" });
+      return;
     }
-    addAnswer({ answer: item, solution: game.solution, grid: game.grid });
-  };
+
+    const almostCorrect = solutions.find((solution) => {
+      return solution.find(
+        (s) => s.column === answer.column && s.row === answer.row
+      );
+    });
+
+    if (almostCorrect) {
+      dispatch({ type: "ALMOST_CORRECT_ANSWER", payload: answer });
+      return;
+    }
+
+    dispatch({ type: "WRONG_ANSWER", payload: answer });
+  }
 
   return (
     <BackgroundImage imageSrc={festenUrl}>
       <div className="app">
-        <h1>{remainingSolution}</h1>
+        <h1>{remaining}</h1>
         <Grid>
-          {game.grid.map((row, rowIndex) =>
-            row.map((item, columnIndex) => (
+          {grid.map((_, row) =>
+            _.map((item, column) => (
               <Grid.Item
-                key={`${rowIndex}-${columnIndex}`}
+                key={`${row}-${column}`}
                 onClick={() => handleClick(item)}
                 falldown={item.status === StatusEnum.Wrong}
                 red={item.status === StatusEnum.Wrong}
@@ -93,13 +95,18 @@ export default function App({
           />
         </BottomBar>
         {page === "new-game" && (
-          <NewGamePage onNavigate={setPage} restart={restart} />
+          <NewGamePage
+            onNavigate={setPage}
+            restart={() => dispatch({ type: "RESTART" })}
+          />
         )}
         {page === "settings" && (
           <SettingsPage
             solution={solution}
-            updateSolution={updateSolution}
-            restart={restart}
+            updateSolution={(newSolution) =>
+              dispatch({ type: "UPDATE_SOLUTION", payload: newSolution })
+            }
+            restart={() => dispatch({ type: "RESTART" })}
             onNavigate={setPage}
           />
         )}
@@ -113,14 +120,13 @@ export default function App({
         {didWin && page === "home" && (
           <Overlay>
             <p>YOU WON</p>
-            <Button onMouseDown={restart}>Play again?</Button>
-          </Overlay>
-        )}
-
-        {didLoose && page === "home" && (
-          <Overlay>
-            <p>YOU LOST</p>
-            <Button onMouseDown={restart}>Play again?</Button>
+            <Button
+              onMouseDown={() => {
+                dispatch({ type: "RESTART" });
+              }}
+            >
+              Play again?
+            </Button>
           </Overlay>
         )}
       </div>

@@ -4,10 +4,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
-import App from "./AppContainer";
-import { audioMiddleware } from "./redux/audio-middleware";
-import { IGameState } from "./types";
-import reducers from "./redux/reducers";
+import App from "./App";
+import { middleware } from "./redux/middleware";
+import { IGameState, reducers } from "./redux/reducers";
 import "./index.css";
 import register from "./registerServiceWorker";
 import { BugsnagErrorBoundary } from "./utils/bugsnag";
@@ -17,7 +16,7 @@ const composeEnhancers =
 
 const store = createStore<IGameState, any, any, any>(
   reducers,
-  composeEnhancers(applyMiddleware(audioMiddleware))
+  composeEnhancers(applyMiddleware(middleware))
 );
 
 ReactDOM.render(

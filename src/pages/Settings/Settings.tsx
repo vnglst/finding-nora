@@ -5,11 +5,10 @@ import Overlay from "../../components/Overlay";
 
 const MIN_NAME_LENGTH = 4;
 const MAX_NAME_LENGTH = 9;
-
 interface ISettingsProps {
   className?: string;
-  solution: string[];
-  updateSolution: (solution: string[]) => void;
+  solution: string;
+  updateSolution: (solution: string) => void;
   onNavigate: (screen: string) => void;
   restart: () => void;
 }
@@ -21,7 +20,7 @@ interface ISettingsState {
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
   constructor(props: any) {
     super(props);
-    this.state = { value: props.solution.join("") };
+    this.state = { value: props.solution };
   }
 
   public render() {
@@ -37,14 +36,13 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
           name="solution"
           maxLength={9}
           value={value}
-          placeholder={solution.join("")}
-          onChange={e => {
+          placeholder={solution}
+          onChange={(e) => {
             const newValue = e.currentTarget.value.toUpperCase();
             this.setState({ value: newValue });
 
             if (this.isValid(newValue)) {
-              const newSolution = newValue.split("");
-              updateSolution(newSolution);
+              updateSolution(newValue);
             }
           }}
         />

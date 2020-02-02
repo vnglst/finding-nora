@@ -14,21 +14,21 @@
     "coveralls": "yarn test --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^5.1.0",
     "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.8",
     "@types/howler": "^2.1.2",
-    "@types/jest": "^24.0.25",
-    "@types/node": "^13.1.4",
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
     "@types/reach__router": "^1.2.6",
-    "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
-    "@types/react-redux": "^7.1.5",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
     "coveralls": "^3.0.9",
-    "cypress": "^3.8.1",
+    "cypress": "^3.8.3",
     "global": "^4.4.0",
-    "react-scripts": "^3.3.0",
-    "typescript": "^3.7.4"
+    "react-scripts": "^3.3.1",
+    "typescript": "^3.7.5"
   },
   "dependencies": {
     "@bugsnag/js": "^6.5.0",
@@ -38,6 +38,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "classnames": "^2.2.6",
     "howler": "^2.1.3",
+    "immer": "^5.3.2",
     "minimal-analytics": "^0.1.15",
     "prevent-double-tap-zoom": "^2.0.4",
     "react": "^16.12.0",

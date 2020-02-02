@@ -1,6 +1,7 @@
 import { produce } from 'immer';
 import { generatePuzzle, filterPossibleSolutions, findSolutions } from "../model/puzzle";
 import { StatusEnum } from "types";
+import { ADD_CORRECT, ADD_ALMOST, ADD_WRONG, UPDATE_SOLUTION, RESTART, ActionType } from './actions';
 
 const getInitialState = (name?: string) => {
   const NAME = name || localStorage.getItem("finding/name") || "NORA";
@@ -18,15 +19,14 @@ const getInitialState = (name?: string) => {
 
 const INITIAL_STATE = getInitialState();
 
-export type IGameState = typeof INITIAL_STATE;
-
 export function reducers(
   state = INITIAL_STATE,
-  action: { type: string, payload: any }
-): IGameState {
+  action: ActionType
+) {
+  // using immer to allow direct mutation of state
   return produce(state, draft => {
     switch (action.type) {
-      case 'CORRECT_ANSWER': {
+      case ADD_CORRECT: {
         const answer = action.payload;
 
         // update status of clicked grid item to correct
@@ -43,23 +43,23 @@ export function reducers(
         break;
       }
 
-      case 'ALMOST_CORRECT_ANSWER': {
+      case ADD_ALMOST: {
         const { row, column } = action.payload;
         draft.grid[row][column].status = StatusEnum.AlmostCorrect;
         break;
       }
 
-      case 'WRONG_ANSWER': {
+      case ADD_WRONG: {
         const { row, column } = action.payload;
         draft.grid[row][column].status = StatusEnum.Wrong;
         break;
       }
 
-      case 'RESTART': {
+      case RESTART: {
         return getInitialState(draft.solution);
       }
 
-      case 'UPDATE_SOLUTION': {
+      case UPDATE_SOLUTION: {
         draft.solution = action.payload;
         break;
       }
@@ -69,3 +69,5 @@ export function reducers(
     }
   })
 }
+
+export type AppState = ReturnType<typeof reducers>;

@@ -6,18 +6,20 @@ import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import App from "./App";
 import { middleware } from "./redux/middleware";
-import { IGameState, reducers } from "./redux/reducers";
-import "./index.css";
+import { reducers } from "./redux/reducers";
 import register from "./registerServiceWorker";
 import { BugsnagErrorBoundary } from "./utils/bugsnag";
+import "./index.css";
 
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore<IGameState, any, any, any>(
+const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(middleware))
 );
+
+export type AppDispatch = typeof store.dispatch;
 
 ReactDOM.render(
   <BugsnagErrorBoundary>

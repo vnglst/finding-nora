@@ -1,36 +1,46 @@
 import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
+import {
+  useSelector as useReduxSelector,
+  TypedUseSelectorHook,
+  useDispatch
+} from "react-redux";
 import Grid from "./components/Grid";
 import AboutPage from "./pages/About";
 import NewGamePage from "./pages/NewGame";
 import SettingsPage from "./pages/Settings";
-
 import BackgroundImage from "./components/BackgroundImage";
 import BottomBar from "./components/BottomBar";
 import Button from "./components/Button";
 import Overlay from "./components/Overlay";
 import { IGridItem, StatusEnum } from "./types";
-import { IGameState } from "./redux/reducers";
-
-import "./App.css";
+import { AppState } from "./redux/reducers";
+import { AppDispatch } from "./";
 import { filterPossibleSolutions } from "model/puzzle";
+import {
+  youWon,
+  addCorrect,
+  addAlmost,
+  addWrong,
+  updateSolution,
+  restart
+} from "redux/actions";
+import "./App.css";
+
+export const useSelector: TypedUseSelectorHook<AppState> = useReduxSelector;
 
 const festenUrl =
   "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";
 
 export default function App() {
   const [page, setPage] = useState("home");
-  const dispatch = useDispatch();
-  const grid = useSelector((state: IGameState) => state.grid);
-  const remaining = useSelector((state: IGameState) => state.remaining);
-  const solution = useSelector((state: IGameState) => state.solution);
-  const solutions = useSelector((state: IGameState) => state.solutions);
-  const didWin = useSelector(
-    (state: IGameState) => state.remaining.length === 0
-  );
+  const dispatch: AppDispatch = useDispatch();
+  const grid = useSelector(state => state.grid);
+  const remaining = useSelector(state => state.remaining);
+  const solution = useSelector(state => state.solution);
+  const solutions = useSelector(state => state.solutions);
+  const didWin = useSelector(state => state.remaining.length === 0);
 
   function handleClick(answer: IGridItem) {
     if (answer.status === StatusEnum.Correct) return;
@@ -38,23 +48,23 @@ export default function App() {
     const possibleSolutions = filterPossibleSolutions(solutions, answer);
 
     if (possibleSolutions.length > 0) {
-      dispatch({ type: "CORRECT_ANSWER", payload: answer });
-      if (remaining.length <= 1) dispatch({ type: "YOU_WON" });
+      dispatch(addCorrect(answer));
+      if (remaining.length <= 1) dispatch(youWon());
       return;
     }
 
-    const almostCorrect = solutions.find((solution) => {
+    const almostCorrect = solutions.find(solution => {
       return solution.find(
-        (s) => s.column === answer.column && s.row === answer.row
+        s => s.column === answer.column && s.row === answer.row
       );
     });
 
     if (almostCorrect) {
-      dispatch({ type: "ALMOST_CORRECT_ANSWER", payload: answer });
+      dispatch(addAlmost(answer));
       return;
     }
 
-    dispatch({ type: "WRONG_ANSWER", payload: answer });
+    dispatch(addWrong(answer));
   }
 
   return (
@@ -97,16 +107,16 @@ export default function App() {
         {page === "new-game" && (
           <NewGamePage
             onNavigate={setPage}
-            restart={() => dispatch({ type: "RESTART" })}
+            restart={() => dispatch(restart())}
           />
         )}
         {page === "settings" && (
           <SettingsPage
             solution={solution}
-            updateSolution={(newSolution) =>
-              dispatch({ type: "UPDATE_SOLUTION", payload: newSolution })
+            updateSolution={newSolution =>
+              dispatch(updateSolution(newSolution))
             }
-            restart={() => dispatch({ type: "RESTART" })}
+            restart={() => dispatch(restart())}
             onNavigate={setPage}
           />
         )}
@@ -122,7 +132,7 @@ export default function App() {
             <p>YOU WON</p>
             <Button
               onMouseDown={() => {
-                dispatch({ type: "RESTART" });
+                dispatch(restart());
               }}
             >
               Play again?

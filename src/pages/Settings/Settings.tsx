@@ -18,7 +18,7 @@ interface ISettingsState {
 }
 
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
-  constructor(props: any) {
+  constructor(props: ISettingsProps) {
     super(props);
     this.state = { value: props.solution };
   }
@@ -37,7 +37,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
           maxLength={9}
           value={value}
           placeholder={solution}
-          onChange={(e) => {
+          onChange={e => {
             const newValue = e.currentTarget.value.toUpperCase();
             this.setState({ value: newValue });
 

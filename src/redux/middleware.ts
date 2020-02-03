@@ -1,5 +1,5 @@
-import { AppState } from './reducers'
-import { RESTART, ADD_WRONG, ADD_CORRECT, ADD_ALMOST, YOU_WON, ActionType } from './actions';
+import { AppState, STORAGE_KEY } from './reducers'
+import { RESTART, ADD_WRONG, ADD_CORRECT, ADD_ALMOST, YOU_WON, ActionType, ADD_SOLUTION } from './actions';
 import { Middleware } from "redux";
 import { AppDispatch } from '../';
 import { loadSounds } from "../utils/audio-init";
@@ -41,8 +41,8 @@ export const middleware: Middleware = ({ getState }) => (
       return result;
     }
 
-    case 'UPDATE_SOLUTION': {
-      localStorage.setItem("finding/name", nextState.solution)
+    case ADD_SOLUTION: {
+      localStorage.setItem(STORAGE_KEY, nextState.solution)
       break;
     }
 

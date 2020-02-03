@@ -1,10 +1,13 @@
 import { produce } from 'immer';
+import { localStore } from '../utils/better-storage';
 import { generatePuzzle, filterPossibleSolutions, findSolutions } from "../model/puzzle";
 import { StatusEnum } from "types";
-import { ADD_CORRECT, ADD_ALMOST, ADD_WRONG, UPDATE_SOLUTION, RESTART, ActionType } from './actions';
+import { ADD_CORRECT, ADD_ALMOST, ADD_WRONG, ADD_SOLUTION, RESTART, ActionType } from './actions';
+
+export const STORAGE_KEY = 'finding-nora';
 
 const getInitialState = (name?: string) => {
-  const NAME = name || localStorage.getItem("finding/name") || "NORA";
+  const NAME = name || localStore.getItem(STORAGE_KEY) || "NORA";
   const SOLUTION = NAME.toUpperCase();
   const GRID = generatePuzzle(5, SOLUTION);
   const SOLUTIONS = findSolutions(GRID, SOLUTION);
@@ -59,7 +62,7 @@ export function reducers(
         return getInitialState(draft.solution);
       }
 
-      case UPDATE_SOLUTION: {
+      case ADD_SOLUTION: {
         draft.solution = action.payload;
         break;
       }

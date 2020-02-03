@@ -1,13 +1,13 @@
 import * as React from "react";
-import Button from "../../components/Button";
-import Overlay from "../../components/Overlay";
+import Button from "../components/Button";
+import Overlay from "../components/Overlay";
 
-interface INewGameProps {
+interface Props {
   onNavigate: (screen: string) => void;
   restart: () => void;
 }
 
-const NewGamePage = ({ onNavigate, restart }: INewGameProps) => {
+export default function NewGamePage({ onNavigate, restart }: Props) {
   return (
     <Overlay>
       <Button
@@ -19,6 +19,7 @@ const NewGamePage = ({ onNavigate, restart }: INewGameProps) => {
         New game
       </Button>
       <Button
+        isSecondary
         onMouseDown={() => {
           onNavigate("home");
         }}
@@ -27,6 +28,4 @@ const NewGamePage = ({ onNavigate, restart }: INewGameProps) => {
       </Button>
     </Overlay>
   );
-};
-
-export default NewGamePage;
+}

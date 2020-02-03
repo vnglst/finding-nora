@@ -1,8 +1,9 @@
 import cx from "classnames";
-import React, { FunctionComponent } from "react";
+import React from "react";
 import "./Button.css";
 
-interface IButtonProps {
+interface Props {
+  isSecondary?: boolean;
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
@@ -11,14 +12,18 @@ interface IButtonProps {
   onClick?: React.EventHandler<React.MouseEvent<HTMLElement>>;
 }
 
-const Button: FunctionComponent<IButtonProps> = ({
+export default function Button({
   children,
   className,
+  isSecondary,
   ...other
-}) => (
-  <button className={cx("button", className)} {...other}>
-    {children}
-  </button>
-);
-
-export default Button;
+}: Props) {
+  return (
+    <button
+      className={cx("button", { secondary: isSecondary }, className)}
+      {...other}
+    >
+      {children}
+    </button>
+  );
+}

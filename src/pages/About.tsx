@@ -1,13 +1,13 @@
 import * as React from "react";
-import Button from "../../components/Button";
-import Overlay from "../../components/Overlay";
+import Button from "../components/Button";
+import Overlay from "../components/Overlay";
 import "./About.css";
 
-interface IAboutPageProps {
+interface Props {
   onClose: () => void;
 }
 
-const AboutPage = ({ onClose }: IAboutPageProps) => {
+export default function AboutPage({ onClose }: Props) {
   return (
     <Overlay className="about-page">
       <p>
@@ -27,6 +27,4 @@ const AboutPage = ({ onClose }: IAboutPageProps) => {
       <Button onClick={onClose}>Back</Button>
     </Overlay>
   );
-};
-
-export default AboutPage;
+}

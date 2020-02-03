@@ -2,7 +2,7 @@ import cx from "classnames";
 import * as React from "react";
 import "./BottomBarItem.css";
 
-interface IBottomBarItemProps {
+export interface ItemProps {
   value: string;
   onChange?: any;
   selected?: boolean;
@@ -10,14 +10,14 @@ interface IBottomBarItemProps {
   label?: string;
 }
 
-const BottomBarItem = ({
+export default function BottomBarItem({
   value,
   label,
   onChange,
   icon,
   selected,
   ...other
-}: IBottomBarItemProps) => {
+}: ItemProps) {
   const classes = cx("item", { "item-selected": selected });
   return (
     <button className={classes} onMouseDown={() => onChange(value)} {...other}>
@@ -25,6 +25,4 @@ const BottomBarItem = ({
       {label && <p>{label}</p>}
     </button>
   );
-};
-
-export default BottomBarItem;
+}

@@ -1,6 +1,6 @@
 import cx from "classnames";
 import * as React from "react";
-import Button from "../Button";
+import Button from "./Button";
 import "./GridItem.css";
 
 export interface GridItemProps {

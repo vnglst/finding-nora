@@ -12,13 +12,18 @@ interface Props {
   onClick?: React.EventHandler<React.MouseEvent<HTMLElement>>;
 }
 
-const Button = ({ children, className, isSecondary, ...other }: Props) => (
-  <button
-    className={cx("button", { secondary: isSecondary }, className)}
-    {...other}
-  >
-    {children}
-  </button>
-);
-
-export default Button;
+export default function Button({
+  children,
+  className,
+  isSecondary,
+  ...other
+}: Props) {
+  return (
+    <button
+      className={cx("button", { secondary: isSecondary }, className)}
+      {...other}
+    >
+      {children}
+    </button>
+  );
+}

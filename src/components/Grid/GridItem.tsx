@@ -3,10 +3,8 @@ import * as React from "react";
 import Button from "../Button";
 import "./GridItem.css";
 
-interface Props {
+export interface GridItemProps {
   onClick: () => void;
-  // onMouseDown?: React.EventHandler<React.MouseEvent<HTMLElement>>;
-  // onTouchStart?: React.EventHandler<React.TouchEvent<HTMLElement>>;
   children?: React.ReactNode;
   falldown?: boolean;
   slideouttop?: boolean;
@@ -17,7 +15,7 @@ interface Props {
   style?: object;
 }
 
-const Item = ({
+const GridItem: React.FC<GridItemProps> = ({
   children,
   green,
   orange,
@@ -27,7 +25,7 @@ const Item = ({
   className,
   onClick,
   ...other
-}: Props) => {
+}) => {
   const classes = cx(
     "grid-item",
     { falldown },
@@ -57,4 +55,4 @@ const Item = ({
   );
 };
 
-export default Item;
+export default GridItem;

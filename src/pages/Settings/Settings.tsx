@@ -8,46 +8,45 @@ const MAX_NAME_LENGTH = 9;
 interface ISettingsProps {
   className?: string;
   solution: string;
-  updateSolution: (solution: string) => void;
+  addSolution: (solution: string) => void;
   onNavigate: (screen: string) => void;
   restart: () => void;
 }
 
-interface ISettingsState {
-  value: string;
+function isValid(value: string) {
+  return value.length >= MIN_NAME_LENGTH && value.length <= MAX_NAME_LENGTH;
 }
 
-class Settings extends React.Component<ISettingsProps, ISettingsState> {
-  constructor(props: ISettingsProps) {
-    super(props);
-    this.state = { value: props.solution };
-  }
+export default function Settings({
+  solution,
+  addSolution,
+  restart,
+  onNavigate
+}: ISettingsProps) {
+  const [value, setValue] = React.useState(solution);
 
-  public render() {
-    const { solution, updateSolution, restart, onNavigate } = this.props;
-    const { value } = this.state;
-
-    return (
+  return (
+    <form>
       <Overlay>
         <p>Finding...</p>
         <Input
           type="text"
-          valid={this.isValid(value)}
+          valid={isValid(value)}
           name="solution"
           maxLength={9}
           value={value}
           placeholder={solution}
           onChange={e => {
             const newValue = e.currentTarget.value.toUpperCase();
-            this.setState({ value: newValue });
-
-            if (this.isValid(newValue)) {
-              updateSolution(newValue);
+            setValue(newValue);
+            if (isValid(newValue)) {
+              // only update solution in redux state if valid
+              addSolution(newValue);
             }
           }}
         />
         <Button
-          disabled={!this.isValid(value)}
+          disabled={!isValid(value)}
           onClick={() => {
             restart();
             onNavigate("home");
@@ -56,12 +55,6 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
           Save
         </Button>
       </Overlay>
-    );
-  }
-
-  private isValid(value: string) {
-    return value.length >= MIN_NAME_LENGTH && value.length <= MAX_NAME_LENGTH;
-  }
+    </form>
+  );
 }
-
-export default Settings;

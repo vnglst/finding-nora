@@ -1,16 +1,18 @@
 import * as React from "react";
 import "./Grid.css";
-import GridItem from "./GridItem";
+import GridItem, { GridItemProps } from "./GridItem";
 
-interface IGridProps {
+interface Props {
   children: React.ReactNode;
 }
-
-class Grid extends React.Component<IGridProps, object> {
-  public static Item: typeof GridItem;
-  public render() {
-    return <div className="grid">{this.props.children}</div>;
-  }
+interface GridSubComponents {
+  Item: React.FC<GridItemProps>;
 }
+
+const Grid: React.FC<Props> & GridSubComponents = ({ children }) => {
+  return <div className="grid">{children}</div>;
+};
+
+Grid.Item = GridItem;
 
 export default Grid;

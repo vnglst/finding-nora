@@ -5,18 +5,14 @@ import { IGridItem } from "../types";
 const NOISE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 export function generatePuzzle(size: number, solution: string) {
-  const grid = generateGrid(size, NOISE);
-  const gridWithPuzzle = addPuzzle(grid, solution);
-  const tranformed = applyRandomTransformation(gridWithPuzzle);
-  return tranformed;
-}
 
-function generateGrid(size: number, noise: string[]) {
   const grid: IGridItem[][] = [];
+
+  // generate a grid of empty letters
   for (let row = 0; row < size; row++) {
     const columns = [];
     for (let column = 0; column < size; column++) {
-      const randomLetter = sample(noise);
+      const randomLetter = sample(NOISE);
       columns.push({
         row,
         column,
@@ -25,87 +21,71 @@ function generateGrid(size: number, noise: string[]) {
     }
     grid.push(columns);
   }
-  return grid;
-}
 
-function addPuzzle(grid: IGridItem[][], solution: string) {
-  const size = grid.length;
+  // helper function to calculate number of letters from current row,column to edge 
+  function getStepsToEdge(row: number, column: number, size: number) {
+    const edgeStep = 1;
+    return size - row + size - column - edgeStep;
+  }
 
-  // check if solution is actually possible within grid
-  checkSolutionLength(size, solution);
-
-  let [row, column] = getRandomStart(size, solution);
-
-  for (const letter of solution) {
-    grid[row][column].letter = letter
-
-    const nextMoves = getNextMoves(row, column, size);
-
-    if (nextMoves.length > 0) {
-      const nextMove = sample(nextMoves);
-      row = nextMove.row;
-      column = nextMove.column;
-    }
-  };
-
-  return grid;
-}
-
-function checkSolutionLength(size: number, solution: string) {
+  // check if solution is actually possible within grid size
   const stepsToEdgeFromOrigin = getStepsToEdge(0, 0, size);
   const requiredSteps = solution.length;
   if (requiredSteps > stepsToEdgeFromOrigin) {
     throw new Error("Puzzle too long");
   }
-}
 
-function getStepsToEdge(row: number, column: number, size: number) {
-  const edgeStep = 1;
-  return size - row + size - column - edgeStep;
-}
-
-function getRandomStart(size: number, solution: string) {
+  // find randomized and possible initial position for puzzle
   let startRow = getRnd(size);
   let startColumn = getRnd(size);
-  const requiredSteps = solution.length;
   let counter = 0;
+
   while (true) {
     const stepsToEdge = getStepsToEdge(startRow, startColumn, size);
 
-    if (requiredSteps <= stepsToEdge) {
-      return [
-        startRow,
-        startColumn
-      ];
-    }
+    // stop loop if solution found
+    if (requiredSteps <= stepsToEdge) break;
 
+    // try new initial position
     startRow = getRnd(size);
     startColumn = getRnd(size);
 
     // failsafe to avoid accidental inifite loops
     counter++;
-    if (counter > 100) {
-      throw new Error("Tried to generate puzzle too many times.");
+    if (counter > 500) {
+      throw new Error("Tried to generate starting position too many times.");
     }
   }
-}
 
-function getNextMoves(row: number, column: number, size: number) {
-  // only moves from left to right, top to bottom allowed
-  const legalMoves = [];
-  if (row + 1 < size) {
-    legalMoves.push({
-      row: row + 1,
-      column
-    });
-  }
-  if (column + 1 < size) {
-    legalMoves.push({
-      row,
-      column: column + 1
-    });
-  }
-  return legalMoves;
+  // loop through letters and create random through grid
+  let nextRow = startRow;
+  let nextColumn = startColumn;
+  for (const letter of solution) {
+    grid[nextRow][nextColumn].letter = letter
+
+    // find possible next moves, only moves from left to right, top to bottom allowed
+    const nextMoves = [];
+    if (nextRow + 1 < size) {
+      nextMoves.push({
+        row: nextRow + 1,
+        column: nextColumn
+      });
+    }
+    if (nextColumn + 1 < size) {
+      nextMoves.push({
+        row: nextRow,
+        column: nextColumn + 1
+      });
+    }
+
+    if (nextMoves.length > 0) {
+      const nextMove = sample(nextMoves);
+      nextRow = nextMove.row;
+      nextColumn = nextMove.column;
+    }
+  };
+
+  return applyRandomTransformation(grid);
 }
 
 function applyRandomTransformation(grid: IGridItem[][]) {

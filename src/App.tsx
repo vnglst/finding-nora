@@ -23,7 +23,7 @@ import {
   addCorrect,
   addAlmost,
   addWrong,
-  updateSolution,
+  addSolution,
   restart
 } from "redux/actions";
 import "./App.css";
@@ -113,9 +113,7 @@ export default function App() {
         {page === "settings" && (
           <SettingsPage
             solution={solution}
-            updateSolution={newSolution =>
-              dispatch(updateSolution(newSolution))
-            }
+            addSolution={newSolution => dispatch(addSolution(newSolution))}
             restart={() => dispatch(restart())}
             onNavigate={setPage}
           />

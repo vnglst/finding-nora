@@ -1,20 +1,20 @@
 import { IGridItem } from '../types';
 
-export const UPDATE_SOLUTION = 'UPDATE_SOLUTION';
+export const ADD_SOLUTION = 'ADD_SOLUTION';
 export const ADD_CORRECT = 'CORRECT_ANSWER';
 export const ADD_WRONG = 'ADD_WRONG';
 export const ADD_ALMOST = 'ADD_ALMOST';
 export const RESTART = 'RESTART';
 export const YOU_WON = 'YOU_WON';
 
-interface UpdateSolutionAction {
-    type: typeof UPDATE_SOLUTION
+interface AddSolutionAction {
+    type: typeof ADD_SOLUTION
     payload: string
 }
 
-export function updateSolution(solution: string): UpdateSolutionAction {
+export function addSolution(solution: string): AddSolutionAction {
     return {
-        type: UPDATE_SOLUTION,
+        type: ADD_SOLUTION,
         payload: solution
     }
 }
@@ -76,7 +76,7 @@ export function youWon(): YouWonAction {
 }
 
 export type ActionType =
-    UpdateSolutionAction |
+    AddSolutionAction |
     AddCorrectAction |
     AddWrongAction |
     AddAlmostAction |

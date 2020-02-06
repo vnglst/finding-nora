@@ -2,7 +2,7 @@ stages:
   - verify
   - e2e
 
-image: cypress/base:10
+image: cypress/base:12.6.0
 
 jest-unit-tests:
   stage: verify
@@ -19,7 +19,7 @@ check-build:
     - yarn build
 
 cypress-e2e-tests:
-  image: cypress/base:10
+  image: cypress/base:12.6.0
   stage: e2e
   before_script:
     - npm install

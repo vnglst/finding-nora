@@ -1,10 +1,21 @@
-import { produce } from 'immer';
-import { localStore } from '../utils/better-storage';
-import { generatePuzzle, filterPossibleSolutions, findSolutions } from "../model/puzzle";
-import { StatusEnum } from "types";
-import { ADD_CORRECT, ADD_ALMOST, ADD_WRONG, ADD_SOLUTION, RESTART, ActionType } from './actions';
+import { produce } from "immer";
+import { localStore } from "../utils/better-storage";
+import {
+  generatePuzzle,
+  filterPossibleSolutions,
+  findSolutions
+} from "../model/puzzle";
+import { Status } from "types";
+import {
+  ADD_CORRECT,
+  ADD_ALMOST,
+  ADD_WRONG,
+  ADD_SOLUTION,
+  RESTART,
+  ActionType
+} from "./actions";
 
-export const STORAGE_KEY = 'finding-nora';
+export const STORAGE_KEY = "finding-nora";
 
 const getInitialState = (name?: string) => {
   const NAME = name || localStore.getItem(STORAGE_KEY) || "NORA";
@@ -17,15 +28,12 @@ const getInitialState = (name?: string) => {
     solution: SOLUTION,
     solutions: SOLUTIONS,
     remaining: NAME
-  }
-}
+  };
+};
 
 const INITIAL_STATE = getInitialState();
 
-export function reducers(
-  state = INITIAL_STATE,
-  action: ActionType
-) {
+export function reducers(state = INITIAL_STATE, action: ActionType) {
   // using immer to allow direct mutation of state
   return produce(state, draft => {
     switch (action.type) {
@@ -33,13 +41,13 @@ export function reducers(
         const answer = action.payload;
 
         // update status of clicked grid item to correct
-        draft.grid[answer.row][answer.column].status = StatusEnum.Correct;
+        draft.grid[answer.row][answer.column].status = Status.Correct;
 
         // keep only possible solutions
         draft.solutions = filterPossibleSolutions(draft.solutions, answer);
 
         // remove letter from remaining solutions
-        draft.solutions.forEach((solution) => solution.shift())
+        draft.solutions.forEach(solution => solution.shift());
 
         // remove letter from remaining solution
         draft.remaining = draft.remaining.substr(1);
@@ -48,13 +56,13 @@ export function reducers(
 
       case ADD_ALMOST: {
         const { row, column } = action.payload;
-        draft.grid[row][column].status = StatusEnum.AlmostCorrect;
+        draft.grid[row][column].status = Status.AlmostCorrect;
         break;
       }
 
       case ADD_WRONG: {
         const { row, column } = action.payload;
-        draft.grid[row][column].status = StatusEnum.Wrong;
+        draft.grid[row][column].status = Status.Wrong;
         break;
       }
 
@@ -70,7 +78,7 @@ export function reducers(
       default:
         return draft;
     }
-  })
+  });
 }
 
 export type AppState = ReturnType<typeof reducers>;

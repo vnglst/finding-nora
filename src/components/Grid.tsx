@@ -9,7 +9,7 @@ interface GridSubComponents {
   Item: React.FC<GridItemProps>;
 }
 
-const Grid: React.FC<Props> & GridSubComponents = ({ children }) => {
+const Grid: React.FC<Props> & GridSubComponents = ({ children }: Props) => {
   return <div className="grid">{children}</div>;
 };
 

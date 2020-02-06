@@ -1,12 +1,14 @@
 import { sample, deepEqual, getRnd } from "../utils/helpers";
-import { mirrorMatrixHorizontally, rotateMatrixCounterClockwise } from './matrix';
-import { IGridItem } from "../types";
+import {
+  mirrorMatrixHorizontally,
+  rotateMatrixCounterClockwise
+} from "./matrix";
+import { GridItem } from "../types";
 
 const NOISE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 export function generatePuzzle(size: number, solution: string) {
-
-  const grid: IGridItem[][] = [];
+  const grid: GridItem[][] = [];
 
   // generate a grid of empty letters
   for (let row = 0; row < size; row++) {
@@ -16,13 +18,13 @@ export function generatePuzzle(size: number, solution: string) {
       columns.push({
         row,
         column,
-        letter: randomLetter,
+        letter: randomLetter
       });
     }
     grid.push(columns);
   }
 
-  // helper function to calculate number of letters from current row,column to edge 
+  // helper function to calculate number of letters from current row,column to edge
   function getStepsToEdge(row: number, column: number, size: number) {
     const edgeStep = 1;
     return size - row + size - column - edgeStep;
@@ -40,7 +42,7 @@ export function generatePuzzle(size: number, solution: string) {
   let startColumn = getRnd(size);
   let counter = 0;
 
-  while (true) {
+  while (counter < 500) {
     const stepsToEdge = getStepsToEdge(startRow, startColumn, size);
 
     // stop loop if solution found
@@ -52,16 +54,13 @@ export function generatePuzzle(size: number, solution: string) {
 
     // failsafe to avoid accidental inifite loops
     counter++;
-    if (counter > 500) {
-      throw new Error("Tried to generate starting position too many times.");
-    }
   }
 
   // loop through letters and create random through grid
   let nextRow = startRow;
   let nextColumn = startColumn;
   for (const letter of solution) {
-    grid[nextRow][nextColumn].letter = letter
+    grid[nextRow][nextColumn].letter = letter;
 
     // find possible next moves, only moves from left to right, top to bottom allowed
     const nextMoves = [];
@@ -83,14 +82,14 @@ export function generatePuzzle(size: number, solution: string) {
       nextRow = nextMove.row;
       nextColumn = nextMove.column;
     }
-  };
+  }
 
   return applyRandomTransformation(grid);
 }
 
-function applyRandomTransformation(grid: IGridItem[][]) {
+function applyRandomTransformation(grid: GridItem[][]) {
   const transformation = sample([
-    (g: IGridItem[][]) => g, // do nothing
+    (g: GridItem[][]) => g, // do nothing
     mirrorMatrixHorizontally,
     rotateMatrixCounterClockwise
   ]);
@@ -99,40 +98,46 @@ function applyRandomTransformation(grid: IGridItem[][]) {
   return grid;
 }
 
-function updateIndices(grid: IGridItem[][]) {
+function updateIndices(grid: GridItem[][]) {
   grid.forEach((columns, row) =>
-    columns.map((el, column) => grid[row][column] = {
-      ...el,
-      column,
-      row
-    })
+    columns.map(
+      (el, column) =>
+        (grid[row][column] = {
+          ...el,
+          column,
+          row
+        })
+    )
   );
 }
 
-
-export function findSolutions(grid: IGridItem[][], solution: string) {
+export function findSolutions(grid: GridItem[][], solution: string) {
   const size = grid.length;
-  let solutions: IGridItem[][] = [];
+  const solutions: GridItem[][] = [];
 
   const DIRECTIONS = [
     [-1, 0],
     [0, -1],
     [0, 1],
-    [1, 0],
+    [1, 0]
   ];
 
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       const firstItem = grid[i][j];
-      const possibleSolution: IGridItem[] = [];
+      const possibleSolution: GridItem[] = [];
       if (firstItem.letter === solution[0]) {
-        findNext(firstItem, 0, possibleSolution, solutions)
+        findNext(firstItem, 0, possibleSolution, solutions);
       }
     }
   }
 
-  function findNext(item: IGridItem, idx: number, possibleSolution: IGridItem[], solutions: IGridItem[][]) {
-
+  function findNext(
+    item: GridItem,
+    idx: number,
+    possibleSolution: GridItem[],
+    solutions: GridItem[][]
+  ) {
     // stop if item is not part of solution
     if (idx > solution.length || item.letter !== solution[idx]) return;
 
@@ -159,30 +164,32 @@ export function findSolutions(grid: IGridItem[][], solution: string) {
       if (!isNew(newSolution, nextItem)) return;
 
       // new solution path found, follow this path
-      findNext(nextItem, idx + 1, newSolution, solutions)
-    })
+      findNext(nextItem, idx + 1, newSolution, solutions);
+    });
   }
 
   return solutions;
 }
 
 function withinBounds(row: number, column: number, size: number) {
-  return row >= 0 && row < size &&
-    column >= 0 && column < size
+  return row >= 0 && row < size && column >= 0 && column < size;
 }
 
-function isNew(solution: IGridItem[], newItem: IGridItem) {
+function isNew(solution: GridItem[], newItem: GridItem) {
   let isNew = true;
   solution.forEach(item => {
     if (deepEqual(newItem, item)) {
       isNew = false;
     }
-  })
+  });
   return isNew;
 }
 
-export function filterPossibleSolutions(solutions: IGridItem[][], answer: IGridItem) {
-  return solutions.filter((solution) => {
+export function filterPossibleSolutions(
+  solutions: GridItem[][],
+  answer: GridItem
+) {
+  return solutions.filter(solution => {
     const next = solution[0];
     return next.row === answer.row && next.column === answer.column;
   });

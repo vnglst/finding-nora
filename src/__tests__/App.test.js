@@ -25,7 +25,7 @@ function renderWithRedux(
 
 // TODO: Skipping mock random not working
 it.skip("should show NORA", async () => {
-  const { getByRole, getByText, queryByText, debug } = renderWithRedux(<App />);
+  const { getByRole, getByText } = renderWithRedux(<App />);
   const heading = getByRole("heading");
   expect(heading).toHaveTextContent("NORA");
 

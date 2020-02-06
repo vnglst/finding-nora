@@ -4,10 +4,10 @@ export const mockMathRandom = (seed = 42) => {
   global.Math = mockGlobalMathLibrary;
 };
 
-const generatePseudoRandomNumberWithSeed = (seed: number) => {
+function generatePseudoRandomNumberWithSeed(seed: number) {
   const generatePseudoRandomNumber = () => {
     const pseudoRandomNumber = Math.sin(seed++) * 10000;
     return pseudoRandomNumber - Math.floor(pseudoRandomNumber);
   };
   return generatePseudoRandomNumber;
-};
+}

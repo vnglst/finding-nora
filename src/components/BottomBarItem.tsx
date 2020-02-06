@@ -4,7 +4,7 @@ import "./BottomBarItem.css";
 
 export interface ItemProps {
   value: string;
-  onChange?: any;
+  onChange?: (value: string) => void;
   selected?: boolean;
   icon: React.ReactNode;
   label?: string;
@@ -13,7 +13,7 @@ export interface ItemProps {
 export default function BottomBarItem({
   value,
   label,
-  onChange,
+  onChange = () => {},
   icon,
   selected,
   ...other

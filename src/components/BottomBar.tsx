@@ -16,7 +16,7 @@ const BottomBar: React.FC<Props> & BottomBarSubComponent = ({
   children: propChildren,
   value,
   onChange
-}) => {
+}: Props) => {
   function generateChildren() {
     return React.Children.map(propChildren, (child, childIndex) => {
       if (!React.isValidElement(child)) {

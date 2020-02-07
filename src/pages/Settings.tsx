@@ -5,7 +5,7 @@ import Overlay from "../components/Overlay";
 
 const MIN_NAME_LENGTH = 4;
 const MAX_NAME_LENGTH = 9;
-interface ISettingsProps {
+interface Props {
   className?: string;
   solution: string;
   addSolution: (solution: string) => void;
@@ -22,7 +22,7 @@ export default function Settings({
   addSolution,
   restart,
   onNavigate
-}: ISettingsProps) {
+}: Props) {
   const [value, setValue] = React.useState(solution);
 
   return (

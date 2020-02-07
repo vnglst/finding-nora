@@ -1,21 +1,16 @@
-import "@testing-library/jest-dom/extend-expect";
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
-import { reducers } from "../redux/reducers";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { fireEvent, render } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
+import { reducers } from "../redux/reducers";
+import { middleware } from "../redux/middleware";
 import App from "../App";
-import { mockMathRandom } from "../test-utils/mockMathRandom";
-
-mockMathRandom();
-
-afterEach(() => {
-  cleanup();
-});
 
 function renderWithRedux(
   ui,
-  { initialState, store = createStore(reducers, initialState) } = {}
+  { store = createStore(reducers, applyMiddleware(middleware)) } = {}
 ) {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
@@ -23,112 +18,210 @@ function renderWithRedux(
   };
 }
 
-// TODO: Skipping mock random not working
-it.skip("should show NORA", async () => {
-  const { getByRole, getByText, queryByText, debug } = renderWithRedux(<App />);
-  const heading = getByRole("heading");
-  expect(heading).toHaveTextContent("NORA");
+jest
+  .spyOn(window.HTMLMediaElement.prototype, "play")
+  .mockImplementation(async () => {});
 
-  const N = getByText("N");
-  const O = getByText("O");
-  const R = getByText("R");
-  const A = getByText("A");
+jest
+  .spyOn(window.HTMLMediaElement.prototype, "load")
+  .mockImplementation(() => {});
 
-  expect(N).toBeInTheDocument();
-  expect(O).toBeInTheDocument();
-  expect(R).toBeInTheDocument();
-  expect(A).toBeInTheDocument();
+Object.defineProperty(window, "localStorage", {
+  value: {
+    setItem: jest.fn().mockImplementation(() => {}),
+    getItem: jest.fn().mockImplementation(() => {})
+  }
 });
 
-it("should render About page when info icon is clicked", async () => {
-  const { getByLabelText, getByText, queryByText } = renderWithRedux(<App />);
+describe("App", () => {
+  mockRandomForEach([0.5, 0.2, 0.3, 0.6, 0.9, 0.33, 0.22, 0, 0.233]);
 
-  const infoButton = getByLabelText("About this app");
+  afterEach(() => {
+    resetMockRandom();
+  });
 
-  fireEvent.mouseDown(infoButton);
+  it("should be able to click letters NORA and play new game", async () => {
+    const screen = renderWithRedux(<App />);
+    const heading = screen.getByRole("heading");
+    expect(heading).toHaveTextContent("NORA");
 
-  expect(getByText(/Koen van Gilst/)).toBeInTheDocument();
+    let allItems = screen.getAllByTestId(/grid-item/);
 
-  fireEvent.click(getByText("Back"));
+    allItems.forEach(item => {
+      expect(item).not.toHaveClass("green");
+      expect(item).not.toHaveClass("orange");
+      expect(item).not.toHaveClass("red");
+    });
 
-  expect(queryByText(/Koen van Gilst/)).not.toBeInTheDocument();
-});
+    const N = screen.getAllByText("N")[2];
+    const O = screen.getAllByText("O")[0];
+    const R = screen.getAllByText("R")[0];
+    const A = screen.getAllByText("A")[0];
 
-it("should be possible to change the name", async () => {
-  const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
+    expect(N).toBeInTheDocument();
+    expect(O).toBeInTheDocument();
+    expect(R).toBeInTheDocument();
+    expect(A).toBeInTheDocument();
 
-  const button = getByLabelText("Settings");
+    fireEvent.mouseDown(N);
+    expect(N).toHaveClass("green");
 
-  fireEvent.mouseDown(button);
+    fireEvent.mouseDown(O);
+    expect(O).toHaveClass("green");
 
-  expect(getByText(/Finding.../)).toBeInTheDocument();
+    fireEvent.mouseDown(R);
+    expect(O).toHaveClass("green");
 
-  const input = getByRole("textbox");
+    fireEvent.mouseDown(A);
+    expect(O).toHaveClass("green");
 
-  fireEvent.change(input, { target: { value: "TIBO" } });
+    const playAgain = screen.getByText("Play again?");
+    expect(playAgain).toBeInTheDocument();
+    fireEvent.mouseDown(playAgain);
 
-  fireEvent.click(getByText("Save"));
+    allItems = screen.getAllByTestId(/grid-item/);
 
-  const heading = getByRole("heading");
-  expect(heading).toHaveTextContent("TIBO");
-});
+    allItems.forEach(item => {
+      expect(item).not.toHaveClass("green");
+      expect(item).not.toHaveClass("orange");
+      expect(item).not.toHaveClass("red");
+    });
+  });
 
-it("should be not possible to change to a wrong name", async () => {
-  const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
+  it("should render About page when info icon is clicked", async () => {
+    const { getByLabelText, getByText, queryByText } = renderWithRedux(<App />);
 
-  const button = getByLabelText("Settings");
+    const infoButton = getByLabelText("About this app");
 
-  fireEvent.mouseDown(button);
+    fireEvent.mouseDown(infoButton);
 
-  expect(getByText(/Finding.../)).toBeInTheDocument();
+    expect(getByText(/Koen van Gilst/)).toBeInTheDocument();
 
-  const input = getByRole("textbox");
+    fireEvent.click(getByText("Back"));
 
-  fireEvent.change(input, { target: { value: "TIB" } });
+    expect(queryByText(/Koen van Gilst/)).not.toBeInTheDocument();
+  });
 
-  fireEvent.click(getByText("Save"));
+  it("should be possible to change the name and play the game", async () => {
+    const screen = renderWithRedux(<App />);
 
-  expect(getByRole("textbox")).toHaveClass("invalid");
+    const button = screen.getByLabelText("Settings");
 
-  expect(getByText("Save")).toBeDisabled();
+    fireEvent.mouseDown(button);
 
-  expect(getByRole("heading")).toHaveTextContent("NORA");
+    expect(screen.getByText(/Finding.../)).toBeInTheDocument();
 
-  fireEvent.change(input, { target: { value: "THIS IS TO LONG A NAME" } });
+    const input = screen.getByRole("textbox");
 
-  fireEvent.click(getByText("Save"));
+    fireEvent.change(input, { target: { value: "TIBO" } });
 
-  expect(getByRole("textbox")).toHaveClass("invalid");
+    fireEvent.click(screen.getByText("Save"));
 
-  expect(getByText("Save")).toBeDisabled();
+    const heading = screen.getByRole("heading");
+    expect(heading).toHaveTextContent("TIBO");
 
-  expect(getByRole("heading")).toHaveTextContent("NORA");
-});
+    const T = screen.getAllByText("T")[0];
+    const I = screen.getAllByText("I")[2];
+    const B = screen.getAllByText("B")[0];
+    const O = screen.getAllByText("O")[0];
 
-// TODO: skipping mock random not working
-it.skip("should be possible to restart the game", async () => {
-  const {
-    getByLabelText,
-    getByText,
-    getAllByText,
-    queryByText,
-    debug
-  } = renderWithRedux(<App />);
+    fireEvent.mouseDown(T);
+    expect(T).toHaveClass("green");
 
-  debug();
+    fireEvent.mouseDown(I);
+    expect(I).toHaveClass("green");
 
-  const A = getAllByText("A")[0];
-  fireEvent.mouseDown(A);
-  expect(A).toHaveClass("orange");
+    fireEvent.mouseDown(B);
+    expect(B).toHaveClass("green");
 
-  const button = getByLabelText("New game");
+    fireEvent.mouseDown(O);
+    expect(O).toHaveClass("green");
 
-  fireEvent.mouseDown(button);
+    const playAgain = screen.getByText("Play again?");
+    expect(playAgain).toBeInTheDocument();
+  });
 
-  expect(getByText(/New game/)).toBeInTheDocument();
+  it("should be possible to click all letters and then finish the game", async () => {
+    const screen = renderWithRedux(<App />);
+    const heading = screen.getByRole("heading");
+    expect(heading).toHaveTextContent("NORA");
 
-  fireEvent.mouseDown(getByText("New game"));
+    const allItems = screen.getAllByTestId(/grid-item/);
 
-  expect(queryByText(/New game/)).not.toBeInTheDocument();
-  expect(getAllByText("A")[0]).not.toHaveClass("orange");
+    allItems.forEach(item => {
+      expect(item).not.toHaveClass("green");
+      expect(item).not.toHaveClass("orange");
+      expect(item).not.toHaveClass("red");
+    });
+
+    allItems.forEach(item => {
+      fireEvent.mouseDown(item);
+    });
+
+    const O = screen.getByTestId(/grid-item-2-0/);
+    const R = screen.getByTestId(/grid-item-2-1/);
+    const A = screen.getByTestId(/grid-item-2-2/);
+
+    fireEvent.mouseDown(O);
+    fireEvent.mouseDown(R);
+    fireEvent.mouseDown(A);
+
+    expect(screen.getByText("YOU WON")).toBeInTheDocument();
+  });
+
+  it("should be NOT possible to change to a wrong name", async () => {
+    const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
+
+    const button = getByLabelText("Settings");
+
+    fireEvent.mouseDown(button);
+
+    expect(getByText(/Finding.../)).toBeInTheDocument();
+
+    const input = getByRole("textbox");
+
+    fireEvent.change(input, { target: { value: "TIB" } });
+
+    fireEvent.click(getByText("Save"));
+
+    expect(getByRole("textbox")).toHaveClass("invalid");
+
+    expect(getByText("Save")).toBeDisabled();
+
+    expect(getByRole("heading")).toHaveTextContent("NORA");
+
+    fireEvent.change(input, { target: { value: "THIS IS TO LONG A NAME" } });
+
+    fireEvent.click(getByText("Save"));
+
+    expect(getByRole("textbox")).toHaveClass("invalid");
+
+    expect(getByText("Save")).toBeDisabled();
+
+    expect(getByRole("heading")).toHaveTextContent("NORA");
+  });
+
+  it("should be possible to restart the game", async () => {
+    const {
+      getByLabelText,
+      getByText,
+      getAllByText,
+      queryByText
+    } = renderWithRedux(<App />);
+
+    const A = getAllByText("A")[0];
+    fireEvent.mouseDown(A);
+    expect(A).toHaveClass("orange");
+
+    const button = getByLabelText("New game");
+
+    fireEvent.mouseDown(button);
+
+    expect(getByText(/New game/)).toBeInTheDocument();
+
+    fireEvent.mouseDown(getByText("New game"));
+
+    expect(queryByText(/New game/)).not.toBeInTheDocument();
+    expect(getAllByText("A")[0]).not.toHaveClass("orange");
+  });
 });

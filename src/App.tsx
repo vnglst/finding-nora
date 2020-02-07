@@ -14,7 +14,7 @@ import BackgroundImage from "./components/BackgroundImage";
 import BottomBar from "./components/BottomBar";
 import Button from "./components/Button";
 import Overlay from "./components/Overlay";
-import { IGridItem, StatusEnum } from "./types";
+import { GridItem, Status } from "./types";
 import { AppState } from "./redux/reducers";
 import { AppDispatch } from "./";
 import { filterPossibleSolutions } from "model/puzzle";
@@ -42,8 +42,8 @@ export default function App() {
   const solutions = useSelector(state => state.solutions);
   const didWin = useSelector(state => state.remaining.length === 0);
 
-  function handleClick(answer: IGridItem) {
-    if (answer.status === StatusEnum.Correct) return;
+  function handleClick(answer: GridItem) {
+    if (answer.status === Status.Correct) return;
 
     const possibleSolutions = filterPossibleSolutions(solutions, answer);
 
@@ -77,10 +77,11 @@ export default function App() {
               <Grid.Item
                 key={`${row}-${column}`}
                 onClick={() => handleClick(item)}
-                falldown={item.status === StatusEnum.Wrong}
-                red={item.status === StatusEnum.Wrong}
-                green={item.status === StatusEnum.Correct}
-                orange={item.status === StatusEnum.AlmostCorrect}
+                falldown={item.status === Status.Wrong}
+                red={item.status === Status.Wrong}
+                green={item.status === Status.Correct}
+                orange={item.status === Status.AlmostCorrect}
+                data-testid={`grid-item-${row}-${column}`}
               >
                 {item.letter}
               </Grid.Item>

@@ -25,7 +25,7 @@ const GridItem: React.FC<GridItemProps> = ({
   className,
   onClick,
   ...other
-}) => {
+}: GridItemProps) => {
   const classes = cx(
     "grid-item",
     { falldown },

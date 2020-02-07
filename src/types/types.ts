@@ -1,14 +1,13 @@
-
-export enum StatusEnum {
+export enum Status {
   Correct = "Correct",
   Wrong = "Wrong",
   AlmostCorrect = "AlmostCorrect"
 }
-export interface IGridItem {
+export interface GridItem {
   row: number;
   column: number;
   letter: string;
-  status?: StatusEnum;
+  status?: Status;
 }
 
-export type GridType = IGridItem[][];
+export type GridType = GridItem[][];

@@ -1,7 +1,15 @@
-import { AppState, STORAGE_KEY } from './reducers'
-import { RESTART, ADD_WRONG, ADD_CORRECT, ADD_ALMOST, YOU_WON, ActionType, ADD_SOLUTION } from './actions';
+import { AppState, STORAGE_KEY } from "./reducers";
+import {
+  RESTART,
+  ADD_WRONG,
+  ADD_CORRECT,
+  ADD_ALMOST,
+  YOU_WON,
+  ActionType,
+  ADD_SOLUTION
+} from "./actions";
 import { Middleware } from "redux";
-import { AppDispatch } from '../';
+import { AppDispatch } from "../";
 import { loadSounds } from "../utils/audio-init";
 
 const sounds = loadSounds();
@@ -10,9 +18,9 @@ const sounds = loadSounds();
  * Middleware to handle side effects from redux actions, like
  * playing audio, saving state to localStorage, analytics, etc.
  */
-export const middleware: Middleware = ({ getState }) => (
-  next: AppDispatch
-) => (action: ActionType) => {
+export const middleware: Middleware = ({ getState }) => (next: AppDispatch) => (
+  action: ActionType
+) => {
   const result = next(action);
   const nextState = getState() as AppState;
 
@@ -42,7 +50,7 @@ export const middleware: Middleware = ({ getState }) => (
     }
 
     case ADD_SOLUTION: {
-      localStorage.setItem(STORAGE_KEY, nextState.solution)
+      localStorage.setItem(STORAGE_KEY, nextState.solution);
       break;
     }
 

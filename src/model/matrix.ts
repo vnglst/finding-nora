@@ -4,13 +4,13 @@
 import { cloneDeep } from "../utils/helpers";
 
 const flipMatrix = <T>(matrix: T[][]) =>
-  matrix[0].map((_, index) => matrix.map((row) => row[index]));
+  matrix[0].map((_, index) => matrix.map(row => row[index]));
 
 export const mirrorMatrixHorizontally = <T>(matrix: T[][]) =>
   cloneDeep(matrix).reverse();
 
 export const mirrorMatrixVertically = <T>(matrix: T[][]) =>
-  cloneDeep(matrix).map((row) => row.reverse());
+  cloneDeep(matrix).map(row => row.reverse());
 
 export const rotateMatrixCounterClockwise = <T>(matrix: T[][]) =>
   mirrorMatrixHorizontally(flipMatrix(matrix));

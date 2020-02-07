@@ -14,7 +14,7 @@ cache:
   override:
     - npm ci
 before_script:
-  - yarn start --silent &
+  - yarn start:cypress --silent &
 script:
   - yarn
   - npx cypress install

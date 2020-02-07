@@ -1,10 +1,6 @@
-import { mockMathRandom } from "../../test-utils/mockMathRandom";
 import { generatePuzzle, findSolutions } from "../puzzle";
 import { GridItem } from "../../types";
-
-beforeEach(() => {
-  mockMathRandom();
-});
+import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
 
 function toString(grid: GridItem[][]) {
   let s = "";
@@ -18,6 +14,12 @@ function toString(grid: GridItem[][]) {
 }
 
 describe("Puzzle", () => {
+  mockRandomForEach([0.5, 0.2, 0.3, 0.6, 0.9, 0.33, 0.22, 0, 0.233]);
+
+  afterEach(() => {
+    resetMockRandom();
+  });
+
   it("Should generate a 6 x 6 grid", () => {
     const puzzle = generatePuzzle(6, "NORA");
     expect(puzzle.length).toEqual(6);
@@ -25,44 +27,56 @@ describe("Puzzle", () => {
 
     const puzzleStr = toString(puzzle);
 
-    expect(puzzleStr).toContain("G H N E B F");
-    expect(puzzleStr).toContain("M U S D X O");
-    expect(puzzleStr).toContain("X V F O G H");
-    expect(puzzleStr).toContain("C L M Q S J");
-    expect(puzzleStr).toContain("O R A H H G");
-    expect(puzzleStr).toContain("N G A A W T");
+    expect(puzzleStr).toContain("N F H P X I");
+    expect(puzzleStr).toContain("F A G N F H");
+    expect(puzzleStr).toContain("P X I F A G");
+    expect(puzzleStr).toContain("N N H P X I");
+    expect(puzzleStr).toContain("F O R A F H");
+    expect(puzzleStr).toContain("P X I F A G");
   });
 
   it("Should have one solutions", () => {
     const puzzle = generatePuzzle(6, "NORA");
     const solutions = findSolutions(puzzle, "NORA");
+
     expect(solutions).toEqual([
       [
-        { row: 5, column: 0, letter: "N" },
-        { row: 4, column: 0, letter: "O" },
-        { row: 4, column: 1, letter: "R" },
-        { row: 4, column: 2, letter: "A" }
+        { row: 3, column: 1, letter: "N" },
+        { row: 4, column: 1, letter: "O" },
+        { row: 4, column: 2, letter: "R" },
+        { row: 4, column: 3, letter: "A" }
       ]
     ]);
   });
 
-  it("Should be able to find many long solutions", () => {
-    const puzzle = generatePuzzle(6, "BARBARAPAPA");
-    const solutions = findSolutions(puzzle, "BARBARAPAPA");
+  it("Should be able to find multiple long solutions", () => {
+    const puzzle = generatePuzzle(6, "BARBARPAPA");
+    const solutions = findSolutions(puzzle, "BARBARPAPA");
 
     expect(solutions).toEqual([
       [
-        { row: 5, column: 0, letter: "B" },
-        { row: 4, column: 0, letter: "A" },
-        { row: 4, column: 1, letter: "R" },
-        { row: 4, column: 2, letter: "B" },
-        { row: 3, column: 2, letter: "A" },
-        { row: 2, column: 2, letter: "R" },
-        { row: 2, column: 3, letter: "A" },
-        { row: 2, column: 4, letter: "P" },
-        { row: 2, column: 5, letter: "A" },
-        { row: 1, column: 5, letter: "P" },
-        { row: 0, column: 5, letter: "A" }
+        { row: 1, column: 0, letter: "B" },
+        { row: 1, column: 1, letter: "A" },
+        { row: 2, column: 1, letter: "R" },
+        { row: 3, column: 1, letter: "B" },
+        { row: 4, column: 1, letter: "A" },
+        { row: 4, column: 2, letter: "R" },
+        { row: 4, column: 3, letter: "P" },
+        { row: 5, column: 3, letter: "A" },
+        { row: 5, column: 4, letter: "P" },
+        { row: 5, column: 5, letter: "A" }
+      ],
+      [
+        { row: 1, column: 0, letter: "B" },
+        { row: 2, column: 0, letter: "A" },
+        { row: 2, column: 1, letter: "R" },
+        { row: 3, column: 1, letter: "B" },
+        { row: 4, column: 1, letter: "A" },
+        { row: 4, column: 2, letter: "R" },
+        { row: 4, column: 3, letter: "P" },
+        { row: 5, column: 3, letter: "A" },
+        { row: 5, column: 4, letter: "P" },
+        { row: 5, column: 5, letter: "A" }
       ]
     ]);
   });

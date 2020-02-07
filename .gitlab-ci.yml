@@ -24,7 +24,7 @@ cypress-e2e-tests:
   before_script:
     - npm install
     - yarn
-    - yarn start &
+    - yarn start:cypress &
   script:
     - yarn cypress:ci
   artifacts:

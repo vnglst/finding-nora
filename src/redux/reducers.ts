@@ -31,9 +31,7 @@ const getInitialState = (name?: string) => {
   };
 };
 
-const INITIAL_STATE = getInitialState();
-
-export function reducers(state = INITIAL_STATE, action: ActionType) {
+export function reducers(state = getInitialState(), action: ActionType) {
   // using immer to allow direct mutation of state
   return produce(state, draft => {
     switch (action.type) {

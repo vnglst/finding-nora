@@ -81,6 +81,7 @@ export default function App() {
                 red={item.status === Status.Wrong}
                 green={item.status === Status.Correct}
                 orange={item.status === Status.AlmostCorrect}
+                data-testid={`grid-item-${row}-${column}`}
               >
                 {item.letter}
               </Grid.Item>

@@ -1,21 +1,37 @@
 import React from "react";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
 import { reducers } from "../redux/reducers";
+import { middleware } from "../redux/middleware";
 import App from "../App";
 
 function renderWithRedux(
   ui,
-  { store = createStore(reducers, undefined) } = {}
+  { store = createStore(reducers, applyMiddleware(middleware)) } = {}
 ) {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
     store
   };
 }
+
+jest
+  .spyOn(window.HTMLMediaElement.prototype, "play")
+  .mockImplementation(async () => {});
+
+jest
+  .spyOn(window.HTMLMediaElement.prototype, "load")
+  .mockImplementation(() => {});
+
+Object.defineProperty(window, "localStorage", {
+  value: {
+    setItem: jest.fn().mockImplementation(() => {}),
+    getItem: jest.fn().mockImplementation(() => {})
+  }
+});
 
 describe("App", () => {
   mockRandomForEach([0.5, 0.2, 0.3, 0.6, 0.9, 0.33, 0.22, 0, 0.233]);

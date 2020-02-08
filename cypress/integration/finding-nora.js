@@ -32,7 +32,7 @@ describe("Basic Happy flow", function() {
       .type("MAMAPAPA");
 
     cy.get(".overlay-content")
-      .contains("Save")
+      .contains("Add")
       .click();
 
     cy.get(".grid-item").each(function($el, index, $list) {

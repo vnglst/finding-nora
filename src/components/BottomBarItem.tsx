@@ -22,7 +22,7 @@ export default function BottomBarItem({
   return (
     <button className={classes} onMouseDown={() => onChange(value)} {...other}>
       {icon}
-      {label && <p>{label}</p>}
+      {label && <p className="label">{label}</p>}
     </button>
   );
 }

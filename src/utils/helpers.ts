@@ -9,6 +9,10 @@ export function getRnd(max: number) {
   return Math.floor(rnd() * max);
 }
 
+export function shuffle<T>(arr: T[]): T[] {
+  return arr.sort(() => rnd() - 0.5);
+}
+
 export function sample<T>(arr: T[]) {
   return arr[Math.floor(rnd() * arr.length)];
 }

@@ -7,10 +7,10 @@ const MIN_NAME_LENGTH = 4;
 const MAX_NAME_LENGTH = 9;
 interface Props {
   className?: string;
-  solution: string;
   addSolution: (solution: string) => void;
-  onNavigate: (screen: string) => void;
+  setPage: (screen: string) => void;
   restart: () => void;
+  reset: () => void;
 }
 
 function isValid(value: string) {
@@ -18,12 +18,12 @@ function isValid(value: string) {
 }
 
 export default function Settings({
-  solution,
   addSolution,
   restart,
-  onNavigate
+  reset,
+  setPage: onNavigate
 }: Props) {
-  const [value, setValue] = React.useState(solution);
+  const [value, setValue] = React.useState("NORA");
 
   return (
     <Overlay>
@@ -34,25 +34,35 @@ export default function Settings({
         name="solution"
         maxLength={9}
         value={value}
-        placeholder={solution}
+        placeholder="NORA"
         onChange={e => {
           const newValue = e.currentTarget.value.toUpperCase();
           setValue(newValue);
-          if (isValid(newValue)) {
-            // only update solution in redux state if valid
-            addSolution(newValue);
-          }
         }}
       />
-      <Button
-        disabled={!isValid(value)}
-        onClick={() => {
-          restart();
-          onNavigate("home");
-        }}
-      >
-        Save
-      </Button>
+      <span>
+        <Button
+          disabled={!isValid(value)}
+          onClick={() => {
+            addSolution(value);
+            restart();
+            onNavigate("home");
+          }}
+          testId="settings-add"
+        >
+          Add
+        </Button>
+        <Button
+          isSecondary
+          onClick={() => {
+            reset();
+            onNavigate("home");
+          }}
+          testId="settings-reset"
+        >
+          Reset
+        </Button>
+      </span>
     </Overlay>
   );
 }

@@ -23,7 +23,9 @@ export default function AboutPage({ onClose }: Props) {
         Source code on{" "}
         <a href="https://github.com/vnglst/finding-nora">Github</a>
       </p>
-      <small>v{process.env.REACT_APP_VERSION}</small>
+      <small>
+        v{process.env.REACT_APP_VERSION} git: {process.env.REACT_APP_GIT_SHA}
+      </small>
       <Button onClick={onClose}>Back</Button>
     </Overlay>
   );

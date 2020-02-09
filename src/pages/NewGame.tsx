@@ -3,26 +3,28 @@ import Button from "../components/Button";
 import Overlay from "../components/Overlay";
 
 interface Props {
-  onNavigate: (screen: string) => void;
+  setPage: (screen: string) => void;
   restart: () => void;
 }
 
-export default function NewGamePage({ onNavigate, restart }: Props) {
+export default function NewGamePage({ setPage, restart }: Props) {
   return (
     <Overlay>
       <Button
         onMouseDown={() => {
           restart();
-          onNavigate("home");
+          setPage("home");
         }}
+        testId="new-game-restart"
       >
         New game
       </Button>
       <Button
         isSecondary
         onMouseDown={() => {
-          onNavigate("home");
+          setPage("home");
         }}
+        testId="new-game-resume"
       >
         Resume game
       </Button>

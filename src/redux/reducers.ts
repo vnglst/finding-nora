@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { localStore } from "../utils/better-storage";
+import { initialQuestions } from "./names";
 import {
   generatePuzzle,
   filterPossibleSolutions,
@@ -10,28 +10,27 @@ import {
   ADD_CORRECT,
   ADD_ALMOST,
   ADD_WRONG,
-  ADD_SOLUTION,
+  ADD_ANSWER,
   RESTART,
-  ActionType
+  NEW_GAME,
+  ActionType,
+  RESET
 } from "./actions";
 
-export const STORAGE_KEY = "finding-nora";
-
-const getInitialState = (name?: string) => {
-  const NAME = name || localStore.getItem(STORAGE_KEY) || "NORA";
-  const SOLUTION = NAME.toUpperCase();
-  const GRID = generatePuzzle(5, SOLUTION);
-  const SOLUTIONS = findSolutions(GRID, SOLUTION);
-
+export const generateNewGame = (current = 0, questions = initialQuestions) => {
+  const grid = generatePuzzle(5, questions[current]);
   return {
-    grid: GRID,
-    solution: SOLUTION,
-    solutions: SOLUTIONS,
-    remaining: NAME
+    current,
+    questions,
+    grid,
+    solutions: findSolutions(grid, questions[current]),
+    remaining: questions[current]
   };
 };
 
-export function reducers(state = getInitialState(), action: ActionType) {
+export type AppState = ReturnType<typeof generateNewGame>;
+
+export function reducers(state = generateNewGame(), action: ActionType) {
   // using immer to allow direct mutation of state
   return produce(state, draft => {
     switch (action.type) {
@@ -65,11 +64,23 @@ export function reducers(state = getInitialState(), action: ActionType) {
       }
 
       case RESTART: {
-        return getInitialState(draft.solution);
+        const { current, questions } = draft;
+        return generateNewGame(current, questions);
       }
 
-      case ADD_SOLUTION: {
-        draft.solution = action.payload;
+      case NEW_GAME: {
+        const { current, questions } = draft;
+        const next = current < questions.length - 1 ? current + 1 : 0;
+        return generateNewGame(next, questions);
+      }
+
+      case RESET: {
+        return generateNewGame();
+      }
+
+      case ADD_ANSWER: {
+        // insert new question at current index into questions array
+        draft.questions.splice(draft.current, 0, action.payload);
         break;
       }
 
@@ -78,5 +89,3 @@ export function reducers(state = getInitialState(), action: ActionType) {
     }
   });
 }
-
-export type AppState = ReturnType<typeof reducers>;

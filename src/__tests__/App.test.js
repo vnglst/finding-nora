@@ -1,16 +1,16 @@
 import React from "react";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, queryByTestId } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
 import { reducers } from "../redux/reducers";
-import { middleware } from "../redux/middleware";
+import { audioMiddleware } from "../redux/middleware-audio";
 import App from "../App";
 
 function renderWithRedux(
   ui,
-  { store = createStore(reducers, applyMiddleware(middleware)) } = {}
+  { store = createStore(reducers, applyMiddleware(audioMiddleware)) } = {}
 ) {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
@@ -115,7 +115,7 @@ describe("App", () => {
 
     fireEvent.change(input, { target: { value: "TIBO" } });
 
-    fireEvent.click(screen.getByText("Save"));
+    fireEvent.click(screen.getByTestId("settings-add"));
 
     const heading = screen.getByRole("heading");
     expect(heading).toHaveTextContent("TIBO");
@@ -170,7 +170,12 @@ describe("App", () => {
   });
 
   it("should be NOT possible to change to a wrong name", async () => {
-    const { getByLabelText, getByText, getByRole } = renderWithRedux(<App />);
+    const {
+      getByLabelText,
+      getByText,
+      getByRole,
+      getByTestId
+    } = renderWithRedux(<App />);
 
     const button = getByLabelText("Settings");
 
@@ -182,21 +187,21 @@ describe("App", () => {
 
     fireEvent.change(input, { target: { value: "TIB" } });
 
-    fireEvent.click(getByText("Save"));
+    fireEvent.click(getByTestId("settings-add"));
 
     expect(getByRole("textbox")).toHaveClass("invalid");
 
-    expect(getByText("Save")).toBeDisabled();
+    expect(getByTestId("settings-add")).toBeDisabled();
 
     expect(getByRole("heading")).toHaveTextContent("NORA");
 
     fireEvent.change(input, { target: { value: "THIS IS TO LONG A NAME" } });
 
-    fireEvent.click(getByText("Save"));
+    fireEvent.click(getByTestId("settings-add"));
 
     expect(getByRole("textbox")).toHaveClass("invalid");
 
-    expect(getByText("Save")).toBeDisabled();
+    expect(getByTestId("settings-add")).toBeDisabled();
 
     expect(getByRole("heading")).toHaveTextContent("NORA");
   });
@@ -204,9 +209,9 @@ describe("App", () => {
   it("should be possible to restart the game", async () => {
     const {
       getByLabelText,
-      getByText,
+      getByTestId,
       getAllByText,
-      queryByText
+      queryByTestId
     } = renderWithRedux(<App />);
 
     const A = getAllByText("A")[0];
@@ -217,11 +222,11 @@ describe("App", () => {
 
     fireEvent.mouseDown(button);
 
-    expect(getByText(/New game/)).toBeInTheDocument();
+    expect(getByTestId("new-game-resume")).toBeInTheDocument();
 
-    fireEvent.mouseDown(getByText("New game"));
+    fireEvent.mouseDown(getByTestId("new-game-restart"));
 
-    expect(queryByText(/New game/)).not.toBeInTheDocument();
+    expect(queryByTestId(/new-game-resume/)).not.toBeInTheDocument();
     expect(getAllByText("A")[0]).not.toHaveClass("orange");
   });
 });

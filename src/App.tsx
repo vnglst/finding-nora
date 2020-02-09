@@ -23,8 +23,10 @@ import {
   addCorrect,
   addAlmost,
   addWrong,
-  addSolution,
-  restart
+  addAnswer,
+  restart,
+  newGame,
+  reset
 } from "redux/actions";
 import "./App.css";
 
@@ -38,7 +40,6 @@ export default function App() {
   const dispatch: AppDispatch = useDispatch();
   const grid = useSelector(state => state.grid);
   const remaining = useSelector(state => state.remaining);
-  const solution = useSelector(state => state.solution);
   const solutions = useSelector(state => state.solutions);
   const didWin = useSelector(state => state.remaining.length === 0);
 
@@ -92,31 +93,31 @@ export default function App() {
           <BottomBar.Item
             aria-label="New game"
             value="new-game"
+            label="New game"
             icon={<FontAwesomeIcon icon={faRedo} />}
           />
           <BottomBar.Item
             aria-label="Settings"
             value="settings"
+            label="Add name"
             icon={<FontAwesomeIcon icon={faCog} />}
           />
           <BottomBar.Item
             aria-label="About this app"
             value="about"
+            label="About"
             icon={<FontAwesomeIcon icon={faInfoCircle} />}
           />
         </BottomBar>
         {page === "new-game" && (
-          <NewGamePage
-            onNavigate={setPage}
-            restart={() => dispatch(restart())}
-          />
+          <NewGamePage setPage={setPage} restart={() => dispatch(newGame())} />
         )}
         {page === "settings" && (
           <SettingsPage
-            solution={solution}
-            addSolution={newSolution => dispatch(addSolution(newSolution))}
+            addSolution={newSolution => dispatch(addAnswer(newSolution))}
             restart={() => dispatch(restart())}
-            onNavigate={setPage}
+            reset={() => dispatch(reset())}
+            setPage={setPage}
           />
         )}
         {page === "about" && (
@@ -131,8 +132,9 @@ export default function App() {
             <p>YOU WON</p>
             <Button
               onMouseDown={() => {
-                dispatch(restart());
+                dispatch(newGame());
               }}
+              testId="play-again"
             >
               Play again?
             </Button>

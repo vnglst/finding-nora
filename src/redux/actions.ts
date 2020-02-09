@@ -1,21 +1,23 @@
 import { GridItem } from "../types";
 
-export const ADD_SOLUTION = "ADD_SOLUTION";
+export const ADD_ANSWER = "ADD_ANSWER";
 export const ADD_CORRECT = "CORRECT_ANSWER";
 export const ADD_WRONG = "ADD_WRONG";
 export const ADD_ALMOST = "ADD_ALMOST";
 export const RESTART = "RESTART";
+export const NEW_GAME = "NEW_GAME";
+export const RESET = "RESET";
 export const YOU_WON = "YOU_WON";
 
-interface AddSolutionAction {
-  type: typeof ADD_SOLUTION;
+interface AddAnswerAction {
+  type: typeof ADD_ANSWER;
   payload: string;
 }
 
-export function addSolution(solution: string): AddSolutionAction {
+export function addAnswer(answer: string): AddAnswerAction {
   return {
-    type: ADD_SOLUTION,
-    payload: solution
+    type: ADD_ANSWER,
+    payload: answer
   };
 }
 
@@ -65,6 +67,26 @@ export function restart(): RestartAction {
   };
 }
 
+interface NewGameAction {
+  type: typeof NEW_GAME;
+}
+
+export function newGame(): NewGameAction {
+  return {
+    type: NEW_GAME
+  };
+}
+
+interface ResetAction {
+  type: typeof RESET;
+}
+
+export function reset(): ResetAction {
+  return {
+    type: RESET
+  };
+}
+
 interface YouWonAction {
   type: typeof YOU_WON;
 }
@@ -76,9 +98,11 @@ export function youWon(): YouWonAction {
 }
 
 export type ActionType =
-  | AddSolutionAction
+  | AddAnswerAction
   | AddCorrectAction
   | AddWrongAction
   | AddAlmostAction
   | RestartAction
+  | NewGameAction
+  | ResetAction
   | YouWonAction;

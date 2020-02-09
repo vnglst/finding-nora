@@ -2,7 +2,7 @@ export const localStore = storageFactory(localStorage);
 export const sessionStore = storageFactory(sessionStorage);
 
 // source: https://gist.github.com/MichalZalecki/70a831304b0e83afbc0fbad3e8577068
-export function storageFactory(storage: Storage): Storage {
+function storageFactory(storage: Storage): Storage {
   let inMemoryStorage: { [key: string]: string } = {};
   const length = 0;
 

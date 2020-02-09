@@ -7,7 +7,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import App from "./App";
 import { audioMiddleware } from "./redux/middleware-audio";
 import { storageMiddleware, loadState } from "./redux/middleware-storage";
-import { reducers, generateNewGame } from "./redux/reducers";
+import { reducers } from "./redux/reducers";
 import register from "./registerServiceWorker";
 import { BugsnagErrorBoundary } from "./utils/bugsnag";
 import "./index.css";
@@ -18,10 +18,7 @@ const composeEnhancers =
 
 const store = createStore(
   reducers,
-  {
-    ...generateNewGame(),
-    ...loadState()
-  },
+  loadState(),
   composeEnhancers(applyMiddleware(audioMiddleware, storageMiddleware))
 );
 

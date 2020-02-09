@@ -1,7 +1,7 @@
 import React from "react";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import { fireEvent, render, queryByTestId } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
 import { reducers } from "../redux/reducers";

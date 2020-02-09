@@ -9,7 +9,7 @@ import {
 import { Middleware } from "redux";
 import { AppDispatch } from "..";
 import { localStore } from "../utils/storage";
-import { AppState } from "./reducers";
+import { AppState, generateNewGame } from "./reducers";
 import { reportError } from "utils/bugsnag";
 
 const STORAGE_KEY = "finding-nora";
@@ -17,12 +17,13 @@ const STORAGE_KEY = "finding-nora";
 function storeState(state: AppState) {
   try {
     const stateStr = JSON.stringify({
-      solutions: state.solutions,
+      questions: state.questions,
       current: state.current
     });
 
     localStore.setItem(STORAGE_KEY, stateStr);
   } catch (error) {
+    console.error(error);
     reportError(error);
     return null;
   }
@@ -30,12 +31,16 @@ function storeState(state: AppState) {
 
 export function loadState() {
   try {
+    // generates new game based on stored state
     const stateStr = localStore.getItem(STORAGE_KEY);
-    const state = stateStr ? (JSON.parse(stateStr) as AppState) : null;
-    return state;
+    const storedState = stateStr ? (JSON.parse(stateStr) as AppState) : null;
+    const current = storedState ? storedState.current : undefined;
+    const questions = storedState ? storedState.questions : undefined;
+    return generateNewGame(current, questions);
   } catch (error) {
+    console.error(error);
     reportError(error);
-    return null;
+    return generateNewGame();
   }
 }
 

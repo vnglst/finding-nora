@@ -60,7 +60,6 @@ export const storageMiddleware: Middleware = ({ getState }) => (
     case NEW_GAME:
     case RESET:
     case ADD_ANSWER: {
-      console.log("storing state", nextState);
       storeState(nextState);
       return result;
     }

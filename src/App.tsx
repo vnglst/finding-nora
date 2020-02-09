@@ -29,6 +29,7 @@ import {
   reset
 } from "redux/actions";
 import "./App.css";
+import Confetti from "react-confetti";
 
 export const useSelector: TypedUseSelectorHook<AppState> = useReduxSelector;
 
@@ -128,17 +129,20 @@ export default function App() {
           />
         )}
         {didWin && page === "home" && (
-          <Overlay>
-            <p>YOU WON</p>
-            <Button
-              onMouseDown={() => {
-                dispatch(newGame());
-              }}
-              testId="play-again"
-            >
-              Play again?
-            </Button>
-          </Overlay>
+          <>
+            <Confetti />
+            <Overlay>
+              <p>YOU WON</p>
+              <Button
+                onMouseDown={() => {
+                  dispatch(newGame());
+                }}
+                testId="play-again"
+              >
+                Play again?
+              </Button>
+            </Overlay>
+          </>
         )}
       </div>
     </BackgroundImage>

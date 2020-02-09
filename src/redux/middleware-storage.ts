@@ -17,7 +17,7 @@ const STORAGE_KEY = "finding-nora";
 function storeState(state: AppState) {
   try {
     const stateStr = JSON.stringify({
-      solutions: state.solutions,
+      questions: state.questions,
       current: state.current
     });
 

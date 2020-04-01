@@ -17,7 +17,7 @@
     "coveralls": "yarn test --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.1.0",
+    "@testing-library/jest-dom": "^5.3.0",
     "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.8",
     "@types/howler": "^2.1.2",

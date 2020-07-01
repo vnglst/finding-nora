@@ -21,7 +21,7 @@
     "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.8",
     "@types/howler": "^2.1.2",
-    "@types/jest": "^25.1.1",
+    "@types/jest": "^26.0.3",
     "@types/node": "^13.7.0",
     "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.19",

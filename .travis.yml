@@ -13,10 +13,11 @@ cache:
     - ~/.yarn
   override:
     - npm ci
-before_script:
-  - yarn start:cypress --silent &
+    - npm run cy:verify
+
 script:
   - yarn
-  - npx cypress install
+  - yarn start:cypress --silent &
   - yarn verify
   - yarn coveralls
+  - kill $(jobs -p) || true

@@ -1,4 +1,4 @@
-import { initialize } from "./minimal-analytics";
+import { initialize } from "minimal-analytics";
 import preventDoubleTapZoom from "prevent-double-tap-zoom";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

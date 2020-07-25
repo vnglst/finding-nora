@@ -35,7 +35,7 @@ describe("Basic Happy flow", function() {
       .contains("Add")
       .click();
 
-    cy.get(".grid-item").each(function($el, index, $list) {
+    cy.get(".grid-item").each(function($el) {
       cy.wrap($el).click();
     });
 

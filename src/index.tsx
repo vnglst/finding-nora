@@ -39,6 +39,10 @@ register();
 function initializeAnalyticsOnProduction() {
   if (process.env.NODE_ENV === "production") {
     initialize(window, "UA-135954444-1", {
+      serviceUrls: [
+        "https://analytics.koenvangilst.nl/track",
+        "https://www.google-analytics.com/collect"
+      ],
       anonymizeIp: true,
       colorDepth: true,
       characterSet: true,

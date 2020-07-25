@@ -1,4 +1,4 @@
-import { initialize } from "minimal-analytics";
+import { initialize } from "./minimal-analytics";
 import preventDoubleTapZoom from "prevent-double-tap-zoom";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -39,6 +39,10 @@ register();
 function initializeAnalyticsOnProduction() {
   if (process.env.NODE_ENV === "production") {
     initialize(window, "UA-135954444-1", {
+      serviceUrls: [
+        window.location.origin + "/track",
+        "https://www.google-analytics.com/collect"
+      ],
       anonymizeIp: true,
       colorDepth: true,
       characterSet: true,

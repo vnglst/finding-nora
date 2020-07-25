@@ -19,6 +19,7 @@ export function initialize(context = window, trackingId, options = {}) {
   const serialize = obj => {
     const str = [];
     for (let p in obj) {
+      // eslint-disable-next-line no-prototype-builtins
       if (obj.hasOwnProperty(p)) {
         if (obj[p] !== undefined) {
           str.push(encode(p) + "=" + encode(obj[p]));
@@ -99,6 +100,7 @@ export function initialize(context = window, trackingId, options = {}) {
       history.onpushstate({ state: state });
     }
     setTimeout(track, options.delay || 10);
+    // eslint-disable-next-line prefer-rest-params
     return pushState.apply(history, arguments);
   };
 

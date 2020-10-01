@@ -42,7 +42,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@bugsnag/js": "^6.5.0",
+    "@bugsnag/js": "^7.3.5",
     "@bugsnag/plugin-react": "^6.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",

@@ -1,35 +1,25 @@
 stages:
   - verify
-  - e2e
 
-image: cypress/base:12.6.0
+image: node:20-alpine
 
-jest-unit-tests:
+vitest-unit-tests:
   stage: verify
   before_script:
-    - yarn
+    - npm ci
   script:
-    - yarn test
+    - npm run test run
 
 check-build:
   stage: verify
   before_script:
-    - yarn
+    - npm ci
   script:
-    - yarn build
+    - npm run build
 
-cypress-e2e-tests:
-  image: cypress/base:12.6.0
-  stage: e2e
+lint:
+  stage: verify
   before_script:
-    - npm install
-    - yarn
-    - yarn start:cypress &
+    - npm ci
   script:
-    - yarn cypress:ci
-  artifacts:
-    expire_in: 1 day
-    when: always
-    paths:
-      - cypress/screenshots
-      - cypress/videos
+    - npm run lint

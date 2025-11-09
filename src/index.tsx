@@ -1,15 +1,13 @@
 import { initialize } from "minimal-analytics";
 import preventDoubleTapZoom from "prevent-double-tap-zoom";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import App from "./App";
 import { audioMiddleware } from "./redux/middleware-audio";
 import { storageMiddleware, loadState } from "./redux/middleware-storage";
 import { reducers } from "./redux/reducers";
-import register from "./registerServiceWorker";
-import { BugsnagErrorBoundary } from "./utils/bugsnag";
+import { registerSW } from 'virtual:pwa-register'
 import "./index.css";
 
 const composeEnhancers =
@@ -24,20 +22,23 @@ const store = createStore(
 
 export type AppDispatch = typeof store.dispatch;
 
-ReactDOM.render(
-  <BugsnagErrorBoundary>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BugsnagErrorBoundary>,
-  document.getElementById("root") as HTMLElement
+const container = document.getElementById("root");
+if (!container) throw new Error("Failed to find the root element");
+
+const root = createRoot(container);
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 preventDoubleTapZoom({ delay: 500 });
-register();
+
+// Register PWA service worker
+registerSW({ immediate: true });
 
 function initializeAnalyticsOnProduction() {
-  if (process.env.NODE_ENV === "production") {
+  if (import.meta.env.MODE === "production") {
     initialize(window, "UA-135954444-1", {
       serviceUrls: [
         "https://analytics.koenvangilst.nl/track",

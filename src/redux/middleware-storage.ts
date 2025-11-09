@@ -7,10 +7,8 @@ import {
   ActionType
 } from "./actions";
 import { Middleware } from "redux";
-import { AppDispatch } from "..";
 import { localStore } from "../utils/storage";
 import { AppState, generateNewGame } from "./reducers";
-import { reportError } from "utils/bugsnag";
 
 const STORAGE_KEY = "finding-nora";
 
@@ -24,7 +22,6 @@ function storeState(state: AppState) {
     localStore.setItem(STORAGE_KEY, stateStr);
   } catch (error) {
     console.error(error);
-    reportError(error);
     return null;
   }
 }
@@ -39,7 +36,6 @@ export function loadState() {
     return generateNewGame(current, questions);
   } catch (error) {
     console.error(error);
-    reportError(error);
     return generateNewGame();
   }
 }
@@ -48,12 +44,16 @@ export function loadState() {
  * Middleware to handle saving state to localStorage
  */
 export const storageMiddleware: Middleware = ({ getState }) => (
-  next: AppDispatch
-) => (action: ActionType) => {
+  next
+) => (action: unknown) => {
+  if (!action || typeof action !== 'object' || !('type' in action)) {
+    return next(action);
+  }
+  const typedAction = action as ActionType;
   const result = next(action);
   const nextState = getState();
 
-  switch (action.type) {
+  switch (typedAction.type) {
     // update stored state only on relevant redux actions
     case YOU_WON:
     case RESTART:

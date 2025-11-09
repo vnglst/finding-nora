@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+.git
+.gitignore
+*.md
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+coverage
+.DS_Store
+.vercel

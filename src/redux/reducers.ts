@@ -5,7 +5,7 @@ import {
   filterPossibleSolutions,
   findSolutions
 } from "../model/puzzle";
-import { Status } from "types";
+import { Status } from "../types";
 import {
   ADD_CORRECT,
   ADD_ALMOST,

@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 12
+  - 20
 addons:
   apt:
     packages:
@@ -19,4 +19,3 @@ script:
   - yarn
   - npx cypress install
   - yarn verify
-  - yarn coveralls

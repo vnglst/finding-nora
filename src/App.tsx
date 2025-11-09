@@ -1,6 +1,6 @@
 import { faCog, faInfoCircle, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   useSelector as useReduxSelector,
   TypedUseSelectorHook,
@@ -17,7 +17,7 @@ import Overlay from "./components/Overlay";
 import { GridItem, Status } from "./types";
 import { AppState } from "./redux/reducers";
 import { AppDispatch } from "./";
-import { filterPossibleSolutions } from "model/puzzle";
+import { filterPossibleSolutions } from "./model/puzzle";
 import {
   youWon,
   addCorrect,
@@ -27,7 +27,7 @@ import {
   restart,
   newGame,
   reset
-} from "redux/actions";
+} from "./redux/actions";
 import "./App.css";
 import Confetti from "react-confetti";
 

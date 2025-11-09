@@ -2,7 +2,7 @@ import { createPseudoRnd } from "./pseudoRnd";
 
 // Use a pseudo random function with seed number in cypress test
 // for repeatable test scenarios in unit + e2e tests
-const usePseudoRnd = process.env.REACT_APP_PSEUDO_RND === "true";
+const usePseudoRnd = import.meta.env.VITE_PSEUDO_RND === "true";
 const rnd = usePseudoRnd ? createPseudoRnd() : () => Math.random();
 
 export function getRnd(max: number) {

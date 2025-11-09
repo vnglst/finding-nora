@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "../components/Button";
 import Overlay from "../components/Overlay";
 import "./About.css";
@@ -24,7 +23,7 @@ export default function AboutPage({ onClose }: Props) {
         <a href="https://github.com/vnglst/finding-nora">Github</a>
       </p>
       <small>
-        v{process.env.REACT_APP_VERSION} git: {process.env.REACT_APP_GIT_SHA}
+        v{import.meta.env.VITE_VERSION} git: {import.meta.env.VITE_GIT_SHA}
       </small>
       <Button onClick={onClose}>Back</Button>
     </Overlay>

@@ -7,7 +7,6 @@ import {
   ActionType
 } from "./actions";
 import { Middleware } from "redux";
-import { AppDispatch } from "..";
 import { loadSounds } from "../utils/audio-init";
 
 const sounds = loadSounds();
@@ -15,12 +14,16 @@ const sounds = loadSounds();
 /**
  * Middleware to handle side effect of playing audio
  */
-export const audioMiddleware: Middleware = () => (next: AppDispatch) => (
-  action: ActionType
+export const audioMiddleware: Middleware = () => (next) => (
+  action: unknown
 ) => {
+  if (!action || typeof action !== 'object' || !('type' in action)) {
+    return next(action);
+  }
+  const typedAction = action as ActionType;
   const result = next(action);
 
-  switch (action.type) {
+  switch (typedAction.type) {
     case RESTART: {
       sounds.restart.play();
       return result;

@@ -50,8 +50,6 @@
     "workbox-window": "^7.3.0"
   },
   "dependencies": {
-    "@bugsnag/js": "^8.1.4",
-    "@bugsnag/plugin-react": "^8.1.4",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",

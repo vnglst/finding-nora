@@ -7,7 +7,6 @@ import App from "./App";
 import { audioMiddleware } from "./redux/middleware-audio";
 import { storageMiddleware, loadState } from "./redux/middleware-storage";
 import { reducers } from "./redux/reducers";
-import { BugsnagErrorBoundary } from "./utils/bugsnag";
 import { registerSW } from 'virtual:pwa-register'
 import "./index.css";
 
@@ -28,11 +27,9 @@ if (!container) throw new Error("Failed to find the root element");
 
 const root = createRoot(container);
 root.render(
-  <BugsnagErrorBoundary>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BugsnagErrorBoundary>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 preventDoubleTapZoom({ delay: 500 });

@@ -13,8 +13,8 @@
     "test:ui": "vitest --ui",
     "lint": "eslint .",
     "prettier": "prettier ./src/**/*.{js,ts,tsx}",
-    "verify": "yarn lint && yarn test run && yarn build && yarn cypress:ci",
-    "deploy": "yarn build && netlify deploy ./dist",
+    "verify": "npm run lint && npm run test run && npm run build && npm run cypress:ci",
+    "deploy": "npm run build && netlify deploy ./dist",
     "cypress:ci": "cypress run",
     "cypress:open": "cypress open"
   },

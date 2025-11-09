@@ -1,21 +1,10 @@
 language: node_js
 node_js:
   - 20
-addons:
-  apt:
-    packages:
-      - libgconf-2-4
 cache:
-  yarn: true
+  npm: true
   directories:
-    - ~/.cache
     - ~/.npm
-    - ~/.yarn
-  override:
-    - npm ci
-before_script:
-  - yarn start:cypress --silent &
 script:
-  - yarn
-  - npx cypress install
-  - yarn verify
+  - npm ci
+  - npm run verify

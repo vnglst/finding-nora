@@ -1,16 +1,21 @@
 import React from "react";
-import { applyMiddleware, createStore } from "redux";
+import { vi } from "vitest";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { fireEvent, render } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import { mockRandomForEach, resetMockRandom } from "jest-mock-random";
-import { reducers } from "../redux/reducers";
+import gameReducer from "../redux/gameSlice";
 import { audioMiddleware } from "../redux/middleware-audio";
 import App from "../App";
 
 function renderWithRedux(
   ui,
-  { store = createStore(reducers, applyMiddleware(audioMiddleware)) } = {}
+  { store = configureStore({
+    reducer: gameReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(audioMiddleware)
+  }) } = {}
 ) {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
@@ -18,18 +23,16 @@ function renderWithRedux(
   };
 }
 
-jest
-  .spyOn(window.HTMLMediaElement.prototype, "play")
+vi.spyOn(window.HTMLMediaElement.prototype, "play")
   .mockImplementation(async () => {});
 
-jest
-  .spyOn(window.HTMLMediaElement.prototype, "load")
+vi.spyOn(window.HTMLMediaElement.prototype, "load")
   .mockImplementation(() => {});
 
 Object.defineProperty(window, "localStorage", {
   value: {
-    setItem: jest.fn().mockImplementation(() => {}),
-    getItem: jest.fn().mockImplementation(() => {})
+    setItem: vi.fn().mockImplementation(() => {}),
+    getItem: vi.fn().mockImplementation(() => {})
   }
 });
 

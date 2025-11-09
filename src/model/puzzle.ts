@@ -1,4 +1,4 @@
-import { sample, deepEqual, getRnd } from "../utils/helpers";
+import { sample, gridItemEquals, getRnd } from "../utils/helpers";
 import {
   mirrorMatrixHorizontally,
   rotateMatrixCounterClockwise
@@ -178,7 +178,7 @@ function withinBounds(row: number, column: number, size: number) {
 function isNew(solution: GridItem[], newItem: GridItem) {
   let isNew = true;
   solution.forEach(item => {
-    if (deepEqual(newItem, item)) {
+    if (gridItemEquals(newItem, item)) {
       isNew = false;
     }
   });

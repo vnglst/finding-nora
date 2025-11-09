@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "prettier": "prettier ./src/**/*.{js,ts,tsx}",
     "verify": "yarn lint && yarn test run && yarn build && yarn cypress:ci",
-    "deploy": "yarn build && netlify deploy ./build",
+    "deploy": "yarn build && netlify deploy ./dist",
     "cypress:ci": "cypress run",
     "cypress:open": "cypress open"
   },

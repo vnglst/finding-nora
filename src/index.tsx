@@ -2,25 +2,23 @@ import { initialize } from "minimal-analytics";
 import preventDoubleTapZoom from "prevent-double-tap-zoom";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { applyMiddleware, compose, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import App from "./App";
 import { audioMiddleware } from "./redux/middleware-audio";
 import { storageMiddleware, loadState } from "./redux/middleware-storage";
-import { reducers } from "./redux/reducers";
+import gameReducer from "./redux/gameSlice";
 import { registerSW } from 'virtual:pwa-register'
 import "./index.css";
 
-const composeEnhancers =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  reducers,
-  loadState(),
-  composeEnhancers(applyMiddleware(audioMiddleware, storageMiddleware))
-);
+const store = configureStore({
+  reducer: gameReducer,
+  preloadedState: loadState(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(audioMiddleware, storageMiddleware)
+});
 
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");

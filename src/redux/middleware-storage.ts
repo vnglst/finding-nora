@@ -1,14 +1,13 @@
-import {
-  RESTART,
-  YOU_WON,
-  ADD_ANSWER,
-  RESET,
-  NEW_GAME,
-  ActionType
-} from "./actions";
 import { Middleware } from "redux";
 import { localStore } from "../utils/storage";
-import { AppState, generateNewGame } from "./reducers";
+import { AppState, generateNewGame } from "./gameSlice";
+import {
+  restart,
+  youWon,
+  addAnswer,
+  reset,
+  newGame
+} from "./gameSlice";
 
 const STORAGE_KEY = "finding-nora";
 
@@ -43,28 +42,20 @@ export function loadState() {
 /**
  * Middleware to handle saving state to localStorage
  */
-export const storageMiddleware: Middleware = ({ getState }) => (
-  next
-) => (action: unknown) => {
-  if (!action || typeof action !== 'object' || !('type' in action)) {
-    return next(action);
-  }
-  const typedAction = action as ActionType;
+export const storageMiddleware: Middleware = ({ getState }) => (next) => (action) => {
   const result = next(action);
-  const nextState = getState();
 
-  switch (typedAction.type) {
-    // update stored state only on relevant redux actions
-    case YOU_WON:
-    case RESTART:
-    case NEW_GAME:
-    case RESET:
-    case ADD_ANSWER: {
-      storeState(nextState);
-      return result;
-    }
-
-    default:
-      return result;
+  // update stored state only on relevant redux actions
+  if (
+    youWon.match(action) ||
+    restart.match(action) ||
+    newGame.match(action) ||
+    reset.match(action) ||
+    addAnswer.match(action)
+  ) {
+    const nextState = getState();
+    storeState(nextState);
   }
+
+  return result;
 };

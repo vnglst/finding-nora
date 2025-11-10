@@ -15,8 +15,7 @@ import BottomBar from "./components/BottomBar";
 import Button from "./components/Button";
 import Overlay from "./components/Overlay";
 import { GridItem, Status } from "./types";
-import { AppState } from "./redux/reducers";
-import { AppDispatch } from "./";
+import { AppDispatch, RootState } from "./";
 import { filterPossibleSolutions } from "./model/puzzle";
 import {
   youWon,
@@ -27,11 +26,11 @@ import {
   restart,
   newGame,
   reset
-} from "./redux/actions";
+} from "./redux/gameSlice";
 import "./App.css";
 import Confetti from "react-confetti";
 
-export const useSelector: TypedUseSelectorHook<AppState> = useReduxSelector;
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 const festenUrl =
   "https://res.cloudinary.com/vnglst/image/upload/f_auto/v1537882150/festen.jpg";

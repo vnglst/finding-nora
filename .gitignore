@@ -6,8 +6,7 @@
 # testing
 /coverage
 
-# production build
-/dist
+# Production export is committed for static-sites hosting.
 
 
 # misc

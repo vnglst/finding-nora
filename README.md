@@ -15,20 +15,34 @@ It's a word search game made with following web technology:
 ## Development
 
 ```sh
-yarn start
+npm ci
+npm run dev
 ```
 
-## Build
+## Static export and release
 
 ```sh
-yarn build
+npm ci
+npm run export
+npm run preview
 ```
 
-## Deploy
+Commit `dist/` together with the source change. The shared `vnglst/static-sites`
+repository pins that commit and copies `dist/` into Nginx; it never installs npm
+dependencies or rebuilds this application. Update the source pin there to publish.
+Keep `package-lock.json` committed and use `npm ci` for export dependencies.
 
-```sh
-yarn deploy # deploys on Netlify https://finding-nora.com`
-```
+Serve the export at a hostname root. Keep `sw.js`, `registerSW.js`, the manifest,
+HTML and unhashed files revalidated; only content-hashed assets are immutable.
+The service worker precaches the game, icons, splash screens and local sound
+files. Fonts and the background image still use their existing external hosts.
+Check a new-name game, saved names after reload, audio, and offline launch after
+an initial online visit when releasing. Installed PWA behavior on iOS needs a
+real-device check.
+
+To roll back, restore the previous source pin in `static-sites` and redeploy.
+Service-worker updates can require an online revisit before an installed app
+uses the restored version.
 
 ## Conclusions about PWA's
 

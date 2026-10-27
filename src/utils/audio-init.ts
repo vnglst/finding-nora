@@ -2,7 +2,7 @@ import { Howl } from "howler";
 
 export const loadSounds = () => {
   const soundsBaseUrl =
-    "https://raw.githubusercontent.com/vnglst/finding-nora/master/public/sounds/";
+    `${import.meta.env.BASE_URL}sounds/`;
 
   const sources = [
     { id: "squakk", mp3: soundsBaseUrl + "squakk.mp3" },

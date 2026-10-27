@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "prettier": "prettier ./src/**/*.{js,ts,tsx}",
     "verify": "npm run lint && npm run build",
-    "deploy": "npm run build && netlify deploy ./dist"
+    "deploy": "npm run build && netlify deploy ./dist",
+    "export": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
